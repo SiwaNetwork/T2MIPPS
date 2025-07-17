@@ -1,0 +1,9 @@
+#List of actual used RTLs.
+
+File                                                                       Type     IN_PROJECT/INCLUDED/LIBRARY
+
+"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\t2mi_pps_top.v"            verilog                      IN PROJECT
+"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v"           verilog                      IN PROJECT
+"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\timestamp_extractor.v"     verilog                      IN PROJECT
+"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\t2mi_packet_parser.v"      verilog                      IN PROJECT
+"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\sync_modules.v"            verilog                      IN PROJECT

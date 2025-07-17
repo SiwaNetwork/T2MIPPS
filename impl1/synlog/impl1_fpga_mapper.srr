@@ -1,0 +1,807 @@
+# Sun Jun  8 21:15:20 2025
+
+
+Copyright (C) 1994-2023 Synopsys, Inc.
+This Synopsys software and all associated documentation are proprietary to Synopsys, Inc.
+and may only be used pursuant to the terms and conditions of a written license agreement
+with Synopsys, Inc. All other use, reproduction, modification, or distribution of the
+Synopsys software or the associated documentation is strictly prohibited.
+Tool: Synplify Pro (R)
+Build: V-2023.09L-2
+Install: C:\lscc\diamond\3.14\synpbase
+OS: Windows 10 or later
+Hostname: DESKTOP-0S2UTBE
+
+Implementation : impl1
+Synopsys Lattice Technology Mapper, Version map202309lat, Build 191R, Built Sep 17 2024 10:38:50, @
+
+
+Mapper Startup Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 182MB peak: 182MB)
+
+@N: MF916 |Option synthesis_strategy=base is enabled. 
+@N: MF248 |Running in 64-bit mode.
+@N: MF666 |Clock conversion enabled. (Command "set_option -fix_gated_and_generated_clocks 1" in the project file.)
+
+Design Input Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 183MB peak: 197MB)
+
+
+Mapper Initialization Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 184MB peak: 197MB)
+
+
+Start loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 198MB peak: 198MB)
+
+
+Finished loading timing files (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:01s; Memory used current: 199MB peak: 201MB)
+
+
+
+Starting Optimization and Mapping (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:01s; Memory used current: 253MB peak: 253MB)
+
+@N: MT206 |Auto Constrain mode is enabled
+
+Finished RTL optimizations (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:01s; Memory used current: 258MB peak: 258MB)
+
+@N: MO231 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_packet_parser.v":188:0:188:5|Found counter in view:work.t2mi_packet_parser(verilog) instance byte_counter[15:0] 
+@N: BN362 :"c:\users\shiwa\desktop\t2mi_pps_project\src\timestamp_extractor.v":73:0:73:5|Removing sequential instance timestamp_buffer\[0\][3] (in view: work.timestamp_extractor(verilog)) because it does not drive other instances.
+@N: BN362 :"c:\users\shiwa\desktop\t2mi_pps_project\src\timestamp_extractor.v":73:0:73:5|Removing sequential instance timestamp_buffer\[0\][2] (in view: work.timestamp_extractor(verilog)) because it does not drive other instances.
+@N: BN362 :"c:\users\shiwa\desktop\t2mi_pps_project\src\timestamp_extractor.v":73:0:73:5|Removing sequential instance timestamp_buffer\[0\][1] (in view: work.timestamp_extractor(verilog)) because it does not drive other instances.
+@N: BN362 :"c:\users\shiwa\desktop\t2mi_pps_project\src\timestamp_extractor.v":73:0:73:5|Removing sequential instance timestamp_buffer\[0\][0] (in view: work.timestamp_extractor(verilog)) because it does not drive other instances.
+@N: MO231 :"c:\users\shiwa\desktop\t2mi_pps_project\src\timestamp_extractor.v":73:0:73:5|Found counter in view:work.timestamp_extractor(verilog) instance byte_index[3:0] 
+@N: MO231 :"c:\users\shiwa\desktop\t2mi_pps_project\src\pps_generator.v":87:0:87:5|Found counter in view:work.pps_generator(verilog) instance current_seconds[39:0] 
+@N: MO231 :"c:\users\shiwa\desktop\t2mi_pps_project\src\pps_generator.v":210:0:210:5|Found counter in view:work.pps_generator(verilog) instance pps_pulse_counter[31:0] 
+@N: MF179 :"c:\users\shiwa\desktop\t2mi_pps_project\src\pps_generator.v":129:16:129:53|Found 40 by 40 bit equality operator ('==') sync_error18 (in view: work.pps_generator(verilog))
+
+Starting factoring (Real Time elapsed 0h:00m:04s; CPU Time elapsed 0h:00m:04s; Memory used current: 263MB peak: 263MB)
+
+
+Finished factoring (Real Time elapsed 0h:00m:05s; CPU Time elapsed 0h:00m:04s; Memory used current: 265MB peak: 265MB)
+
+
+Available hyper_sources - for debug and ip models
+	None Found
+
+NConnInternalConnection caching is on
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_258 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_261 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.sync_error12_0 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.sync_error12_1 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.sync_error12_2 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.sync_error12_3 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.sync_error12_4 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.sync_error12_5 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.sync_error12_6 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.sync_error12_7 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.sync_error12_8 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.sync_error12_9 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.sync_error12_10 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.sync_error12_11 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.sync_error12_12 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.sync_error12_13 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.sync_error12_14 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.sync_error12_15 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.sync_error12_16 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.sync_error12_17 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.sync_error12_18 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.sync_error12_19 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.sync_error12_20 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.sync_error12_21 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.sync_error12_22 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.sync_error12_23 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.sync_error12_24 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.sync_error12_25 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.sync_error12_26 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.sync_error12_27 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.sync_error12_28 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.sync_error12_29 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.sync_error12_30 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.sync_error12_31 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_456 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_457 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_458 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_459 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_460 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_461 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_462 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_463 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_464 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_465 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_466 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_467 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_468 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_469 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_470 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_471 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_472 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_473 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_474 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_475 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_476 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_477 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_478 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_479 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_480 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_481 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_482 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_483 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_484 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_485 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_486 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_487 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_488 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_489 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_490 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_491 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_492 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_493 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_494 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_495 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_496 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_497 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_498 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_499 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_500 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_501 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_502 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_503 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_504 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_505 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_506 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_507 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_508 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_509 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_510 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_511 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_512 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_513 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_514 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_515 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_516 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_517 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_518 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_519 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_520 has multiple drivers .
+@W: BN161 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Net pps_inst.N_521 has multiple drivers .
+
+Only the first 100 messages of id 'BN161' are reported. To see all messages use 'report_messages -log C:\Users\SHIWA\Desktop\t2mi_pps_project\impl1\synlog\impl1_fpga_mapper.srr -id BN161' in the Tcl shell. To see all messages in future runs, use the command 'message_override -limit {BN161} -count unlimited' in the Tcl shell.
+
+Finished generic timing optimizations - Pass 1 (Real Time elapsed 0h:00m:05s; CPU Time elapsed 0h:00m:05s; Memory used current: 266MB peak: 266MB)
+
+@N: FA113 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_packet_parser.v":94:16:94:35|Pipelining module sync_counter6. For more information, search for "pipelining" in Online Help.
+@N: MF169 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_packet_parser.v":87:0:87:5|Pushed in register sync_counter[3:0].
+
+Starting Early Timing Optimization (Real Time elapsed 0h:00m:06s; CPU Time elapsed 0h:00m:05s; Memory used current: 268MB peak: 268MB)
+
+
+Finished Early Timing Optimization (Real Time elapsed 0h:00m:06s; CPU Time elapsed 0h:00m:06s; Memory used current: 268MB peak: 268MB)
+
+
+Finished generic timing optimizations - Pass 2 (Real Time elapsed 0h:00m:07s; CPU Time elapsed 0h:00m:06s; Memory used current: 268MB peak: 268MB)
+
+
+Finished preparing to map (Real Time elapsed 0h:00m:07s; CPU Time elapsed 0h:00m:07s; Memory used current: 268MB peak: 269MB)
+
+
+Finished technology mapping (Real Time elapsed 0h:00m:08s; CPU Time elapsed 0h:00m:07s; Memory used current: 273MB peak: 273MB)
+
+Pass		 CPU time		Worst Slack		Luts / Registers
+------------------------------------------------------------
+   1		0h:00m:07s		    -1.86ns		 259 /       491
+   2		0h:00m:07s		    -1.60ns		 258 /       491
+   3		0h:00m:07s		    -1.60ns		 259 /       491
+   4		0h:00m:07s		    -1.60ns		 260 /       491
+   5		0h:00m:08s		    -1.60ns		 259 /       491
+
+   6		0h:00m:08s		    -1.57ns		 264 /       491
+   7		0h:00m:08s		    -1.47ns		 271 /       491
+   8		0h:00m:08s		    -1.49ns		 273 /       491
+   9		0h:00m:08s		    -1.42ns		 276 /       491
+  10		0h:00m:08s		    -1.21ns		 280 /       491
+  11		0h:00m:08s		    -1.15ns		 282 /       491
+  12		0h:00m:08s		    -1.33ns		 284 /       491
+  13		0h:00m:08s		    -1.36ns		 284 /       491
+  14		0h:00m:08s		    -1.36ns		 287 /       491
+@N: FX271 :"c:\users\shiwa\desktop\t2mi_pps_project\src\pps_generator.v":87:0:87:5|Replicating instance pps_inst.subsec_counter[12] (in view: work.t2mi_pps_top(verilog)) with 4 loads 1 time to improve timing.
+@N: FX271 :"c:\users\shiwa\desktop\t2mi_pps_project\src\timestamp_extractor.v":207:0:207:5|Replicating instance extractor_inst.timestamp_valid (in view: work.t2mi_pps_top(verilog)) with 129 loads 3 times to improve timing.
+@N: FX271 :"c:\users\shiwa\desktop\t2mi_pps_project\src\pps_generator.v":87:0:87:5|Replicating instance pps_inst.time_valid (in view: work.t2mi_pps_top(verilog)) with 21 loads 2 times to improve timing.
+@N: FX271 :"c:\users\shiwa\desktop\t2mi_pps_project\src\pps_generator.v":87:0:87:5|Replicating instance pps_inst.subsec_counter[19] (in view: work.t2mi_pps_top(verilog)) with 4 loads 1 time to improve timing.
+@N: FX271 :"c:\users\shiwa\desktop\t2mi_pps_project\src\pps_generator.v":87:0:87:5|Replicating instance pps_inst.subsec_counter[18] (in view: work.t2mi_pps_top(verilog)) with 4 loads 1 time to improve timing.
+@N: FX271 :"c:\users\shiwa\desktop\t2mi_pps_project\src\pps_generator.v":87:0:87:5|Replicating instance pps_inst.subsec_counter[16] (in view: work.t2mi_pps_top(verilog)) with 4 loads 1 time to improve timing.
+@N: FX271 :"c:\users\shiwa\desktop\t2mi_pps_project\src\pps_generator.v":87:0:87:5|Replicating instance pps_inst.subsec_counter[17] (in view: work.t2mi_pps_top(verilog)) with 4 loads 1 time to improve timing.
+Added 10 Registers via timing driven replication
+Added 0 LUTs via timing driven replication
+
+@N: FX271 :"c:\users\shiwa\desktop\t2mi_pps_project\src\pps_generator.v":87:0:87:5|Replicating instance pps_inst.subsec_counter[1] (in view: work.t2mi_pps_top(verilog)) with 4 loads 1 time to improve timing.
+@N: FX271 :"c:\users\shiwa\desktop\t2mi_pps_project\src\pps_generator.v":87:0:87:5|Replicating instance pps_inst.subsec_counter[8] (in view: work.t2mi_pps_top(verilog)) with 4 loads 1 time to improve timing.
+@N: FX271 :"c:\users\shiwa\desktop\t2mi_pps_project\src\pps_generator.v":87:0:87:5|Replicating instance pps_inst.subsec_counter[9] (in view: work.t2mi_pps_top(verilog)) with 4 loads 1 time to improve timing.
+@N: FX271 :"c:\users\shiwa\desktop\t2mi_pps_project\src\pps_generator.v":87:0:87:5|Replicating instance pps_inst.subsec_counter[14] (in view: work.t2mi_pps_top(verilog)) with 4 loads 1 time to improve timing.
+@N: FX271 :"c:\users\shiwa\desktop\t2mi_pps_project\src\pps_generator.v":87:0:87:5|Replicating instance pps_inst.subsec_counter[20] (in view: work.t2mi_pps_top(verilog)) with 4 loads 1 time to improve timing.
+@N: FX271 :"c:\users\shiwa\desktop\t2mi_pps_project\src\pps_generator.v":87:0:87:5|Replicating instance pps_inst.subsec_counter[21] (in view: work.t2mi_pps_top(verilog)) with 4 loads 1 time to improve timing.
+@N: FX271 :"c:\users\shiwa\desktop\t2mi_pps_project\src\pps_generator.v":87:0:87:5|Replicating instance pps_inst.subsec_counter[25] (in view: work.t2mi_pps_top(verilog)) with 4 loads 1 time to improve timing.
+@N: FX271 :"c:\users\shiwa\desktop\t2mi_pps_project\src\pps_generator.v":87:0:87:5|Replicating instance pps_inst.subsec_counter[15] (in view: work.t2mi_pps_top(verilog)) with 4 loads 1 time to improve timing.
+@N: FX271 :"c:\users\shiwa\desktop\t2mi_pps_project\src\pps_generator.v":87:0:87:5|Replicating instance pps_inst.subsec_counter[13] (in view: work.t2mi_pps_top(verilog)) with 4 loads 1 time to improve timing.
+@N: FX271 :"c:\users\shiwa\desktop\t2mi_pps_project\src\pps_generator.v":87:0:87:5|Replicating instance pps_inst.subsec_counter[26] (in view: work.t2mi_pps_top(verilog)) with 4 loads 1 time to improve timing.
+Added 10 Registers via timing driven replication
+Added 0 LUTs via timing driven replication
+
+  15		0h:00m:08s		    -1.92ns		 287 /       511
+  16		0h:00m:08s		    -1.95ns		 286 /       511
+  17		0h:00m:08s		    -1.73ns		 287 /       511
+  18		0h:00m:08s		    -1.92ns		 289 /       511
+  19		0h:00m:08s		    -1.92ns		 289 /       511
+  20		0h:00m:08s		    -1.92ns		 290 /       511
+
+Finished technology timing optimizations and critical path resynthesis (Real Time elapsed 0h:00m:09s; CPU Time elapsed 0h:00m:08s; Memory used current: 273MB peak: 273MB)
+
+@N: FX164 |The option to pack registers in the IOB has not been specified. Please set syn_useioff attribute.  
+
+Finished restoring hierarchy (Real Time elapsed 0h:00m:09s; CPU Time elapsed 0h:00m:09s; Memory used current: 273MB peak: 273MB)
+
+
+Starting CDBProcessSetClockGroups... (Real Time elapsed 0h:00m:09s; CPU Time elapsed 0h:00m:09s; Memory used current: 274MB peak: 274MB)
+
+
+Finished with CDBProcessSetClockGroups (Real Time elapsed 0h:00m:09s; CPU Time elapsed 0h:00m:09s; Memory used current: 274MB peak: 274MB)
+
+
+Start Writing Netlists (Real Time elapsed 0h:00m:10s; CPU Time elapsed 0h:00m:09s; Memory used current: 216MB peak: 274MB)
+
+Writing Analyst data base C:\Users\SHIWA\Desktop\t2mi_pps_project\impl1\synwork\impl1_m.srm
+
+Finished Writing Netlist Databases (Real Time elapsed 0h:00m:10s; CPU Time elapsed 0h:00m:10s; Memory used current: 273MB peak: 274MB)
+
+Writing EDIF Netlist and constraint files
+@N: FX1056 |Writing EDF file: C:\Users\SHIWA\Desktop\t2mi_pps_project\impl1\impl1.edi
+@N: BW106 |Synplicity Constraint File capacitance units using default value of 1pF 
+
+Finished Writing EDIF Netlist and constraint files (Real Time elapsed 0h:00m:12s; CPU Time elapsed 0h:00m:11s; Memory used current: 281MB peak: 281MB)
+
+
+Finished Writing Netlists (Real Time elapsed 0h:00m:12s; CPU Time elapsed 0h:00m:11s; Memory used current: 281MB peak: 282MB)
+
+
+Start final timing analysis (Real Time elapsed 0h:00m:13s; CPU Time elapsed 0h:00m:12s; Memory used current: 278MB peak: 282MB)
+
+@W: MT420 |Found inferred clock t2mi_pps_top|clk_100mhz with period 4.65ns. Please declare a user-defined clock on port clk_100mhz.
+
+
+##### START OF TIMING REPORT #####[
+# Timing report written on Sun Jun  8 21:15:33 2025
+#
+
+
+Top view:               t2mi_pps_top
+Requested Frequency:    215.1 MHz
+Wire load mode:         top
+Paths requested:        5
+Constraint File(s):    
+@N: MT320 |This timing report is an estimate of place and route data. For final timing results, use the FPGA vendor place and route report.
+
+@N: MT322 |Clock constraints include only register-to-register paths associated with each individual clock.
+
+
+
+Performance Summary
+*******************
+
+
+Worst slack in design: -0.820
+
+                            Requested     Estimated     Requested     Estimated                Clock        Clock     
+Starting Clock              Frequency     Frequency     Period        Period        Slack      Type         Group     
+----------------------------------------------------------------------------------------------------------------------
+t2mi_pps_top|clk_100mhz     215.1 MHz     182.8 MHz     4.649         5.470         -0.820     inferred     (multiple)
+======================================================================================================================
+
+
+
+
+
+Clock Relationships
+*******************
+
+Clocks                                            |    rise  to  rise    |    fall  to  fall   |    rise  to  fall   |    fall  to  rise 
+-----------------------------------------------------------------------------------------------------------------------------------------
+Starting                 Ending                   |  constraint  slack   |  constraint  slack  |  constraint  slack  |  constraint  slack
+-----------------------------------------------------------------------------------------------------------------------------------------
+t2mi_pps_top|clk_100mhz  t2mi_pps_top|clk_100mhz  |  4.649       -0.820  |  No paths    -      |  No paths    -      |  No paths    -    
+=========================================================================================================================================
+ Note: 'No paths' indicates there are no paths in the design for that pair of clock edges.
+       'Diff grp' indicates that paths exist but the starting clock and ending clock are in different clock groups.
+
+
+
+Interface Information 
+*********************
+
+No IO constraint found
+
+
+
+====================================
+Detailed Report for Clock: t2mi_pps_top|clk_100mhz
+====================================
+
+
+
+Starting Points with Worst Slack
+********************************
+
+                                Starting                                                               Arrival           
+Instance                        Reference                   Type        Pin     Net                    Time        Slack 
+                                Clock                                                                                    
+-------------------------------------------------------------------------------------------------------------------------
+pps_inst.subsec_counter[0]      t2mi_pps_top|clk_100mhz     FD1S3DX     Q       subsec_counter[0]      1.015       -0.820
+pps_inst.subsec_counter[24]     t2mi_pps_top|clk_100mhz     FD1S3DX     Q       subsec_counter[24]     1.009       -0.814
+pps_inst.subsec_counter[27]     t2mi_pps_top|clk_100mhz     FD1S3DX     Q       subsec_counter[27]     1.009       -0.814
+pps_inst.subsec_counter[28]     t2mi_pps_top|clk_100mhz     FD1S3DX     Q       subsec_counter[28]     1.009       -0.814
+pps_inst.subsec_counter[29]     t2mi_pps_top|clk_100mhz     FD1S3DX     Q       subsec_counter[29]     1.009       -0.814
+pps_inst.subsec_counter[30]     t2mi_pps_top|clk_100mhz     FD1S3DX     Q       subsec_counter[30]     1.009       -0.814
+pps_inst.subsec_counter[31]     t2mi_pps_top|clk_100mhz     FD1S3DX     Q       subsec_counter[31]     1.009       -0.814
+pps_inst.subsec_counter[2]      t2mi_pps_top|clk_100mhz     FD1S3DX     Q       subsec_counter[2]      1.015       -0.800
+pps_inst.subsec_counter[3]      t2mi_pps_top|clk_100mhz     FD1S3DX     Q       subsec_counter[3]      1.015       -0.800
+pps_inst.subsec_counter[4]      t2mi_pps_top|clk_100mhz     FD1S3DX     Q       subsec_counter[4]      1.015       -0.800
+=========================================================================================================================
+
+
+Ending Points with Worst Slack
+******************************
+
+                                     Starting                                                                 Required           
+Instance                             Reference                   Type        Pin     Net                      Time         Slack 
+                                     Clock                                                                                       
+---------------------------------------------------------------------------------------------------------------------------------
+pps_inst.subsec_counter[31]          t2mi_pps_top|clk_100mhz     FD1S3DX     D       subsec_counter_6[31]     4.595        -0.820
+pps_inst.subsec_counter[29]          t2mi_pps_top|clk_100mhz     FD1S3DX     D       subsec_counter_6[29]     4.595        -0.759
+pps_inst.subsec_counter[30]          t2mi_pps_top|clk_100mhz     FD1S3DX     D       subsec_counter_6[30]     4.595        -0.759
+pps_inst.subsec_counter[27]          t2mi_pps_top|clk_100mhz     FD1S3DX     D       subsec_counter_6[27]     4.595        -0.698
+pps_inst.subsec_counter[28]          t2mi_pps_top|clk_100mhz     FD1S3DX     D       subsec_counter_6[28]     4.595        -0.698
+pps_inst.subsec_counter[25]          t2mi_pps_top|clk_100mhz     FD1S3DX     D       subsec_counter_6[25]     4.595        -0.691
+pps_inst.subsec_counter[26]          t2mi_pps_top|clk_100mhz     FD1S3DX     D       subsec_counter_6[26]     4.595        -0.691
+pps_inst.subsec_counter_fast[25]     t2mi_pps_top|clk_100mhz     FD1S3DX     D       subsec_counter_6[25]     4.595        -0.691
+pps_inst.subsec_counter_fast[26]     t2mi_pps_top|clk_100mhz     FD1S3DX     D       subsec_counter_6[26]     4.595        -0.691
+pps_inst.subsec_counter[23]          t2mi_pps_top|clk_100mhz     FD1S3DX     D       subsec_counter_6[23]     4.595        -0.576
+=================================================================================================================================
+
+
+
+Worst Path Information
+***********************
+
+
+Path information for path number 1: 
+      Requested Period:                      4.649
+    - Setup time:                            0.054
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         4.595
+
+    - Propagation time:                      5.415
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (critical) :                     -0.820
+
+    Number of logic level(s):                18
+    Starting point:                          pps_inst.subsec_counter[0] / Q
+    Ending point:                            pps_inst.subsec_counter[31] / D
+    The start point is clocked by            t2mi_pps_top|clk_100mhz [rising] (rise=0.000 fall=2.325 period=4.649) on pin CK
+    The end   point is clocked by            t2mi_pps_top|clk_100mhz [rising] (rise=0.000 fall=2.325 period=4.649) on pin CK
+
+Instance / Net                                              Pin      Pin               Arrival     No. of    
+Name                                           Type         Name     Dir     Delay     Time        Fan Out(s)
+-------------------------------------------------------------------------------------------------------------
+pps_inst.subsec_counter[0]                     FD1S3DX      Q        Out     1.015     1.015 r     -         
+subsec_counter[0]                              Net          -        -       -         -           6         
+pps_inst.subsec_counter_RNIJMNPE[28]           ORCALUT4     A        In      0.000     1.015 r     -         
+pps_inst.subsec_counter_RNIJMNPE[28]           ORCALUT4     Z        Out     0.606     1.621 f     -         
+subsec_counter_RNIJMNPE[28]                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_fast_RNISJEL21[25]     ORCALUT4     D        In      0.000     1.621 f     -         
+pps_inst.subsec_counter_fast_RNISJEL21[25]     ORCALUT4     Z        Out     0.798     2.419 r     -         
+m19_e_5                                        Net          -        -       -         -           9         
+pps_inst.subsec_counter_6_cry_3_0_RNO          ORCALUT4     B        In      0.000     2.419 r     -         
+pps_inst.subsec_counter_6_cry_3_0_RNO          ORCALUT4     Z        Out     0.606     3.025 f     -         
+subsec_counter_6_cry_3_0_RNO                   Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_3_0              CCU2C        C0       In      0.000     3.025 f     -         
+pps_inst.subsec_counter_6_cry_3_0              CCU2C        COUT     Out     0.900     3.925 r     -         
+subsec_counter_6_cry_4                         Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_5_0              CCU2C        CIN      In      0.000     3.925 r     -         
+pps_inst.subsec_counter_6_cry_5_0              CCU2C        COUT     Out     0.061     3.986 r     -         
+subsec_counter_6_cry_6                         Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_7_0              CCU2C        CIN      In      0.000     3.986 r     -         
+pps_inst.subsec_counter_6_cry_7_0              CCU2C        COUT     Out     0.061     4.047 r     -         
+subsec_counter_6_cry_8                         Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_9_0              CCU2C        CIN      In      0.000     4.047 r     -         
+pps_inst.subsec_counter_6_cry_9_0              CCU2C        COUT     Out     0.061     4.108 r     -         
+subsec_counter_6_cry_10                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_11_0             CCU2C        CIN      In      0.000     4.108 r     -         
+pps_inst.subsec_counter_6_cry_11_0             CCU2C        COUT     Out     0.061     4.169 r     -         
+subsec_counter_6_cry_12                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_13_0             CCU2C        CIN      In      0.000     4.169 r     -         
+pps_inst.subsec_counter_6_cry_13_0             CCU2C        COUT     Out     0.061     4.230 r     -         
+subsec_counter_6_cry_14                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_15_0             CCU2C        CIN      In      0.000     4.230 r     -         
+pps_inst.subsec_counter_6_cry_15_0             CCU2C        COUT     Out     0.061     4.291 r     -         
+subsec_counter_6_cry_16                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_17_0             CCU2C        CIN      In      0.000     4.291 r     -         
+pps_inst.subsec_counter_6_cry_17_0             CCU2C        COUT     Out     0.061     4.352 r     -         
+subsec_counter_6_cry_18                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_19_0             CCU2C        CIN      In      0.000     4.352 r     -         
+pps_inst.subsec_counter_6_cry_19_0             CCU2C        COUT     Out     0.061     4.413 r     -         
+subsec_counter_6_cry_20                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_21_0             CCU2C        CIN      In      0.000     4.413 r     -         
+pps_inst.subsec_counter_6_cry_21_0             CCU2C        COUT     Out     0.061     4.474 r     -         
+subsec_counter_6_cry_22                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_23_0             CCU2C        CIN      In      0.000     4.474 r     -         
+pps_inst.subsec_counter_6_cry_23_0             CCU2C        COUT     Out     0.061     4.535 r     -         
+subsec_counter_6_cry_24                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_25_0             CCU2C        CIN      In      0.000     4.535 r     -         
+pps_inst.subsec_counter_6_cry_25_0             CCU2C        COUT     Out     0.061     4.596 r     -         
+subsec_counter_6_cry_26                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_27_0             CCU2C        CIN      In      0.000     4.596 r     -         
+pps_inst.subsec_counter_6_cry_27_0             CCU2C        COUT     Out     0.061     4.657 r     -         
+subsec_counter_6_cry_28                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_29_0             CCU2C        CIN      In      0.000     4.657 r     -         
+pps_inst.subsec_counter_6_cry_29_0             CCU2C        COUT     Out     0.061     4.718 r     -         
+subsec_counter_6_cry_30                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_s_31_0               CCU2C        CIN      In      0.000     4.718 r     -         
+pps_inst.subsec_counter_6_s_31_0               CCU2C        S0       Out     0.698     5.415 r     -         
+subsec_counter_6[31]                           Net          -        -       -         -           1         
+pps_inst.subsec_counter[31]                    FD1S3DX      D        In      0.000     5.415 r     -         
+=============================================================================================================
+
+
+Path information for path number 2: 
+      Requested Period:                      4.649
+    - Setup time:                            0.054
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         4.595
+
+    - Propagation time:                      5.410
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (non-critical) :                 -0.814
+
+    Number of logic level(s):                18
+    Starting point:                          pps_inst.subsec_counter[24] / Q
+    Ending point:                            pps_inst.subsec_counter[31] / D
+    The start point is clocked by            t2mi_pps_top|clk_100mhz [rising] (rise=0.000 fall=2.325 period=4.649) on pin CK
+    The end   point is clocked by            t2mi_pps_top|clk_100mhz [rising] (rise=0.000 fall=2.325 period=4.649) on pin CK
+
+Instance / Net                                              Pin      Pin               Arrival     No. of    
+Name                                           Type         Name     Dir     Delay     Time        Fan Out(s)
+-------------------------------------------------------------------------------------------------------------
+pps_inst.subsec_counter[24]                    FD1S3DX      Q        Out     1.009     1.009 r     -         
+subsec_counter[24]                             Net          -        -       -         -           5         
+pps_inst.subsec_counter_RNIUF97H[24]           ORCALUT4     A        In      0.000     1.009 r     -         
+pps_inst.subsec_counter_RNIUF97H[24]           ORCALUT4     Z        Out     0.606     1.615 f     -         
+subsec_counter_RNIUF97H[24]                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_fast_RNISJEL21[25]     ORCALUT4     B        In      0.000     1.615 f     -         
+pps_inst.subsec_counter_fast_RNISJEL21[25]     ORCALUT4     Z        Out     0.798     2.413 r     -         
+m19_e_5                                        Net          -        -       -         -           9         
+pps_inst.subsec_counter_6_cry_3_0_RNO          ORCALUT4     B        In      0.000     2.413 r     -         
+pps_inst.subsec_counter_6_cry_3_0_RNO          ORCALUT4     Z        Out     0.606     3.019 f     -         
+subsec_counter_6_cry_3_0_RNO                   Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_3_0              CCU2C        C0       In      0.000     3.019 f     -         
+pps_inst.subsec_counter_6_cry_3_0              CCU2C        COUT     Out     0.900     3.919 r     -         
+subsec_counter_6_cry_4                         Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_5_0              CCU2C        CIN      In      0.000     3.919 r     -         
+pps_inst.subsec_counter_6_cry_5_0              CCU2C        COUT     Out     0.061     3.980 r     -         
+subsec_counter_6_cry_6                         Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_7_0              CCU2C        CIN      In      0.000     3.980 r     -         
+pps_inst.subsec_counter_6_cry_7_0              CCU2C        COUT     Out     0.061     4.041 r     -         
+subsec_counter_6_cry_8                         Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_9_0              CCU2C        CIN      In      0.000     4.041 r     -         
+pps_inst.subsec_counter_6_cry_9_0              CCU2C        COUT     Out     0.061     4.102 r     -         
+subsec_counter_6_cry_10                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_11_0             CCU2C        CIN      In      0.000     4.102 r     -         
+pps_inst.subsec_counter_6_cry_11_0             CCU2C        COUT     Out     0.061     4.163 r     -         
+subsec_counter_6_cry_12                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_13_0             CCU2C        CIN      In      0.000     4.163 r     -         
+pps_inst.subsec_counter_6_cry_13_0             CCU2C        COUT     Out     0.061     4.224 r     -         
+subsec_counter_6_cry_14                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_15_0             CCU2C        CIN      In      0.000     4.224 r     -         
+pps_inst.subsec_counter_6_cry_15_0             CCU2C        COUT     Out     0.061     4.285 r     -         
+subsec_counter_6_cry_16                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_17_0             CCU2C        CIN      In      0.000     4.285 r     -         
+pps_inst.subsec_counter_6_cry_17_0             CCU2C        COUT     Out     0.061     4.346 r     -         
+subsec_counter_6_cry_18                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_19_0             CCU2C        CIN      In      0.000     4.346 r     -         
+pps_inst.subsec_counter_6_cry_19_0             CCU2C        COUT     Out     0.061     4.407 r     -         
+subsec_counter_6_cry_20                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_21_0             CCU2C        CIN      In      0.000     4.407 r     -         
+pps_inst.subsec_counter_6_cry_21_0             CCU2C        COUT     Out     0.061     4.468 r     -         
+subsec_counter_6_cry_22                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_23_0             CCU2C        CIN      In      0.000     4.468 r     -         
+pps_inst.subsec_counter_6_cry_23_0             CCU2C        COUT     Out     0.061     4.529 r     -         
+subsec_counter_6_cry_24                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_25_0             CCU2C        CIN      In      0.000     4.529 r     -         
+pps_inst.subsec_counter_6_cry_25_0             CCU2C        COUT     Out     0.061     4.590 r     -         
+subsec_counter_6_cry_26                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_27_0             CCU2C        CIN      In      0.000     4.590 r     -         
+pps_inst.subsec_counter_6_cry_27_0             CCU2C        COUT     Out     0.061     4.651 r     -         
+subsec_counter_6_cry_28                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_29_0             CCU2C        CIN      In      0.000     4.651 r     -         
+pps_inst.subsec_counter_6_cry_29_0             CCU2C        COUT     Out     0.061     4.712 r     -         
+subsec_counter_6_cry_30                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_s_31_0               CCU2C        CIN      In      0.000     4.712 r     -         
+pps_inst.subsec_counter_6_s_31_0               CCU2C        S0       Out     0.698     5.410 r     -         
+subsec_counter_6[31]                           Net          -        -       -         -           1         
+pps_inst.subsec_counter[31]                    FD1S3DX      D        In      0.000     5.410 r     -         
+=============================================================================================================
+
+
+Path information for path number 3: 
+      Requested Period:                      4.649
+    - Setup time:                            0.054
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         4.595
+
+    - Propagation time:                      5.410
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (non-critical) :                 -0.814
+
+    Number of logic level(s):                18
+    Starting point:                          pps_inst.subsec_counter[27] / Q
+    Ending point:                            pps_inst.subsec_counter[31] / D
+    The start point is clocked by            t2mi_pps_top|clk_100mhz [rising] (rise=0.000 fall=2.325 period=4.649) on pin CK
+    The end   point is clocked by            t2mi_pps_top|clk_100mhz [rising] (rise=0.000 fall=2.325 period=4.649) on pin CK
+
+Instance / Net                                              Pin      Pin               Arrival     No. of    
+Name                                           Type         Name     Dir     Delay     Time        Fan Out(s)
+-------------------------------------------------------------------------------------------------------------
+pps_inst.subsec_counter[27]                    FD1S3DX      Q        Out     1.009     1.009 r     -         
+subsec_counter[27]                             Net          -        -       -         -           5         
+pps_inst.subsec_counter_RNIUF97H[24]           ORCALUT4     B        In      0.000     1.009 r     -         
+pps_inst.subsec_counter_RNIUF97H[24]           ORCALUT4     Z        Out     0.606     1.615 f     -         
+subsec_counter_RNIUF97H[24]                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_fast_RNISJEL21[25]     ORCALUT4     B        In      0.000     1.615 f     -         
+pps_inst.subsec_counter_fast_RNISJEL21[25]     ORCALUT4     Z        Out     0.798     2.413 r     -         
+m19_e_5                                        Net          -        -       -         -           9         
+pps_inst.subsec_counter_6_cry_3_0_RNO          ORCALUT4     B        In      0.000     2.413 r     -         
+pps_inst.subsec_counter_6_cry_3_0_RNO          ORCALUT4     Z        Out     0.606     3.019 f     -         
+subsec_counter_6_cry_3_0_RNO                   Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_3_0              CCU2C        C0       In      0.000     3.019 f     -         
+pps_inst.subsec_counter_6_cry_3_0              CCU2C        COUT     Out     0.900     3.919 r     -         
+subsec_counter_6_cry_4                         Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_5_0              CCU2C        CIN      In      0.000     3.919 r     -         
+pps_inst.subsec_counter_6_cry_5_0              CCU2C        COUT     Out     0.061     3.980 r     -         
+subsec_counter_6_cry_6                         Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_7_0              CCU2C        CIN      In      0.000     3.980 r     -         
+pps_inst.subsec_counter_6_cry_7_0              CCU2C        COUT     Out     0.061     4.041 r     -         
+subsec_counter_6_cry_8                         Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_9_0              CCU2C        CIN      In      0.000     4.041 r     -         
+pps_inst.subsec_counter_6_cry_9_0              CCU2C        COUT     Out     0.061     4.102 r     -         
+subsec_counter_6_cry_10                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_11_0             CCU2C        CIN      In      0.000     4.102 r     -         
+pps_inst.subsec_counter_6_cry_11_0             CCU2C        COUT     Out     0.061     4.163 r     -         
+subsec_counter_6_cry_12                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_13_0             CCU2C        CIN      In      0.000     4.163 r     -         
+pps_inst.subsec_counter_6_cry_13_0             CCU2C        COUT     Out     0.061     4.224 r     -         
+subsec_counter_6_cry_14                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_15_0             CCU2C        CIN      In      0.000     4.224 r     -         
+pps_inst.subsec_counter_6_cry_15_0             CCU2C        COUT     Out     0.061     4.285 r     -         
+subsec_counter_6_cry_16                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_17_0             CCU2C        CIN      In      0.000     4.285 r     -         
+pps_inst.subsec_counter_6_cry_17_0             CCU2C        COUT     Out     0.061     4.346 r     -         
+subsec_counter_6_cry_18                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_19_0             CCU2C        CIN      In      0.000     4.346 r     -         
+pps_inst.subsec_counter_6_cry_19_0             CCU2C        COUT     Out     0.061     4.407 r     -         
+subsec_counter_6_cry_20                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_21_0             CCU2C        CIN      In      0.000     4.407 r     -         
+pps_inst.subsec_counter_6_cry_21_0             CCU2C        COUT     Out     0.061     4.468 r     -         
+subsec_counter_6_cry_22                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_23_0             CCU2C        CIN      In      0.000     4.468 r     -         
+pps_inst.subsec_counter_6_cry_23_0             CCU2C        COUT     Out     0.061     4.529 r     -         
+subsec_counter_6_cry_24                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_25_0             CCU2C        CIN      In      0.000     4.529 r     -         
+pps_inst.subsec_counter_6_cry_25_0             CCU2C        COUT     Out     0.061     4.590 r     -         
+subsec_counter_6_cry_26                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_27_0             CCU2C        CIN      In      0.000     4.590 r     -         
+pps_inst.subsec_counter_6_cry_27_0             CCU2C        COUT     Out     0.061     4.651 r     -         
+subsec_counter_6_cry_28                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_29_0             CCU2C        CIN      In      0.000     4.651 r     -         
+pps_inst.subsec_counter_6_cry_29_0             CCU2C        COUT     Out     0.061     4.712 r     -         
+subsec_counter_6_cry_30                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_s_31_0               CCU2C        CIN      In      0.000     4.712 r     -         
+pps_inst.subsec_counter_6_s_31_0               CCU2C        S0       Out     0.698     5.410 r     -         
+subsec_counter_6[31]                           Net          -        -       -         -           1         
+pps_inst.subsec_counter[31]                    FD1S3DX      D        In      0.000     5.410 r     -         
+=============================================================================================================
+
+
+Path information for path number 4: 
+      Requested Period:                      4.649
+    - Setup time:                            0.054
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         4.595
+
+    - Propagation time:                      5.410
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (non-critical) :                 -0.814
+
+    Number of logic level(s):                18
+    Starting point:                          pps_inst.subsec_counter[28] / Q
+    Ending point:                            pps_inst.subsec_counter[31] / D
+    The start point is clocked by            t2mi_pps_top|clk_100mhz [rising] (rise=0.000 fall=2.325 period=4.649) on pin CK
+    The end   point is clocked by            t2mi_pps_top|clk_100mhz [rising] (rise=0.000 fall=2.325 period=4.649) on pin CK
+
+Instance / Net                                              Pin      Pin               Arrival     No. of    
+Name                                           Type         Name     Dir     Delay     Time        Fan Out(s)
+-------------------------------------------------------------------------------------------------------------
+pps_inst.subsec_counter[28]                    FD1S3DX      Q        Out     1.009     1.009 r     -         
+subsec_counter[28]                             Net          -        -       -         -           5         
+pps_inst.subsec_counter_RNIJMNPE[28]           ORCALUT4     B        In      0.000     1.009 r     -         
+pps_inst.subsec_counter_RNIJMNPE[28]           ORCALUT4     Z        Out     0.606     1.615 f     -         
+subsec_counter_RNIJMNPE[28]                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_fast_RNISJEL21[25]     ORCALUT4     D        In      0.000     1.615 f     -         
+pps_inst.subsec_counter_fast_RNISJEL21[25]     ORCALUT4     Z        Out     0.798     2.413 r     -         
+m19_e_5                                        Net          -        -       -         -           9         
+pps_inst.subsec_counter_6_cry_3_0_RNO          ORCALUT4     B        In      0.000     2.413 r     -         
+pps_inst.subsec_counter_6_cry_3_0_RNO          ORCALUT4     Z        Out     0.606     3.019 f     -         
+subsec_counter_6_cry_3_0_RNO                   Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_3_0              CCU2C        C0       In      0.000     3.019 f     -         
+pps_inst.subsec_counter_6_cry_3_0              CCU2C        COUT     Out     0.900     3.919 r     -         
+subsec_counter_6_cry_4                         Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_5_0              CCU2C        CIN      In      0.000     3.919 r     -         
+pps_inst.subsec_counter_6_cry_5_0              CCU2C        COUT     Out     0.061     3.980 r     -         
+subsec_counter_6_cry_6                         Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_7_0              CCU2C        CIN      In      0.000     3.980 r     -         
+pps_inst.subsec_counter_6_cry_7_0              CCU2C        COUT     Out     0.061     4.041 r     -         
+subsec_counter_6_cry_8                         Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_9_0              CCU2C        CIN      In      0.000     4.041 r     -         
+pps_inst.subsec_counter_6_cry_9_0              CCU2C        COUT     Out     0.061     4.102 r     -         
+subsec_counter_6_cry_10                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_11_0             CCU2C        CIN      In      0.000     4.102 r     -         
+pps_inst.subsec_counter_6_cry_11_0             CCU2C        COUT     Out     0.061     4.163 r     -         
+subsec_counter_6_cry_12                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_13_0             CCU2C        CIN      In      0.000     4.163 r     -         
+pps_inst.subsec_counter_6_cry_13_0             CCU2C        COUT     Out     0.061     4.224 r     -         
+subsec_counter_6_cry_14                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_15_0             CCU2C        CIN      In      0.000     4.224 r     -         
+pps_inst.subsec_counter_6_cry_15_0             CCU2C        COUT     Out     0.061     4.285 r     -         
+subsec_counter_6_cry_16                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_17_0             CCU2C        CIN      In      0.000     4.285 r     -         
+pps_inst.subsec_counter_6_cry_17_0             CCU2C        COUT     Out     0.061     4.346 r     -         
+subsec_counter_6_cry_18                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_19_0             CCU2C        CIN      In      0.000     4.346 r     -         
+pps_inst.subsec_counter_6_cry_19_0             CCU2C        COUT     Out     0.061     4.407 r     -         
+subsec_counter_6_cry_20                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_21_0             CCU2C        CIN      In      0.000     4.407 r     -         
+pps_inst.subsec_counter_6_cry_21_0             CCU2C        COUT     Out     0.061     4.468 r     -         
+subsec_counter_6_cry_22                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_23_0             CCU2C        CIN      In      0.000     4.468 r     -         
+pps_inst.subsec_counter_6_cry_23_0             CCU2C        COUT     Out     0.061     4.529 r     -         
+subsec_counter_6_cry_24                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_25_0             CCU2C        CIN      In      0.000     4.529 r     -         
+pps_inst.subsec_counter_6_cry_25_0             CCU2C        COUT     Out     0.061     4.590 r     -         
+subsec_counter_6_cry_26                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_27_0             CCU2C        CIN      In      0.000     4.590 r     -         
+pps_inst.subsec_counter_6_cry_27_0             CCU2C        COUT     Out     0.061     4.651 r     -         
+subsec_counter_6_cry_28                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_29_0             CCU2C        CIN      In      0.000     4.651 r     -         
+pps_inst.subsec_counter_6_cry_29_0             CCU2C        COUT     Out     0.061     4.712 r     -         
+subsec_counter_6_cry_30                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_s_31_0               CCU2C        CIN      In      0.000     4.712 r     -         
+pps_inst.subsec_counter_6_s_31_0               CCU2C        S0       Out     0.698     5.410 r     -         
+subsec_counter_6[31]                           Net          -        -       -         -           1         
+pps_inst.subsec_counter[31]                    FD1S3DX      D        In      0.000     5.410 r     -         
+=============================================================================================================
+
+
+Path information for path number 5: 
+      Requested Period:                      4.649
+    - Setup time:                            0.054
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         4.595
+
+    - Propagation time:                      5.410
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (non-critical) :                 -0.814
+
+    Number of logic level(s):                18
+    Starting point:                          pps_inst.subsec_counter[29] / Q
+    Ending point:                            pps_inst.subsec_counter[31] / D
+    The start point is clocked by            t2mi_pps_top|clk_100mhz [rising] (rise=0.000 fall=2.325 period=4.649) on pin CK
+    The end   point is clocked by            t2mi_pps_top|clk_100mhz [rising] (rise=0.000 fall=2.325 period=4.649) on pin CK
+
+Instance / Net                                              Pin      Pin               Arrival     No. of    
+Name                                           Type         Name     Dir     Delay     Time        Fan Out(s)
+-------------------------------------------------------------------------------------------------------------
+pps_inst.subsec_counter[29]                    FD1S3DX      Q        Out     1.009     1.009 r     -         
+subsec_counter[29]                             Net          -        -       -         -           5         
+pps_inst.subsec_counter_RNIJMNPE[28]           ORCALUT4     C        In      0.000     1.009 r     -         
+pps_inst.subsec_counter_RNIJMNPE[28]           ORCALUT4     Z        Out     0.606     1.615 f     -         
+subsec_counter_RNIJMNPE[28]                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_fast_RNISJEL21[25]     ORCALUT4     D        In      0.000     1.615 f     -         
+pps_inst.subsec_counter_fast_RNISJEL21[25]     ORCALUT4     Z        Out     0.798     2.413 r     -         
+m19_e_5                                        Net          -        -       -         -           9         
+pps_inst.subsec_counter_6_cry_3_0_RNO          ORCALUT4     B        In      0.000     2.413 r     -         
+pps_inst.subsec_counter_6_cry_3_0_RNO          ORCALUT4     Z        Out     0.606     3.019 f     -         
+subsec_counter_6_cry_3_0_RNO                   Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_3_0              CCU2C        C0       In      0.000     3.019 f     -         
+pps_inst.subsec_counter_6_cry_3_0              CCU2C        COUT     Out     0.900     3.919 r     -         
+subsec_counter_6_cry_4                         Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_5_0              CCU2C        CIN      In      0.000     3.919 r     -         
+pps_inst.subsec_counter_6_cry_5_0              CCU2C        COUT     Out     0.061     3.980 r     -         
+subsec_counter_6_cry_6                         Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_7_0              CCU2C        CIN      In      0.000     3.980 r     -         
+pps_inst.subsec_counter_6_cry_7_0              CCU2C        COUT     Out     0.061     4.041 r     -         
+subsec_counter_6_cry_8                         Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_9_0              CCU2C        CIN      In      0.000     4.041 r     -         
+pps_inst.subsec_counter_6_cry_9_0              CCU2C        COUT     Out     0.061     4.102 r     -         
+subsec_counter_6_cry_10                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_11_0             CCU2C        CIN      In      0.000     4.102 r     -         
+pps_inst.subsec_counter_6_cry_11_0             CCU2C        COUT     Out     0.061     4.163 r     -         
+subsec_counter_6_cry_12                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_13_0             CCU2C        CIN      In      0.000     4.163 r     -         
+pps_inst.subsec_counter_6_cry_13_0             CCU2C        COUT     Out     0.061     4.224 r     -         
+subsec_counter_6_cry_14                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_15_0             CCU2C        CIN      In      0.000     4.224 r     -         
+pps_inst.subsec_counter_6_cry_15_0             CCU2C        COUT     Out     0.061     4.285 r     -         
+subsec_counter_6_cry_16                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_17_0             CCU2C        CIN      In      0.000     4.285 r     -         
+pps_inst.subsec_counter_6_cry_17_0             CCU2C        COUT     Out     0.061     4.346 r     -         
+subsec_counter_6_cry_18                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_19_0             CCU2C        CIN      In      0.000     4.346 r     -         
+pps_inst.subsec_counter_6_cry_19_0             CCU2C        COUT     Out     0.061     4.407 r     -         
+subsec_counter_6_cry_20                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_21_0             CCU2C        CIN      In      0.000     4.407 r     -         
+pps_inst.subsec_counter_6_cry_21_0             CCU2C        COUT     Out     0.061     4.468 r     -         
+subsec_counter_6_cry_22                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_23_0             CCU2C        CIN      In      0.000     4.468 r     -         
+pps_inst.subsec_counter_6_cry_23_0             CCU2C        COUT     Out     0.061     4.529 r     -         
+subsec_counter_6_cry_24                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_25_0             CCU2C        CIN      In      0.000     4.529 r     -         
+pps_inst.subsec_counter_6_cry_25_0             CCU2C        COUT     Out     0.061     4.590 r     -         
+subsec_counter_6_cry_26                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_27_0             CCU2C        CIN      In      0.000     4.590 r     -         
+pps_inst.subsec_counter_6_cry_27_0             CCU2C        COUT     Out     0.061     4.651 r     -         
+subsec_counter_6_cry_28                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_29_0             CCU2C        CIN      In      0.000     4.651 r     -         
+pps_inst.subsec_counter_6_cry_29_0             CCU2C        COUT     Out     0.061     4.712 r     -         
+subsec_counter_6_cry_30                        Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_s_31_0               CCU2C        CIN      In      0.000     4.712 r     -         
+pps_inst.subsec_counter_6_s_31_0               CCU2C        S0       Out     0.698     5.410 r     -         
+subsec_counter_6[31]                           Net          -        -       -         -           1         
+pps_inst.subsec_counter[31]                    FD1S3DX      D        In      0.000     5.410 r     -         
+=============================================================================================================
+
+
+
+##### END OF TIMING REPORT #####]
+
+Timing exceptions that could not be applied
+
+Finished final timing analysis (Real Time elapsed 0h:00m:13s; CPU Time elapsed 0h:00m:12s; Memory used current: 279MB peak: 282MB)
+
+
+Finished timing report (Real Time elapsed 0h:00m:13s; CPU Time elapsed 0h:00m:12s; Memory used current: 279MB peak: 282MB)
+
+---------------------------------------
+Resource Usage Report
+Part: lfe5u_25f-6
+
+Register bits: 511 of 24288 (2%)
+PIC Latch:       0
+I/O cells:       26
+
+
+Details:
+CCU2C:          145
+FD1P3DX:        415
+FD1S3BX:        5
+FD1S3DX:        82
+GSR:            1
+IB:             11
+IFS1P3DX:       9
+INV:            2
+OB:             15
+ORCALUT4:       293
+PFUMX:          1
+PUR:            1
+VHI:            5
+VLO:            5
+Mapper successful!
+
+At Mapper Exit (Real Time elapsed 0h:00m:13s; CPU Time elapsed 0h:00m:13s; Memory used current: 135MB peak: 282MB)
+
+Process took 0h:00m:13s realtime, 0h:00m:13s cputime
+# Sun Jun  8 21:15:34 2025
+
+###########################################################]

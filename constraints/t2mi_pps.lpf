@@ -1,0 +1,238 @@
+# =============================================================================
+# Lattice Physical Constraints File (.lpf)
+# Target Device: LFE5U-25F-6BG256C
+# Project: T2MI PPS Generator
+# =============================================================================
+# Device Configuration
+BLOCK RESETPATHS ;
+BLOCK ASYNCPATHS ;
+# =============================================================================
+# Clock Constraints
+# =============================================================================
+# System Clock - 100 MHz
+LOCATE COMP "clk_100mhz" SITE "A7" ;
+IOBUF PORT "clk_100mhz" IO_TYPE=LVCMOS33 ;
+FREQUENCY PORT "clk_100mhz" 100.000000 MHz ;
+# T2-MI Clock Input (may be optimized during synthesis)
+# LOCATE COMP "t2mi_clk" SITE "P4";
+# IOBUF PORT "t2mi_clk" IO_TYPE=LVCMOS33;
+# FREQUENCY PORT "t2mi_clk" 27.000000 MHz;
+# =============================================================================
+# Reset Signal
+# =============================================================================
+LOCATE COMP "rst_n" SITE "B4" ;
+IOBUF PORT "rst_n" IO_TYPE=LVCMOS33 PULLMODE=UP ;
+# =============================================================================
+# T2-MI Input Interface
+# =============================================================================
+# T2-MI Data Bus [7:0]
+LOCATE COMP "t2mi_data[0]" SITE "R1" ;
+LOCATE COMP "t2mi_data[1]" SITE "P1" ;
+LOCATE COMP "t2mi_data[2]" SITE "N1" ;
+LOCATE COMP "t2mi_data[3]" SITE "M1" ;
+LOCATE COMP "t2mi_data[4]" SITE "L1" ;
+LOCATE COMP "t2mi_data[5]" SITE "K1" ;
+LOCATE COMP "t2mi_data[6]" SITE "J1" ;
+LOCATE COMP "t2mi_data[7]" SITE "B5" ;
+# T2-MI Control Signals
+LOCATE COMP "t2mi_valid" SITE "G1" ;
+# LOCATE COMP "t2mi_sync" SITE "F1";  # May be optimized during synthesis
+# Set I/O standards for T2-MI interface
+IOBUF PORT "t2mi_data[0]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "t2mi_data[1]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "t2mi_data[2]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "t2mi_data[3]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "t2mi_data[4]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "t2mi_data[5]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "t2mi_data[6]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "t2mi_data[7]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "t2mi_valid" IO_TYPE=LVCMOS33 ;
+# IOBUF PORT "t2mi_sync" IO_TYPE=LVCMOS33;  # May be optimized during synthesis
+# =============================================================================
+# PPS Output
+# =============================================================================
+# Main PPS Output - High precision timing output
+LOCATE COMP "pps_out" SITE "E1" ;
+IOBUF PORT "pps_out" IO_TYPE=LVCMOS33 DRIVE=12 ;
+# =============================================================================
+# Status and Debug Outputs
+# =============================================================================
+# Status Signals
+LOCATE COMP "timestamp_valid" SITE "D1" ;
+LOCATE COMP "sync_locked" SITE "C1" ;
+# Debug Status Bus [7:0]
+LOCATE COMP "debug_status[0]" SITE "B1" ;
+LOCATE COMP "debug_status[1]" SITE "T14" ;
+LOCATE COMP "debug_status[2]" SITE "T2" ;
+LOCATE COMP "debug_status[3]" SITE "R2" ;
+LOCATE COMP "debug_status[4]" SITE "P2" ;
+LOCATE COMP "debug_status[5]" SITE "B7" ;
+LOCATE COMP "debug_status[6]" SITE "M2" ;
+LOCATE COMP "debug_status[7]" SITE "L2" ;
+# Set I/O standards for status signals
+IOBUF PORT "timestamp_valid" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "sync_locked" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "debug_status[0]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "debug_status[1]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "debug_status[2]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "debug_status[3]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "debug_status[4]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "debug_status[5]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "debug_status[6]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "debug_status[7]" IO_TYPE=LVCMOS33 ;
+# =============================================================================
+# LED Indicators
+# =============================================================================
+# Status LEDs
+LOCATE COMP "led_power" SITE "K2" ;
+LOCATE COMP "led_sync" SITE "J2" ;
+LOCATE COMP "led_pps" SITE "B6" ;
+LOCATE COMP "led_error" SITE "G2" ;
+# Set I/O standards for LEDs
+IOBUF PORT "led_power" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "led_sync" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "led_pps" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "led_error" IO_TYPE=LVCMOS33 DRIVE=8 ;
+# =============================================================================
+# Timing Constraints
+# =============================================================================
+# Clock Domain Crossing Constraints
+# MAXDELAY FROM CELL "*t2mi_data_sync*" TO CELL "*parser_inst*" 10.000000 ns;
+# MAXDELAY FROM CELL "*timestamp_ready*" TO CELL "*pps_inst*" 5.000000 ns;
+# PPS Output Timing - Critical for precision
+# MAXDELAY FROM CELL "*pps_pulse*" TO PORT "pps_out" 2.000000 ns;
+# =============================================================================
+# Area and Placement Constraints
+# =============================================================================
+# Keep critical timing paths close together
+# Note: Region constraints syntax may vary by Diamond version
+# REGION "pps_region" SITE "R8C2:R12C6";
+# ASSIGN COMP "pps_inst" REGION "pps_region";
+# Keep parser logic together  
+# REGION "parser_region" SITE "R2C2:R6C6";
+# ASSIGN COMP "parser_inst" REGION "parser_region";
+# =============================================================================
+# Power and Performance Settings
+# =============================================================================
+# Enable high-performance mode for critical signals
+IOBUF PORT "pps_out" OPENDRAIN=OFF TERMINATION=OFF ;
+# Minimize power on non-critical signals
+IOBUF PORT "led_power" OPENDRAIN=OFF TERMINATION=OFF ;
+IOBUF PORT "led_sync" OPENDRAIN=OFF TERMINATION=OFF ;
+IOBUF PORT "led_pps" OPENDRAIN=OFF TERMINATION=OFF ;
+IOBUF PORT "led_error" OPENDRAIN=OFF TERMINATION=OFF ;
+# =============================================================================
+# Configuration Settings
+# =============================================================================
+# Configuration mode
+SYSCONFIG CONFIG_MODE=SPI_SERIAL MCCLK_FREQ=2.4 WAKE_UP=21 ;
+# Compression settings
+SYSCONFIG COMPRESS_CONFIG=ON ;
+
+# =============================================================================
+# SiT5503 High-Stability Oscillator Interface
+# =============================================================================
+
+# SiT5503 10 MHz Clock Input
+LOCATE COMP "sit5503_clk" SITE "F2" ;
+IOBUF PORT "sit5503_clk" IO_TYPE=LVCMOS33 ;
+FREQUENCY PORT "sit5503_clk" 10.000000 MHz ;
+
+# SiT5503 I2C Interface
+LOCATE COMP "sit5503_scl" SITE "H1" ;
+LOCATE COMP "sit5503_sda" SITE "H2" ;
+IOBUF PORT "sit5503_scl" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "sit5503_sda" IO_TYPE=LVCMOS33 DRIVE=8 ;
+
+# =============================================================================
+# Enhanced PPS Outputs
+# =============================================================================
+
+# Backup PPS Output
+LOCATE COMP "pps_backup" SITE "F1" ;
+IOBUF PORT "pps_backup" IO_TYPE=LVCMOS33 DRIVE=12 ;
+
+# =============================================================================
+# Additional Status Outputs
+# =============================================================================
+
+# Autonomous Mode Indicator
+LOCATE COMP "autonomous_mode" SITE "C2" ;
+IOBUF PORT "autonomous_mode" IO_TYPE=LVCMOS33 ;
+
+# SiT5503 Ready Status
+LOCATE COMP "sit5503_ready" SITE "A1" ;
+IOBUF PORT "sit5503_ready" IO_TYPE=LVCMOS33 ;
+
+# PPS Status Bus [7:0]
+LOCATE COMP "pps_status[0]" SITE "K3" ;
+LOCATE COMP "pps_status[1]" SITE "J3" ;
+LOCATE COMP "pps_status[2]" SITE "H3" ;
+LOCATE COMP "pps_status[3]" SITE "G3" ;
+LOCATE COMP "pps_status[4]" SITE "F3" ;
+LOCATE COMP "pps_status[5]" SITE "E3" ;
+LOCATE COMP "pps_status[6]" SITE "D3" ;
+LOCATE COMP "pps_status[7]" SITE "C3" ;
+
+# Set I/O standards for PPS status
+IOBUF PORT "pps_status[0]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "pps_status[1]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "pps_status[2]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "pps_status[3]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "pps_status[4]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "pps_status[5]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "pps_status[6]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "pps_status[7]" IO_TYPE=LVCMOS33 ;
+
+# =============================================================================
+# Additional LED Indicators
+# =============================================================================
+
+# Autonomous Mode LED
+LOCATE COMP "led_autonomous" SITE "A2" ;
+IOBUF PORT "led_autonomous" IO_TYPE=LVCMOS33 DRIVE=8 ;
+
+# SiT5503 Status LED
+LOCATE COMP "led_sit5503" SITE "A3" ;
+IOBUF PORT "led_sit5503" IO_TYPE=LVCMOS33 DRIVE=8 ;
+
+# =============================================================================
+# Enhanced Timing Constraints for High-Precision Operation
+# =============================================================================
+
+# SiT5503 Clock Domain Constraints
+# MAXDELAY FROM CELL "*sit5503_clk_sync*" TO CELL "*pps_inst*" 5.000000 ns;
+
+# High-precision PPS output timing
+# MAXDELAY FROM CELL "*pps_pulse*" TO PORT "pps_out" 1.000000 ns;
+# MAXDELAY FROM CELL "*pps_pulse*" TO PORT "pps_backup" 1.000000 ns;
+
+# I2C Interface Timing
+# MAXDELAY FROM CELL "*i2c_scl*" TO PORT "sit5503_scl" 5.000000 ns;
+# MAXDELAY FROM CELL "*i2c_sda*" TO PORT "sit5503_sda" 5.000000 ns;
+
+# Clock Domain Crossing Constraints for SiT5503
+# MULTICYCLE FROM CELL "*sit5503_clk_sync*" TO CELL "*enhanced_pps*" 2;
+
+# =============================================================================
+# Power Optimization for SiT5503 Interface
+# =============================================================================
+
+# High-performance mode for critical timing signals
+IOBUF PORT "sit5503_clk" OPENDRAIN=OFF TERMINATION=OFF ;
+IOBUF PORT "pps_backup" OPENDRAIN=OFF TERMINATION=OFF ;
+
+# Optimize I2C interface for power
+IOBUF PORT "sit5503_scl" OPENDRAIN=ON TERMINATION=OFF ;
+IOBUF PORT "sit5503_sda" OPENDRAIN=ON TERMINATION=OFF ;
+
+# =============================================================================
+# Additional Configuration for Enhanced Features
+# =============================================================================
+
+# Enable advanced timing analysis
+# SYSCONFIG ENABLE_SUSPEND=OFF SLAVE_SPI_PORT=DISABLE ;
+
+# Enhanced clock management
+# SYSCONFIG MCCLK_FREQ=62.0 WAKE_UP=35 ;
+

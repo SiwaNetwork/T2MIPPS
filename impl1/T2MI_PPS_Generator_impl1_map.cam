@@ -1,0 +1,153 @@
+[ START MERGED ]
+led_power_c_i led_power_c
+rst_n_c_i rst_n_c
+[ END MERGED ]
+[ START CLIPPED ]
+parser_inst/VCC
+pps_inst/VCC
+VCC
+parser_inst/un1_byte_counter_cry_15_0_S1
+parser_inst/un1_byte_counter_cry_15_0_S0
+parser_inst/un1_byte_counter_cry_13_0_S1
+parser_inst/un1_byte_counter_cry_13_0_S0
+parser_inst/un1_byte_counter_cry_11_0_S1
+parser_inst/un1_byte_counter_cry_11_0_S0
+parser_inst/un1_byte_counter_cry_9_0_S1
+parser_inst/un1_byte_counter_cry_9_0_S0
+parser_inst/un1_byte_counter_cry_7_0_S1
+parser_inst/un1_byte_counter_cry_7_0_S0
+parser_inst/un1_byte_counter_cry_5_0_S1
+parser_inst/un1_byte_counter_cry_5_0_S0
+parser_inst/un1_byte_counter_cry_3_0_S1
+parser_inst/un1_byte_counter_cry_3_0_S0
+parser_inst/un1_byte_counter_cry_1_0_S1
+parser_inst/un1_byte_counter_cry_1_0_S0
+parser_inst/un1_byte_counter_cry_0_0_S1
+parser_inst/un1_byte_counter_cry_0_0_S0
+parser_inst/N_23
+parser_inst/un1_packet_length_reg_0_cry_15_0_COUT
+parser_inst/un1_packet_length_reg_0_cry_0_0_S1
+parser_inst/un1_packet_length_reg_0_cry_0_0_S0
+parser_inst/N_24
+parser_inst/byte_counter_s_0_S1[15]
+parser_inst/byte_counter_s_0_COUT[15]
+parser_inst/byte_counter_cry_0_S0[0]
+parser_inst/N_25
+parser_inst/un1_byte_counter_cry_16_0_S1
+parser_inst/un1_byte_counter_cry_16_0_COUT
+pps_inst/sync_error18_0_I_93_0_S0
+pps_inst/sync_error18_0_I_93_0_COUT
+pps_inst/sync_error18_0_I_9_0_S1
+pps_inst/sync_error18_0_I_9_0_S0
+pps_inst/sync_error18_0_I_15_0_S1
+pps_inst/sync_error18_0_I_15_0_S0
+pps_inst/sync_error18_0_I_75_0_S1
+pps_inst/sync_error18_0_I_75_0_S0
+pps_inst/sync_error18_0_I_81_0_S1
+pps_inst/sync_error18_0_I_81_0_S0
+pps_inst/sync_error18_0_I_51_0_S1
+pps_inst/sync_error18_0_I_51_0_S0
+pps_inst/sync_error18_0_I_27_0_S1
+pps_inst/sync_error18_0_I_27_0_S0
+pps_inst/sync_error18_0_I_105_0_S1
+pps_inst/sync_error18_0_I_105_0_S0
+pps_inst/sync_error18_0_I_111_0_S1
+pps_inst/sync_error18_0_I_111_0_S0
+pps_inst/sync_error18_0_I_57_0_S1
+pps_inst/sync_error18_0_I_57_0_S0
+pps_inst/sync_error18_0_I_1_0_S1
+pps_inst/sync_error18_0_I_1_0_S0
+pps_inst/N_38
+pps_inst/sync_error12_cry_31_0_S0
+pps_inst/sync_error12_cry_31_0_COUT
+pps_inst/sync_error12_cry_29_0_S1
+pps_inst/sync_error12_cry_29_0_S0
+pps_inst/sync_error12_cry_27_0_S1
+pps_inst/sync_error12_cry_27_0_S0
+pps_inst/sync_error12_cry_25_0_S1
+pps_inst/sync_error12_cry_25_0_S0
+pps_inst/sync_error12_cry_23_0_S1
+pps_inst/sync_error12_cry_23_0_S0
+pps_inst/sync_error12_cry_21_0_S1
+pps_inst/sync_error12_cry_21_0_S0
+pps_inst/sync_error12_cry_19_0_S1
+pps_inst/sync_error12_cry_19_0_S0
+pps_inst/sync_error12_cry_17_0_S1
+pps_inst/sync_error12_cry_17_0_S0
+pps_inst/sync_error12_cry_15_0_S1
+pps_inst/sync_error12_cry_15_0_S0
+pps_inst/sync_error12_cry_13_0_S1
+pps_inst/sync_error12_cry_13_0_S0
+pps_inst/sync_error12_cry_11_0_S1
+pps_inst/sync_error12_cry_11_0_S0
+pps_inst/sync_error12_cry_9_0_S1
+pps_inst/sync_error12_cry_9_0_S0
+pps_inst/sync_error12_cry_7_0_S1
+pps_inst/sync_error12_cry_7_0_S0
+pps_inst/sync_error12_cry_5_0_S1
+pps_inst/sync_error12_cry_5_0_S0
+pps_inst/sync_error12_cry_3_0_S1
+pps_inst/sync_error12_cry_3_0_S0
+pps_inst/sync_error12_cry_1_0_S1
+pps_inst/sync_error12_cry_1_0_S0
+pps_inst/sync_error12_cry_0_0_S1
+pps_inst/sync_error12_cry_0_0_S0
+pps_inst/N_39
+pps_inst/un1_current_subseconds_0_s_31_0_S1
+pps_inst/un1_current_subseconds_0_s_31_0_COUT
+pps_inst/un1_current_subseconds_0_cry_0_0_S1
+pps_inst/un1_current_subseconds_0_cry_0_0_S0
+pps_inst/N_40
+pps_inst/current_seconds_s_0_S1[39]
+pps_inst/current_seconds_s_0_COUT[39]
+pps_inst/current_seconds_cry_0_S0[0]
+pps_inst/N_41
+pps_inst/pps_pulse_counter_s_0_S1[31]
+pps_inst/pps_pulse_counter_s_0_COUT[31]
+pps_inst/pps_pulse_counter_cry_0_S0[0]
+pps_inst/N_42
+pps_inst/sync_error_5_0_0_s_31_0_S1
+pps_inst/sync_error_5_0_0_s_31_0_COUT
+pps_inst/sync_error_5_0_0_cry_0_0_S1
+pps_inst/sync_error_5_0_0_cry_0_0_S0
+pps_inst/N_43
+pps_inst/subsec_counter_6_s_31_0_S1
+pps_inst/subsec_counter_6_s_31_0_COUT
+pps_inst/subsec_counter_6_cry_0_0_S1
+pps_inst/subsec_counter_6_cry_0_0_S0
+pps_inst/N_44
+[ END CLIPPED ]
+[ START DESIGN PREFS ]
+SCHEMATIC START ;
+# map:  version Diamond (64-bit) 3.14.0.75.2 -- WARNING: Map write only section -- Sun Jun 08 20:50:31 2025
+
+SYSCONFIG SLAVE_SPI_PORT=DISABLE MASTER_SPI_PORT=DISABLE SLAVE_PARALLEL_PORT=DISABLE BACKGROUND_RECONFIG=OFF DONE_EX=OFF DONE_OD=ON DONE_PULL=ON MCCLK_FREQ=2.4 TRANSFR=OFF CONFIG_IOVOLTAGE=2.5 CONFIG_SECURE=OFF WAKE_UP=21 COMPRESS_CONFIG=ON CONFIG_MODE=SPI_SERIAL INBUF=OFF ;
+LOCATE COMP "pps_out" SITE "E1" ;
+LOCATE COMP "clk_100mhz" SITE "A7" ;
+LOCATE COMP "led_error" SITE "G2" ;
+LOCATE COMP "led_pps" SITE "B6" ;
+LOCATE COMP "led_sync" SITE "J2" ;
+LOCATE COMP "led_power" SITE "K2" ;
+LOCATE COMP "debug_status[7]" SITE "L2" ;
+LOCATE COMP "debug_status[6]" SITE "M2" ;
+LOCATE COMP "debug_status[5]" SITE "B7" ;
+LOCATE COMP "debug_status[4]" SITE "P2" ;
+LOCATE COMP "debug_status[3]" SITE "R2" ;
+LOCATE COMP "debug_status[2]" SITE "T2" ;
+LOCATE COMP "debug_status[1]" SITE "T14" ;
+LOCATE COMP "debug_status[0]" SITE "B1" ;
+LOCATE COMP "sync_locked" SITE "C1" ;
+LOCATE COMP "timestamp_valid" SITE "D1" ;
+LOCATE COMP "t2mi_data[7]" SITE "B5" ;
+LOCATE COMP "t2mi_data[6]" SITE "J1" ;
+LOCATE COMP "t2mi_data[5]" SITE "K1" ;
+LOCATE COMP "t2mi_data[4]" SITE "L1" ;
+LOCATE COMP "t2mi_data[3]" SITE "M1" ;
+LOCATE COMP "t2mi_data[2]" SITE "N1" ;
+LOCATE COMP "t2mi_data[1]" SITE "P1" ;
+LOCATE COMP "t2mi_data[0]" SITE "R1" ;
+LOCATE COMP "t2mi_valid" SITE "G1" ;
+LOCATE COMP "rst_n" SITE "B4" ;
+FREQUENCY PORT "clk_100mhz" 100.000000 MHz ;
+SCHEMATIC END ;
+[ END DESIGN PREFS ]

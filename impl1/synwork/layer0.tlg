@@ -1,0 +1,108 @@
+Selecting top level module t2mi_pps_top
+@N: CG364 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\sync_modules.v":7:7:7:21|Synthesizing module clk_sync_module in library work.
+Running optimization stage 1 on clk_sync_module .......
+Finished optimization stage 1 on clk_sync_module (CPU Time 0h:00m:00s, Memory Used current: 92MB peak: 92MB)
+@N: CG364 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\sync_modules.v":28:7:28:23|Synthesizing module reset_sync_module in library work.
+Running optimization stage 1 on reset_sync_module .......
+Finished optimization stage 1 on reset_sync_module (CPU Time 0h:00m:00s, Memory Used current: 92MB peak: 93MB)
+@N: CG364 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\t2mi_packet_parser.v":8:7:8:24|Synthesizing module t2mi_packet_parser in library work.
+Running optimization stage 1 on t2mi_packet_parser .......
+@W: CL169 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\t2mi_packet_parser.v":188:0:188:5|Pruning unused register packet_type_reg[7:0]. Make sure that there are no unused intermediate registers.
+@W: CL169 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\t2mi_packet_parser.v":188:0:188:5|Pruning unused register data_buffer[7:0]. Make sure that there are no unused intermediate registers.
+@W: CL169 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\t2mi_packet_parser.v":71:0:71:5|Pruning unused register t2mi_sync_sync. Make sure that there are no unused intermediate registers.
+Finished optimization stage 1 on t2mi_packet_parser (CPU Time 0h:00m:00s, Memory Used current: 93MB peak: 94MB)
+@N: CG364 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\timestamp_extractor.v":8:7:8:25|Synthesizing module timestamp_extractor in library work.
+Running optimization stage 1 on timestamp_extractor .......
+@W: CL169 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\timestamp_extractor.v":107:0:107:5|Pruning unused register rfu_field[3:0]. Make sure that there are no unused intermediate registers.
+@W: CL271 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\timestamp_extractor.v":73:0:73:5|Pruning unused bits 7 to 5 of timestamp_buffer[1][7:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.
+@W: CL177 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\timestamp_extractor.v":207:0:207:5|Sharing sequential element timestamp_ready and merging timestamp_valid. Add a syn_preserve attribute to the element to prevent sharing.
+Finished optimization stage 1 on timestamp_extractor (CPU Time 0h:00m:00s, Memory Used current: 94MB peak: 95MB)
+@N: CG364 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v":8:7:8:19|Synthesizing module pps_generator in library work.
+Running optimization stage 1 on pps_generator .......
+@W: CL169 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v":210:0:210:5|Pruning unused register pps_active. Make sure that there are no unused intermediate registers.
+@W: CL169 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v":119:0:119:5|Pruning unused register drift_accumulator[31:0]. Make sure that there are no unused intermediate registers.
+@W: CL169 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v":119:0:119:5|Pruning unused register last_sync_seconds[39:0]. Make sure that there are no unused intermediate registers.
+@W: CL169 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v":119:0:119:5|Pruning unused register last_sync_subseconds[31:0]. Make sure that there are no unused intermediate registers.
+@W: CL190 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v":210:0:210:5|Optimizing register bit next_pps_time[0] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: CL190 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v":210:0:210:5|Optimizing register bit next_pps_time[1] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: CL190 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v":210:0:210:5|Optimizing register bit next_pps_time[2] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: CL190 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v":210:0:210:5|Optimizing register bit next_pps_time[3] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: CL190 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v":210:0:210:5|Optimizing register bit next_pps_time[4] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: CL190 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v":210:0:210:5|Optimizing register bit next_pps_time[5] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: CL190 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v":210:0:210:5|Optimizing register bit next_pps_time[6] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: CL190 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v":210:0:210:5|Optimizing register bit next_pps_time[7] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: CL190 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v":210:0:210:5|Optimizing register bit next_pps_time[8] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: CL190 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v":210:0:210:5|Optimizing register bit next_pps_time[9] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: CL190 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v":210:0:210:5|Optimizing register bit next_pps_time[10] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: CL190 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v":210:0:210:5|Optimizing register bit next_pps_time[11] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: CL190 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v":210:0:210:5|Optimizing register bit next_pps_time[12] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: CL190 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v":210:0:210:5|Optimizing register bit next_pps_time[13] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: CL190 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v":210:0:210:5|Optimizing register bit next_pps_time[14] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: CL190 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v":210:0:210:5|Optimizing register bit next_pps_time[15] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: CL190 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v":210:0:210:5|Optimizing register bit next_pps_time[16] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: CL190 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v":210:0:210:5|Optimizing register bit next_pps_time[17] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: CL190 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v":210:0:210:5|Optimizing register bit next_pps_time[18] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: CL190 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v":210:0:210:5|Optimizing register bit next_pps_time[19] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: CL190 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v":210:0:210:5|Optimizing register bit next_pps_time[20] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: CL190 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v":210:0:210:5|Optimizing register bit next_pps_time[21] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: CL190 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v":210:0:210:5|Optimizing register bit next_pps_time[22] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: CL190 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v":210:0:210:5|Optimizing register bit next_pps_time[23] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: CL190 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v":210:0:210:5|Optimizing register bit next_pps_time[24] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: CL190 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v":210:0:210:5|Optimizing register bit next_pps_time[25] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: CL190 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v":210:0:210:5|Optimizing register bit next_pps_time[26] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: CL190 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v":210:0:210:5|Optimizing register bit next_pps_time[27] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: CL190 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v":210:0:210:5|Optimizing register bit next_pps_time[28] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: CL190 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v":210:0:210:5|Optimizing register bit next_pps_time[29] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: CL190 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v":210:0:210:5|Optimizing register bit next_pps_time[30] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: CL190 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v":210:0:210:5|Optimizing register bit next_pps_time[31] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.
+@W: CL169 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v":210:0:210:5|Pruning unused register next_pps_time[31:0]. Make sure that there are no unused intermediate registers.
+Finished optimization stage 1 on pps_generator (CPU Time 0h:00m:00s, Memory Used current: 95MB peak: 100MB)
+@N: CG364 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\t2mi_pps_top.v":10:7:10:18|Synthesizing module t2mi_pps_top in library work.
+Running optimization stage 1 on t2mi_pps_top .......
+Finished optimization stage 1 on t2mi_pps_top (CPU Time 0h:00m:00s, Memory Used current: 95MB peak: 100MB)
+Running optimization stage 2 on t2mi_pps_top .......
+Finished optimization stage 2 on t2mi_pps_top (CPU Time 0h:00m:00s, Memory Used current: 95MB peak: 100MB)
+Running optimization stage 2 on pps_generator .......
+@N: CL201 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v":160:0:160:5|Trying to extract state machine for register pps_state.
+Extracted state machine for register pps_state
+State machine has 5 reachable states with original encodings of:
+   000
+   001
+   010
+   011
+   100
+Finished optimization stage 2 on pps_generator (CPU Time 0h:00m:00s, Memory Used current: 101MB peak: 103MB)
+Running optimization stage 2 on timestamp_extractor .......
+@N: CL201 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\timestamp_extractor.v":149:0:149:5|Trying to extract state machine for register extract_state.
+Extracted state machine for register extract_state
+State machine has 6 reachable states with original encodings of:
+   000
+   001
+   010
+   011
+   100
+   101
+Finished optimization stage 2 on timestamp_extractor (CPU Time 0h:00m:00s, Memory Used current: 101MB peak: 103MB)
+Running optimization stage 2 on t2mi_packet_parser .......
+@N: CL201 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\t2mi_packet_parser.v":123:0:123:5|Trying to extract state machine for register parser_state.
+Extracted state machine for register parser_state
+State machine has 6 reachable states with original encodings of:
+   000
+   001
+   010
+   011
+   100
+   101
+@N: CL159 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\t2mi_packet_parser.v":13:23:13:30|Input t2mi_clk is unused.
+@N: CL159 :"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\t2mi_packet_parser.v":16:23:16:31|Input t2mi_sync is unused.
+Finished optimization stage 2 on t2mi_packet_parser (CPU Time 0h:00m:00s, Memory Used current: 98MB peak: 103MB)
+Running optimization stage 2 on reset_sync_module .......
+Finished optimization stage 2 on reset_sync_module (CPU Time 0h:00m:00s, Memory Used current: 98MB peak: 103MB)
+Running optimization stage 2 on clk_sync_module .......
+Finished optimization stage 2 on clk_sync_module (CPU Time 0h:00m:00s, Memory Used current: 98MB peak: 103MB)
+
+For a summary of runtime per design unit, please see file:
+==========================================================
+@L: C:\Users\SHIWA\Desktop\t2mi_pps_project\impl1\synwork\layer0.duruntime
+
+

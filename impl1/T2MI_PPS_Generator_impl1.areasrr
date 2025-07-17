@@ -1,0 +1,82 @@
+----------------------------------------------------------------------
+Report for cell t2mi_pps_top.verilog
+
+Register bits: 511 of 24288 (2%)
+PIC Latch:       0
+I/O cells:       26
+                                          Cell usage:
+                               cell       count    Res Usage(%)
+                              CCU2C      145       100.0
+                            FD1P3DX      415       100.0
+                            FD1S3BX        5       100.0
+                            FD1S3DX       82       100.0
+                                GSR        1       100.0
+                                 IB       11       100.0
+                           IFS1P3DX        9       100.0
+                                INV        2       100.0
+                                 OB       15       100.0
+                           ORCALUT4      293       100.0
+                              PFUMX        1       100.0
+                                PUR        1       100.0
+                                VHI        5       100.0
+                                VLO        5       100.0
+SUB MODULES 
+                      pps_generator        1       100.0
+                  reset_sync_module        1       100.0
+                 t2mi_packet_parser        1       100.0
+                timestamp_extractor        1       100.0
+                            
+                         TOTAL           994           
+----------------------------------------------------------------------
+Report for cell pps_generator.netlist
+     Instance path:  pps_inst
+                                          Cell usage:
+                               cell       count    Res Usage(%)
+                              CCU2C      117        80.7
+                            FD1P3DX      138        33.3
+                            FD1S3BX        1        20.0
+                            FD1S3DX       56        68.3
+                           ORCALUT4      205        70.0
+                                VHI        1        20.0
+                                VLO        1        20.0
+                            
+                         TOTAL           519           
+----------------------------------------------------------------------
+Report for cell timestamp_extractor.netlist
+     Instance path:  extractor_inst
+                                          Cell usage:
+                               cell       count    Res Usage(%)
+                            FD1P3DX      227        54.7
+                            FD1S3BX        1        20.0
+                            FD1S3DX       10        12.2
+                           ORCALUT4       50        17.1
+                                VHI        1        20.0
+                                VLO        1        20.0
+                            
+                         TOTAL           290           
+----------------------------------------------------------------------
+Report for cell t2mi_packet_parser.netlist
+     Instance path:  parser_inst
+                                          Cell usage:
+                               cell       count    Res Usage(%)
+                              CCU2C       28        19.3
+                            FD1P3DX       50        12.0
+                            FD1S3BX        3        60.0
+                            FD1S3DX       12        14.6
+                           ORCALUT4       37        12.6
+                              PFUMX        1       100.0
+                                VHI        1        20.0
+                                VLO        1        20.0
+                            
+                         TOTAL           133           
+----------------------------------------------------------------------
+Report for cell reset_sync_module.netlist
+     Instance path:  reset_sync_inst
+                                          Cell usage:
+                               cell       count    Res Usage(%)
+                            FD1S3DX        4         4.9
+                                INV        1        50.0
+                                VHI        1        20.0
+                                VLO        1        20.0
+                            
+                         TOTAL             7           

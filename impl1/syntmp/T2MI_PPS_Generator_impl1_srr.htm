@@ -1,0 +1,1161 @@
+<html><body><samp><pre>
+<!@TC:1749404941>
+#Build: Synplify Pro (R) V-2023.09L-2, Build 349R, Sep 17 2024
+#install: C:\lscc\diamond\3.14\synpbase
+#OS: Windows 10 or later
+#Hostname: DESKTOP-0S2UTBE
+
+# Sun Jun  8 20:49:01 2025
+
+#Implementation: impl1
+
+
+Copyright (C) 1994-2023 Synopsys, Inc.
+This Synopsys software and all associated documentation are proprietary to Synopsys, Inc.
+and may only be used pursuant to the terms and conditions of a written license agreement
+with Synopsys, Inc. All other use, reproduction, modification, or distribution of the
+Synopsys software or the associated documentation is strictly prohibited.
+Tool: Synplify Pro (R)
+Build: V-2023.09L-2
+Install: C:\lscc\diamond\3.14\synpbase
+OS: Windows 10 or later
+Hostname: DESKTOP-0S2UTBE
+
+Implementation : impl1
+<a name=compilerReport1></a>Synopsys HDL Compiler, Version comp202309synp1, Build 349R, Built Sep 17 2024 08:16:26, @</a>
+
+@N: : <!@TM:1749404942> | Running in 64-bit mode 
+###########################################################[
+
+Copyright (C) 1994-2023 Synopsys, Inc.
+This Synopsys software and all associated documentation are proprietary to Synopsys, Inc.
+and may only be used pursuant to the terms and conditions of a written license agreement
+with Synopsys, Inc. All other use, reproduction, modification, or distribution of the
+Synopsys software or the associated documentation is strictly prohibited.
+Tool: Synplify Pro (R)
+Build: V-2023.09L-2
+Install: C:\lscc\diamond\3.14\synpbase
+OS: Windows 10 or later
+Hostname: DESKTOP-0S2UTBE
+
+Implementation : impl1
+<a name=compilerReport2></a>Synopsys Verilog Compiler, Version comp202309synp1, Build 349R, Built Sep 17 2024 08:16:26, @</a>
+
+@N: : <!@TM:1749404942> | Running in 64-bit mode 
+@I::"C:\lscc\diamond\3.14\synpbase\lib\lucent\ecp5u.v" (library work)
+@I::"C:\lscc\diamond\3.14\synpbase\lib\lucent\pmi_def.v" (library work)
+@I::"C:\lscc\diamond\3.14\synpbase\lib\vlog\hypermods.v" (library __hyper__lib__)
+@I::"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\t2mi_pps_top.v" (library work)
+@I::"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\t2mi_packet_parser.v" (library work)
+@I::"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\timestamp_extractor.v" (library work)
+@N:<a href="@N:CG334:@XP_HELP">CG334</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\timestamp_extractor.v:247:13:247:26:@N:CG334:@XP_MSG">timestamp_extractor.v(247)</a><!@TM:1749404942> | Read directive translate_off.
+@N:<a href="@N:CG333:@XP_HELP">CG333</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\timestamp_extractor.v:263:13:263:25:@N:CG333:@XP_MSG">timestamp_extractor.v(263)</a><!@TM:1749404942> | Read directive translate_on.
+@I::"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v" (library work)
+@N:<a href="@N:CG334:@XP_HELP">CG334</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v:286:13:286:26:@N:CG334:@XP_MSG">pps_generator.v(286)</a><!@TM:1749404942> | Read directive translate_off.
+@N:<a href="@N:CG333:@XP_HELP">CG333</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v:302:13:302:25:@N:CG333:@XP_MSG">pps_generator.v(302)</a><!@TM:1749404942> | Read directive translate_on.
+@I::"C:\Users\SHIWA\Desktop\t2mi_pps_project\src\sync_modules.v" (library work)
+Verilog syntax check successful!
+
+Compiler output is up to date.  No re-compile necessary
+
+Selecting top level module t2mi_pps_top
+@N:<a href="@N:CG364:@XP_HELP">CG364</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\sync_modules.v:7:7:7:22:@N:CG364:@XP_MSG">sync_modules.v(7)</a><!@TM:1749404942> | Synthesizing module clk_sync_module in library work.
+Running optimization stage 1 on clk_sync_module .......
+Finished optimization stage 1 on clk_sync_module (CPU Time 0h:00m:00s, Memory Used current: 91MB peak: 92MB)
+@N:<a href="@N:CG364:@XP_HELP">CG364</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\sync_modules.v:28:7:28:24:@N:CG364:@XP_MSG">sync_modules.v(28)</a><!@TM:1749404942> | Synthesizing module reset_sync_module in library work.
+Running optimization stage 1 on reset_sync_module .......
+Finished optimization stage 1 on reset_sync_module (CPU Time 0h:00m:00s, Memory Used current: 91MB peak: 92MB)
+@N:<a href="@N:CG364:@XP_HELP">CG364</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\t2mi_packet_parser.v:8:7:8:25:@N:CG364:@XP_MSG">t2mi_packet_parser.v(8)</a><!@TM:1749404942> | Synthesizing module t2mi_packet_parser in library work.
+Running optimization stage 1 on t2mi_packet_parser .......
+<font color=#A52A2A>@W:<a href="@W:CL169:@XP_HELP">CL169</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\t2mi_packet_parser.v:188:0:188:6:@W:CL169:@XP_MSG">t2mi_packet_parser.v(188)</a><!@TM:1749404942> | Pruning unused register packet_type_reg[7:0]. Make sure that there are no unused intermediate registers.</font>
+<font color=#A52A2A>@W:<a href="@W:CL169:@XP_HELP">CL169</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\t2mi_packet_parser.v:188:0:188:6:@W:CL169:@XP_MSG">t2mi_packet_parser.v(188)</a><!@TM:1749404942> | Pruning unused register data_buffer[7:0]. Make sure that there are no unused intermediate registers.</font>
+<font color=#A52A2A>@W:<a href="@W:CL169:@XP_HELP">CL169</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\t2mi_packet_parser.v:71:0:71:6:@W:CL169:@XP_MSG">t2mi_packet_parser.v(71)</a><!@TM:1749404942> | Pruning unused register t2mi_sync_sync. Make sure that there are no unused intermediate registers.</font>
+Finished optimization stage 1 on t2mi_packet_parser (CPU Time 0h:00m:00s, Memory Used current: 93MB peak: 93MB)
+@N:<a href="@N:CG364:@XP_HELP">CG364</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\timestamp_extractor.v:8:7:8:26:@N:CG364:@XP_MSG">timestamp_extractor.v(8)</a><!@TM:1749404942> | Synthesizing module timestamp_extractor in library work.
+Running optimization stage 1 on timestamp_extractor .......
+<font color=#A52A2A>@W:<a href="@W:CL169:@XP_HELP">CL169</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\timestamp_extractor.v:107:0:107:6:@W:CL169:@XP_MSG">timestamp_extractor.v(107)</a><!@TM:1749404942> | Pruning unused register rfu_field[3:0]. Make sure that there are no unused intermediate registers.</font>
+<font color=#A52A2A>@W:<a href="@W:CL271:@XP_HELP">CL271</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\timestamp_extractor.v:73:0:73:6:@W:CL271:@XP_MSG">timestamp_extractor.v(73)</a><!@TM:1749404942> | Pruning unused bits 7 to 5 of timestamp_buffer[1][7:0]. If this is not the intended behavior, drive the inputs with valid values, or inputs from the top level.</font>
+<font color=#A52A2A>@W:<a href="@W:CL177:@XP_HELP">CL177</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\timestamp_extractor.v:207:0:207:6:@W:CL177:@XP_MSG">timestamp_extractor.v(207)</a><!@TM:1749404942> | Sharing sequential element timestamp_ready and merging timestamp_valid. Add a syn_preserve attribute to the element to prevent sharing.</font>
+Finished optimization stage 1 on timestamp_extractor (CPU Time 0h:00m:00s, Memory Used current: 93MB peak: 94MB)
+@N:<a href="@N:CG364:@XP_HELP">CG364</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v:8:7:8:20:@N:CG364:@XP_MSG">pps_generator.v(8)</a><!@TM:1749404942> | Synthesizing module pps_generator in library work.
+Running optimization stage 1 on pps_generator .......
+<font color=#A52A2A>@W:<a href="@W:CL169:@XP_HELP">CL169</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v:210:0:210:6:@W:CL169:@XP_MSG">pps_generator.v(210)</a><!@TM:1749404942> | Pruning unused register pps_active. Make sure that there are no unused intermediate registers.</font>
+<font color=#A52A2A>@W:<a href="@W:CL169:@XP_HELP">CL169</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v:119:0:119:6:@W:CL169:@XP_MSG">pps_generator.v(119)</a><!@TM:1749404942> | Pruning unused register drift_accumulator[31:0]. Make sure that there are no unused intermediate registers.</font>
+<font color=#A52A2A>@W:<a href="@W:CL169:@XP_HELP">CL169</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v:119:0:119:6:@W:CL169:@XP_MSG">pps_generator.v(119)</a><!@TM:1749404942> | Pruning unused register last_sync_seconds[39:0]. Make sure that there are no unused intermediate registers.</font>
+<font color=#A52A2A>@W:<a href="@W:CL169:@XP_HELP">CL169</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v:119:0:119:6:@W:CL169:@XP_MSG">pps_generator.v(119)</a><!@TM:1749404942> | Pruning unused register last_sync_subseconds[31:0]. Make sure that there are no unused intermediate registers.</font>
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v:210:0:210:6:@W:CL190:@XP_MSG">pps_generator.v(210)</a><!@TM:1749404942> | Optimizing register bit next_pps_time[0] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.</font>
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v:210:0:210:6:@W:CL190:@XP_MSG">pps_generator.v(210)</a><!@TM:1749404942> | Optimizing register bit next_pps_time[1] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.</font>
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v:210:0:210:6:@W:CL190:@XP_MSG">pps_generator.v(210)</a><!@TM:1749404942> | Optimizing register bit next_pps_time[2] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.</font>
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v:210:0:210:6:@W:CL190:@XP_MSG">pps_generator.v(210)</a><!@TM:1749404942> | Optimizing register bit next_pps_time[3] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.</font>
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v:210:0:210:6:@W:CL190:@XP_MSG">pps_generator.v(210)</a><!@TM:1749404942> | Optimizing register bit next_pps_time[4] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.</font>
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v:210:0:210:6:@W:CL190:@XP_MSG">pps_generator.v(210)</a><!@TM:1749404942> | Optimizing register bit next_pps_time[5] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.</font>
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v:210:0:210:6:@W:CL190:@XP_MSG">pps_generator.v(210)</a><!@TM:1749404942> | Optimizing register bit next_pps_time[6] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.</font>
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v:210:0:210:6:@W:CL190:@XP_MSG">pps_generator.v(210)</a><!@TM:1749404942> | Optimizing register bit next_pps_time[7] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.</font>
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v:210:0:210:6:@W:CL190:@XP_MSG">pps_generator.v(210)</a><!@TM:1749404942> | Optimizing register bit next_pps_time[8] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.</font>
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v:210:0:210:6:@W:CL190:@XP_MSG">pps_generator.v(210)</a><!@TM:1749404942> | Optimizing register bit next_pps_time[9] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.</font>
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v:210:0:210:6:@W:CL190:@XP_MSG">pps_generator.v(210)</a><!@TM:1749404942> | Optimizing register bit next_pps_time[10] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.</font>
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v:210:0:210:6:@W:CL190:@XP_MSG">pps_generator.v(210)</a><!@TM:1749404942> | Optimizing register bit next_pps_time[11] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.</font>
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v:210:0:210:6:@W:CL190:@XP_MSG">pps_generator.v(210)</a><!@TM:1749404942> | Optimizing register bit next_pps_time[12] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.</font>
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v:210:0:210:6:@W:CL190:@XP_MSG">pps_generator.v(210)</a><!@TM:1749404942> | Optimizing register bit next_pps_time[13] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.</font>
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v:210:0:210:6:@W:CL190:@XP_MSG">pps_generator.v(210)</a><!@TM:1749404942> | Optimizing register bit next_pps_time[14] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.</font>
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v:210:0:210:6:@W:CL190:@XP_MSG">pps_generator.v(210)</a><!@TM:1749404942> | Optimizing register bit next_pps_time[15] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.</font>
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v:210:0:210:6:@W:CL190:@XP_MSG">pps_generator.v(210)</a><!@TM:1749404942> | Optimizing register bit next_pps_time[16] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.</font>
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v:210:0:210:6:@W:CL190:@XP_MSG">pps_generator.v(210)</a><!@TM:1749404942> | Optimizing register bit next_pps_time[17] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.</font>
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v:210:0:210:6:@W:CL190:@XP_MSG">pps_generator.v(210)</a><!@TM:1749404942> | Optimizing register bit next_pps_time[18] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.</font>
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v:210:0:210:6:@W:CL190:@XP_MSG">pps_generator.v(210)</a><!@TM:1749404942> | Optimizing register bit next_pps_time[19] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.</font>
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v:210:0:210:6:@W:CL190:@XP_MSG">pps_generator.v(210)</a><!@TM:1749404942> | Optimizing register bit next_pps_time[20] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.</font>
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v:210:0:210:6:@W:CL190:@XP_MSG">pps_generator.v(210)</a><!@TM:1749404942> | Optimizing register bit next_pps_time[21] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.</font>
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v:210:0:210:6:@W:CL190:@XP_MSG">pps_generator.v(210)</a><!@TM:1749404942> | Optimizing register bit next_pps_time[22] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.</font>
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v:210:0:210:6:@W:CL190:@XP_MSG">pps_generator.v(210)</a><!@TM:1749404942> | Optimizing register bit next_pps_time[23] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.</font>
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v:210:0:210:6:@W:CL190:@XP_MSG">pps_generator.v(210)</a><!@TM:1749404942> | Optimizing register bit next_pps_time[24] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.</font>
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v:210:0:210:6:@W:CL190:@XP_MSG">pps_generator.v(210)</a><!@TM:1749404942> | Optimizing register bit next_pps_time[25] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.</font>
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v:210:0:210:6:@W:CL190:@XP_MSG">pps_generator.v(210)</a><!@TM:1749404942> | Optimizing register bit next_pps_time[26] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.</font>
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v:210:0:210:6:@W:CL190:@XP_MSG">pps_generator.v(210)</a><!@TM:1749404942> | Optimizing register bit next_pps_time[27] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.</font>
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v:210:0:210:6:@W:CL190:@XP_MSG">pps_generator.v(210)</a><!@TM:1749404942> | Optimizing register bit next_pps_time[28] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.</font>
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v:210:0:210:6:@W:CL190:@XP_MSG">pps_generator.v(210)</a><!@TM:1749404942> | Optimizing register bit next_pps_time[29] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.</font>
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v:210:0:210:6:@W:CL190:@XP_MSG">pps_generator.v(210)</a><!@TM:1749404942> | Optimizing register bit next_pps_time[30] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.</font>
+<font color=#A52A2A>@W:<a href="@W:CL190:@XP_HELP">CL190</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v:210:0:210:6:@W:CL190:@XP_MSG">pps_generator.v(210)</a><!@TM:1749404942> | Optimizing register bit next_pps_time[31] to a constant 0. To keep the instance, apply constraint syn_preserve=1 on the instance.</font>
+<font color=#A52A2A>@W:<a href="@W:CL169:@XP_HELP">CL169</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v:210:0:210:6:@W:CL169:@XP_MSG">pps_generator.v(210)</a><!@TM:1749404942> | Pruning unused register next_pps_time[31:0]. Make sure that there are no unused intermediate registers.</font>
+Finished optimization stage 1 on pps_generator (CPU Time 0h:00m:00s, Memory Used current: 94MB peak: 100MB)
+@N:<a href="@N:CG364:@XP_HELP">CG364</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@N:CG364:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404942> | Synthesizing module t2mi_pps_top in library work.
+Running optimization stage 1 on t2mi_pps_top .......
+Finished optimization stage 1 on t2mi_pps_top (CPU Time 0h:00m:00s, Memory Used current: 94MB peak: 100MB)
+Running optimization stage 2 on t2mi_pps_top .......
+Finished optimization stage 2 on t2mi_pps_top (CPU Time 0h:00m:00s, Memory Used current: 94MB peak: 100MB)
+Running optimization stage 2 on pps_generator .......
+@N:<a href="@N:CL201:@XP_HELP">CL201</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v:160:0:160:6:@N:CL201:@XP_MSG">pps_generator.v(160)</a><!@TM:1749404942> | Trying to extract state machine for register pps_state.
+Extracted state machine for register pps_state
+State machine has 5 reachable states with original encodings of:
+   000
+   001
+   010
+   011
+   100
+Finished optimization stage 2 on pps_generator (CPU Time 0h:00m:00s, Memory Used current: 100MB peak: 102MB)
+Running optimization stage 2 on timestamp_extractor .......
+@N:<a href="@N:CL201:@XP_HELP">CL201</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\timestamp_extractor.v:149:0:149:6:@N:CL201:@XP_MSG">timestamp_extractor.v(149)</a><!@TM:1749404942> | Trying to extract state machine for register extract_state.
+Extracted state machine for register extract_state
+State machine has 6 reachable states with original encodings of:
+   000
+   001
+   010
+   011
+   100
+   101
+Finished optimization stage 2 on timestamp_extractor (CPU Time 0h:00m:00s, Memory Used current: 100MB peak: 102MB)
+Running optimization stage 2 on t2mi_packet_parser .......
+@N:<a href="@N:CL201:@XP_HELP">CL201</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\t2mi_packet_parser.v:123:0:123:6:@N:CL201:@XP_MSG">t2mi_packet_parser.v(123)</a><!@TM:1749404942> | Trying to extract state machine for register parser_state.
+Extracted state machine for register parser_state
+State machine has 6 reachable states with original encodings of:
+   000
+   001
+   010
+   011
+   100
+   101
+@N:<a href="@N:CL159:@XP_HELP">CL159</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\t2mi_packet_parser.v:13:23:13:31:@N:CL159:@XP_MSG">t2mi_packet_parser.v(13)</a><!@TM:1749404942> | Input t2mi_clk is unused.
+@N:<a href="@N:CL159:@XP_HELP">CL159</a> : <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\src\t2mi_packet_parser.v:16:23:16:32:@N:CL159:@XP_MSG">t2mi_packet_parser.v(16)</a><!@TM:1749404942> | Input t2mi_sync is unused.
+Finished optimization stage 2 on t2mi_packet_parser (CPU Time 0h:00m:00s, Memory Used current: 97MB peak: 102MB)
+Running optimization stage 2 on reset_sync_module .......
+Finished optimization stage 2 on reset_sync_module (CPU Time 0h:00m:00s, Memory Used current: 97MB peak: 102MB)
+Running optimization stage 2 on clk_sync_module .......
+Finished optimization stage 2 on clk_sync_module (CPU Time 0h:00m:00s, Memory Used current: 97MB peak: 102MB)
+
+For a summary of runtime per design unit, please see file:
+==========================================================
+Linked File:  <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\impl1\synwork\layer0.duruntime:@XP_FILE">layer0.duruntime</a>
+
+
+
+At c_ver Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 90MB peak: 91MB)
+
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+
+Process completed successfully.
+# Sun Jun  8 20:49:02 2025
+
+###########################################################]
+###########################################################[
+
+Copyright (C) 1994-2023 Synopsys, Inc.
+This Synopsys software and all associated documentation are proprietary to Synopsys, Inc.
+and may only be used pursuant to the terms and conditions of a written license agreement
+with Synopsys, Inc. All other use, reproduction, modification, or distribution of the
+Synopsys software or the associated documentation is strictly prohibited.
+Tool: Synplify Pro (R)
+Build: V-2023.09L-2
+Install: C:\lscc\diamond\3.14\synpbase
+OS: Windows 10 or later
+Hostname: DESKTOP-0S2UTBE
+
+Implementation : impl1
+<a name=compilerReport3></a>Synopsys Synopsys Netlist Linker, Version comp202309synp1, Build 349R, Built Sep 17 2024 08:16:26, @</a>
+
+@N: : <!@TM:1749404942> | Running in 64-bit mode 
+
+At syn_nfilter Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 91MB peak: 92MB)
+
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+
+Process completed successfully.
+# Sun Jun  8 20:49:02 2025
+
+###########################################################]
+
+For a summary of runtime and memory usage for all design units, please see file:
+==========================================================
+Linked File:  <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\impl1\synwork\T2MI_PPS_Generator_impl1_comp.rt.csv:@XP_FILE">T2MI_PPS_Generator_impl1_comp.rt.csv</a>
+
+@END
+
+At c_hdl Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 22MB peak: 23MB)
+
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+
+Process completed successfully.
+# Sun Jun  8 20:49:02 2025
+
+###########################################################]
+
+</pre></samp></body></html>
+<html><body><samp><pre>
+<!@TC:1749404941>
+###########################################################[
+
+Copyright (C) 1994-2023 Synopsys, Inc.
+This Synopsys software and all associated documentation are proprietary to Synopsys, Inc.
+and may only be used pursuant to the terms and conditions of a written license agreement
+with Synopsys, Inc. All other use, reproduction, modification, or distribution of the
+Synopsys software or the associated documentation is strictly prohibited.
+Tool: Synplify Pro (R)
+Build: V-2023.09L-2
+Install: C:\lscc\diamond\3.14\synpbase
+OS: Windows 10 or later
+Hostname: DESKTOP-0S2UTBE
+
+Implementation : impl1
+<a name=compilerReport9></a>Synopsys Synopsys Netlist Linker, Version comp202309synp1, Build 349R, Built Sep 17 2024 08:16:26, @</a>
+
+@N: : <!@TM:1749404944> | Running in 64-bit mode 
+File C:\Users\SHIWA\Desktop\t2mi_pps_project\impl1\synwork\T2MI_PPS_Generator_impl1_comp.srs changed - recompiling
+
+At syn_nfilter Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 92MB peak: 92MB)
+
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+
+Process completed successfully.
+# Sun Jun  8 20:49:04 2025
+
+###########################################################]
+
+</pre></samp></body></html>
+<html><body><samp><pre>
+<!@TC:1749404941>
+# Sun Jun  8 20:49:04 2025
+
+
+Copyright (C) 1994-2023 Synopsys, Inc.
+This Synopsys software and all associated documentation are proprietary to Synopsys, Inc.
+and may only be used pursuant to the terms and conditions of a written license agreement
+with Synopsys, Inc. All other use, reproduction, modification, or distribution of the
+Synopsys software or the associated documentation is strictly prohibited.
+Tool: Synplify Pro (R)
+Build: V-2023.09L-2
+Install: C:\lscc\diamond\3.14\synpbase
+OS: Windows 10 or later
+Hostname: DESKTOP-0S2UTBE
+
+Implementation : impl1
+<a name=mapperReport15></a>Synopsys Lattice Technology Pre-mapping, Version map202309lat, Build 191R, Built Sep 17 2024 10:38:50, @</a>
+
+
+Mapper Startup Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 182MB peak: 182MB)
+
+
+Done reading skeleton netlist (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 186MB peak: 197MB)
+
+@A:<a href="@A:MF827:@XP_HELP">MF827</a> : <!@TM:1749404949> | No constraint file specified. 
+Linked File:  <a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\impl1\T2MI_PPS_Generator_impl1_scck.rpt:@XP_FILE">T2MI_PPS_Generator_impl1_scck.rpt</a>
+See clock summary report "C:\Users\SHIWA\Desktop\t2mi_pps_project\impl1\T2MI_PPS_Generator_impl1_scck.rpt"
+@N:<a href="@N:MF916:@XP_HELP">MF916</a> : <!@TM:1749404949> | Option synthesis_strategy=base is enabled.  
+@N:<a href="@N:MF248:@XP_HELP">MF248</a> : <!@TM:1749404949> | Running in 64-bit mode. 
+@N:<a href="@N:MF666:@XP_HELP">MF666</a> : <!@TM:1749404949> | Clock conversion enabled. (Command "set_option -fix_gated_and_generated_clocks 1" in the project file.) 
+
+Design Input Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 190MB peak: 197MB)
+
+
+Mapper Initialization Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 190MB peak: 197MB)
+
+
+Start loading timing files (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:01s; Memory used current: 204MB peak: 204MB)
+
+
+Finished loading timing files (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:01s; Memory used current: 204MB peak: 206MB)
+
+NConnInternalConnection caching is on
+
+Starting HSTDM IP insertion (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:01s; Memory used current: 254MB peak: 255MB)
+
+
+Finished HSTDM IP insertion (Real Time elapsed 0h:00m:02s; CPU Time elapsed 0h:00m:02s; Memory used current: 254MB peak: 255MB)
+
+
+Started DisTri Cleanup (Real Time elapsed 0h:00m:02s; CPU Time elapsed 0h:00m:02s; Memory used current: 255MB peak: 255MB)
+
+
+Finished DisTri Cleanup (Real Time elapsed 0h:00m:02s; CPU Time elapsed 0h:00m:02s; Memory used current: 255MB peak: 255MB)
+
+@N:<a href="@N:BN115:@XP_HELP">BN115</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:75:16:75:29:@N:BN115:@XP_MSG">t2mi_pps_top.v(75)</a><!@TM:1749404949> | Removing instance clk_sync_inst (in view: work.t2mi_pps_top(verilog)) because it does not drive other instances.
+@N:<a href="@N:BN362:@XP_HELP">BN362</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\sync_modules.v:15:0:15:6:@N:BN362:@XP_MSG">sync_modules.v(15)</a><!@TM:1749404949> | Removing sequential instance clk_sync (in view: work.clk_sync_module(verilog)) of type view:PrimLib.dff(prim) because it does not drive other instances.
+@N:<a href="@N:BN362:@XP_HELP">BN362</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_packet_parser.v:188:0:188:6:@N:BN362:@XP_MSG">t2mi_packet_parser.v(188)</a><!@TM:1749404949> | Removing sequential instance packet_length[15:0] (in view: work.t2mi_packet_parser(verilog)) of type view:PrimLib.dffre(prim) because it does not drive other instances.
+@N:<a href="@N:BN362:@XP_HELP">BN362</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\timestamp_extractor.v:207:0:207:6:@N:BN362:@XP_MSG">timestamp_extractor.v(207)</a><!@TM:1749404949> | Removing sequential instance utc_offset[12:0] (in view: work.timestamp_extractor(verilog)) of type view:PrimLib.dffre(prim) because it does not drive other instances.
+@N:<a href="@N:BN362:@XP_HELP">BN362</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\timestamp_extractor.v:207:0:207:6:@N:BN362:@XP_MSG">timestamp_extractor.v(207)</a><!@TM:1749404949> | Removing sequential instance bandwidth_code[3:0] (in view: work.timestamp_extractor(verilog)) of type view:PrimLib.dffre(prim) because it does not drive other instances.
+@N:<a href="@N:BN362:@XP_HELP">BN362</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\timestamp_extractor.v:107:0:107:6:@N:BN362:@XP_MSG">timestamp_extractor.v(107)</a><!@TM:1749404949> | Removing sequential instance utco_field[12:0] (in view: work.timestamp_extractor(verilog)) of type view:PrimLib.dffre(prim) because it does not drive other instances.
+@N:<a href="@N:BN362:@XP_HELP">BN362</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\timestamp_extractor.v:107:0:107:6:@N:BN362:@XP_MSG">timestamp_extractor.v(107)</a><!@TM:1749404949> | Removing sequential instance bw_field[3:0] (in view: work.timestamp_extractor(verilog)) of type view:PrimLib.dffre(prim) because it does not drive other instances.
+@N:<a href="@N:BN362:@XP_HELP">BN362</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\timestamp_extractor.v:73:0:73:6:@N:BN362:@XP_MSG">timestamp_extractor.v(73)</a><!@TM:1749404949> | Removing sequential instance timestamp_buffer\[1\][4:0] (in view: work.timestamp_extractor(verilog)) of type view:PrimLib.dffre(prim) because it does not drive other instances.
+@N:<a href="@N:BN362:@XP_HELP">BN362</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\timestamp_extractor.v:73:0:73:6:@N:BN362:@XP_MSG">timestamp_extractor.v(73)</a><!@TM:1749404949> | Removing sequential instance timestamp_buffer\[2\][7:0] (in view: work.timestamp_extractor(verilog)) of type view:PrimLib.dffre(prim) because it does not drive other instances.
+@N:<a href="@N:BN362:@XP_HELP">BN362</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\pps_generator.v:210:0:210:6:@N:BN362:@XP_MSG">pps_generator.v(210)</a><!@TM:1749404949> | Removing sequential instance pps_counter[31:0] (in view: work.pps_generator(verilog)) of type view:PrimLib.dffr(prim) because it does not drive other instances.
+Encoding state machine parser_state[5:0] (in view: work.t2mi_packet_parser(verilog))
+original code -> new code
+   000 -> 000001
+   001 -> 000010
+   010 -> 000100
+   011 -> 001000
+   100 -> 010000
+   101 -> 100000
+Encoding state machine extract_state[5:0] (in view: work.timestamp_extractor(verilog))
+original code -> new code
+   000 -> 000001
+   001 -> 000010
+   010 -> 000100
+   011 -> 001000
+   100 -> 010000
+   101 -> 100000
+Encoding state machine pps_state[4:0] (in view: work.pps_generator(verilog))
+original code -> new code
+   000 -> 00001
+   001 -> 00010
+   010 -> 00100
+   011 -> 01000
+   100 -> 10000
+
+Starting clock optimization phase (Real Time elapsed 0h:00m:02s; CPU Time elapsed 0h:00m:02s; Memory used current: 259MB peak: 259MB)
+
+
+mixed edge conversion for GCC is OFF
+
+Finished clock optimization phase (Real Time elapsed 0h:00m:02s; CPU Time elapsed 0h:00m:02s; Memory used current: 259MB peak: 260MB)
+
+
+Starting clock optimization report phase (Real Time elapsed 0h:00m:02s; CPU Time elapsed 0h:00m:02s; Memory used current: 260MB peak: 260MB)
+
+
+Finished clock optimization report phase (Real Time elapsed 0h:00m:02s; CPU Time elapsed 0h:00m:02s; Memory used current: 260MB peak: 260MB)
+
+@N:<a href="@N:FX1184:@XP_HELP">FX1184</a> : <!@TM:1749404949> | Applying syn_allowed_resources blockrams=56 on top level netlist t2mi_pps_top  
+
+Finished netlist restructuring (Real Time elapsed 0h:00m:02s; CPU Time elapsed 0h:00m:02s; Memory used current: 260MB peak: 260MB)
+
+
+
+<a name=mapperReport16></a>Clock Summary</a>
+******************
+
+          Start                       Requested     Requested     Clock        Clock          Clock
+Level     Clock                       Frequency     Period        Type         Group          Load 
+---------------------------------------------------------------------------------------------------
+0 -       t2mi_pps_top|clk_100mhz     200.0 MHz     5.000         inferred     (multiple)     494  
+===================================================================================================
+
+
+
+Clock Load Summary
+***********************
+
+                            Clock     Source               Clock Pin                Non-clock Pin     Non-clock Pin
+Clock                       Load      Pin                  Seq Example              Seq Example       Comb Example 
+-------------------------------------------------------------------------------------------------------------------
+t2mi_pps_top|clk_100mhz     494       clk_100mhz(port)     pps_inst.pps_error.C     -                 -            
+===================================================================================================================
+
+<font color=#A52A2A>@W:<a href="@W:MT529:@XP_HELP">MT529</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\sync_modules.v:36:0:36:6:@W:MT529:@XP_MSG">sync_modules.v(36)</a><!@TM:1749404949> | Found inferred clock t2mi_pps_top|clk_100mhz which controls 494 sequential elements including reset_sync_inst.reset_sync_reg[2:0]. This clock has no specified timing constraint which may prevent conversion of gated or generated clocks and may adversely impact design performance. </font>
+
+ICG Latch Removal Summary:
+Number of ICG latches removed: 0
+Number of ICG latches not removed:	0
+
+
+@S |Clock Optimization Summary
+
+
+
+<a name=clockReport17></a>#### START OF PREMAP CLOCK OPTIMIZATION REPORT #####[</a>
+
+1 non-gated/non-generated clock tree(s) driving 494 clock pin(s) of sequential element(s)
+0 gated/generated clock tree(s) driving 0 clock pin(s) of sequential element(s)
+0 instances converted, 0 sequential instances remain driven by gated/generated clocks
+
+============================== Non-Gated/Non-Generated Clocks ===============================
+Clock Tree ID     Driving Element     Drive Element Type     Fanout     Sample Instance      
+---------------------------------------------------------------------------------------------
+<a href="@|L:C:\Users\SHIWA\Desktop\t2mi_pps_project\impl1\synwork\T2MI_PPS_Generator_impl1_prem.srm@|S:clk_100mhz@|E:pps_inst.pps_state[4]@|F:@syn_dgcc_clockid0_0==1@|M:ClockId_0_0 @XP_NAMES_BY_PROP">ClockId_0_0</a>       clk_100mhz          port                   494        pps_inst.pps_state[4]
+=============================================================================================
+
+
+##### END OF CLOCK OPTIMIZATION REPORT ######
+
+
+Summary of user generated gated clocks:
+0 user generated gated/generated clock tree(s) driving 0 clock pin(s) of sequential element(s)
+
+@N:<a href="@N:FX1143:@XP_HELP">FX1143</a> : <!@TM:1749404949> | Skipping assigning INTERNAL_VREF to iobanks, because the table of mapping from pin to iobank is not initialized. 
+Finished Pre Mapping Phase.
+
+Starting constraint checker (Real Time elapsed 0h:00m:03s; CPU Time elapsed 0h:00m:03s; Memory used current: 260MB peak: 260MB)
+
+
+Finished constraint checker preprocessing (Real Time elapsed 0h:00m:03s; CPU Time elapsed 0h:00m:03s; Memory used current: 261MB peak: 261MB)
+
+
+Finished constraint checker (Real Time elapsed 0h:00m:04s; CPU Time elapsed 0h:00m:03s; Memory used current: 262MB peak: 262MB)
+
+Pre-mapping successful!
+
+At Mapper Exit (Real Time elapsed 0h:00m:04s; CPU Time elapsed 0h:00m:04s; Memory used current: 176MB peak: 262MB)
+
+Process took 0h:00m:04s realtime, 0h:00m:04s cputime
+# Sun Jun  8 20:49:09 2025
+
+###########################################################]
+
+</pre></samp></body></html>
+<html><body><samp><pre>
+<!@TC:1749404941>
+# Sun Jun  8 20:49:09 2025
+
+
+Copyright (C) 1994-2023 Synopsys, Inc.
+This Synopsys software and all associated documentation are proprietary to Synopsys, Inc.
+and may only be used pursuant to the terms and conditions of a written license agreement
+with Synopsys, Inc. All other use, reproduction, modification, or distribution of the
+Synopsys software or the associated documentation is strictly prohibited.
+Tool: Synplify Pro (R)
+Build: V-2023.09L-2
+Install: C:\lscc\diamond\3.14\synpbase
+OS: Windows 10 or later
+Hostname: DESKTOP-0S2UTBE
+
+Implementation : impl1
+<a name=mapperReport23></a>Synopsys Lattice Technology Mapper, Version map202309lat, Build 191R, Built Sep 17 2024 10:38:50, @</a>
+
+
+Mapper Startup Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 182MB peak: 182MB)
+
+@N:<a href="@N:MF916:@XP_HELP">MF916</a> : <!@TM:1749404964> | Option synthesis_strategy=base is enabled.  
+@N:<a href="@N:MF248:@XP_HELP">MF248</a> : <!@TM:1749404964> | Running in 64-bit mode. 
+@N:<a href="@N:MF666:@XP_HELP">MF666</a> : <!@TM:1749404964> | Clock conversion enabled. (Command "set_option -fix_gated_and_generated_clocks 1" in the project file.) 
+
+Design Input Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 184MB peak: 197MB)
+
+
+Mapper Initialization Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 184MB peak: 197MB)
+
+
+Start loading timing files (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:01s; Memory used current: 198MB peak: 198MB)
+
+
+Finished loading timing files (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:01s; Memory used current: 200MB peak: 202MB)
+
+
+
+Starting Optimization and Mapping (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:01s; Memory used current: 254MB peak: 254MB)
+
+
+Finished RTL optimizations (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:01s; Memory used current: 259MB peak: 259MB)
+
+@N:<a href="@N:MO231:@XP_HELP">MO231</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_packet_parser.v:188:0:188:6:@N:MO231:@XP_MSG">t2mi_packet_parser.v(188)</a><!@TM:1749404964> | Found counter in view:work.t2mi_packet_parser(verilog) instance byte_counter[15:0] 
+@N:<a href="@N:BN362:@XP_HELP">BN362</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\timestamp_extractor.v:73:0:73:6:@N:BN362:@XP_MSG">timestamp_extractor.v(73)</a><!@TM:1749404964> | Removing sequential instance timestamp_buffer\[0\][3] (in view: work.timestamp_extractor(verilog)) because it does not drive other instances.
+@N:<a href="@N:BN362:@XP_HELP">BN362</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\timestamp_extractor.v:73:0:73:6:@N:BN362:@XP_MSG">timestamp_extractor.v(73)</a><!@TM:1749404964> | Removing sequential instance timestamp_buffer\[0\][2] (in view: work.timestamp_extractor(verilog)) because it does not drive other instances.
+@N:<a href="@N:BN362:@XP_HELP">BN362</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\timestamp_extractor.v:73:0:73:6:@N:BN362:@XP_MSG">timestamp_extractor.v(73)</a><!@TM:1749404964> | Removing sequential instance timestamp_buffer\[0\][1] (in view: work.timestamp_extractor(verilog)) because it does not drive other instances.
+@N:<a href="@N:BN362:@XP_HELP">BN362</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\timestamp_extractor.v:73:0:73:6:@N:BN362:@XP_MSG">timestamp_extractor.v(73)</a><!@TM:1749404964> | Removing sequential instance timestamp_buffer\[0\][0] (in view: work.timestamp_extractor(verilog)) because it does not drive other instances.
+@N:<a href="@N:MO231:@XP_HELP">MO231</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\timestamp_extractor.v:73:0:73:6:@N:MO231:@XP_MSG">timestamp_extractor.v(73)</a><!@TM:1749404964> | Found counter in view:work.timestamp_extractor(verilog) instance byte_index[3:0] 
+@N:<a href="@N:MO231:@XP_HELP">MO231</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\pps_generator.v:87:0:87:6:@N:MO231:@XP_MSG">pps_generator.v(87)</a><!@TM:1749404964> | Found counter in view:work.pps_generator(verilog) instance current_seconds[39:0] 
+@N:<a href="@N:MO231:@XP_HELP">MO231</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\pps_generator.v:210:0:210:6:@N:MO231:@XP_MSG">pps_generator.v(210)</a><!@TM:1749404964> | Found counter in view:work.pps_generator(verilog) instance pps_pulse_counter[31:0] 
+@N:<a href="@N:MF179:@XP_HELP">MF179</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\pps_generator.v:129:16:129:54:@N:MF179:@XP_MSG">pps_generator.v(129)</a><!@TM:1749404964> | Found 40 by 40 bit equality operator ('==') sync_error18 (in view: work.pps_generator(verilog))
+
+Starting factoring (Real Time elapsed 0h:00m:05s; CPU Time elapsed 0h:00m:04s; Memory used current: 264MB peak: 264MB)
+
+
+Finished factoring (Real Time elapsed 0h:00m:05s; CPU Time elapsed 0h:00m:05s; Memory used current: 266MB peak: 266MB)
+
+
+Available hyper_sources - for debug and ip models
+	None Found
+
+NConnInternalConnection caching is on
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_258 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_261 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.sync_error12_0 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.sync_error12_1 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.sync_error12_2 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.sync_error12_3 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.sync_error12_4 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.sync_error12_5 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.sync_error12_6 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.sync_error12_7 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.sync_error12_8 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.sync_error12_9 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.sync_error12_10 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.sync_error12_11 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.sync_error12_12 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.sync_error12_13 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.sync_error12_14 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.sync_error12_15 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.sync_error12_16 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.sync_error12_17 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.sync_error12_18 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.sync_error12_19 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.sync_error12_20 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.sync_error12_21 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.sync_error12_22 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.sync_error12_23 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.sync_error12_24 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.sync_error12_25 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.sync_error12_26 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.sync_error12_27 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.sync_error12_28 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.sync_error12_29 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.sync_error12_30 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.sync_error12_31 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_456 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_457 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_458 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_459 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_460 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_461 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_462 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_463 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_464 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_465 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_466 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_467 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_468 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_469 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_470 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_471 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_472 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_473 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_474 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_475 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_476 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_477 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_478 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_479 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_480 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_481 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_482 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_483 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_484 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_485 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_486 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_487 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_488 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_489 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_490 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_491 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_492 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_493 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_494 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_495 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_496 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_497 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_498 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_499 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_500 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_501 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_502 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_503 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_504 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_505 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_506 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_507 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_508 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_509 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_510 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_511 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_512 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_513 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_514 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_515 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_516 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_517 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_518 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_519 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_520 has multiple drivers .</font>
+<font color=#A52A2A>@W:<a href="@W:BN161:@XP_HELP">BN161</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v:10:7:10:19:@W:BN161:@XP_MSG">t2mi_pps_top.v(10)</a><!@TM:1749404964> | Net pps_inst.N_521 has multiple drivers .</font>
+
+Only the first 100 messages of id 'BN161' are reported. To see all messages use 'report_messages -log C:\Users\SHIWA\Desktop\t2mi_pps_project\impl1\synlog\T2MI_PPS_Generator_impl1_fpga_mapper.srr -id BN161' in the Tcl shell. To see all messages in future runs, use the command 'message_override -limit {BN161} -count unlimited' in the Tcl shell.
+
+Finished generic timing optimizations - Pass 1 (Real Time elapsed 0h:00m:05s; CPU Time elapsed 0h:00m:05s; Memory used current: 266MB peak: 266MB)
+
+@N:<a href="@N:FA113:@XP_HELP">FA113</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_packet_parser.v:94:16:94:36:@N:FA113:@XP_MSG">t2mi_packet_parser.v(94)</a><!@TM:1749404964> | Pipelining module sync_counter6. For more information, search for "pipelining" in Online Help.
+@N:<a href="@N:MF169:@XP_HELP">MF169</a> : <a href="c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_packet_parser.v:87:0:87:6:@N:MF169:@XP_MSG">t2mi_packet_parser.v(87)</a><!@TM:1749404964> | Pushed in register sync_counter[3:0].
+
+Starting Early Timing Optimization (Real Time elapsed 0h:00m:06s; CPU Time elapsed 0h:00m:06s; Memory used current: 268MB peak: 268MB)
+
+
+Finished Early Timing Optimization (Real Time elapsed 0h:00m:07s; CPU Time elapsed 0h:00m:06s; Memory used current: 268MB peak: 269MB)
+
+
+Finished generic timing optimizations - Pass 2 (Real Time elapsed 0h:00m:07s; CPU Time elapsed 0h:00m:06s; Memory used current: 268MB peak: 269MB)
+
+
+Finished preparing to map (Real Time elapsed 0h:00m:08s; CPU Time elapsed 0h:00m:07s; Memory used current: 268MB peak: 269MB)
+
+
+Finished technology mapping (Real Time elapsed 0h:00m:08s; CPU Time elapsed 0h:00m:08s; Memory used current: 273MB peak: 273MB)
+
+Pass		 CPU time		Worst Slack		Luts / Registers
+------------------------------------------------------------
+   1		0h:00m:08s		    -0.30ns		 259 /       491
+   2		0h:00m:08s		    -0.30ns		 259 /       491
+   3		0h:00m:08s		    -0.30ns		 259 /       491
+   4		0h:00m:08s		    -0.30ns		 259 /       491
+
+   5		0h:00m:08s		    -0.30ns		 263 /       491
+   6		0h:00m:08s		    -0.04ns		 263 /       491
+   7		0h:00m:08s		     0.41ns		 268 /       491
+
+Finished technology timing optimizations and critical path resynthesis (Real Time elapsed 0h:00m:09s; CPU Time elapsed 0h:00m:08s; Memory used current: 273MB peak: 274MB)
+
+@N:<a href="@N:FX164:@XP_HELP">FX164</a> : <!@TM:1749404964> | The option to pack registers in the IOB has not been specified. Please set syn_useioff attribute.   
+
+Finished restoring hierarchy (Real Time elapsed 0h:00m:09s; CPU Time elapsed 0h:00m:09s; Memory used current: 274MB peak: 274MB)
+
+
+Starting CDBProcessSetClockGroups... (Real Time elapsed 0h:00m:09s; CPU Time elapsed 0h:00m:09s; Memory used current: 274MB peak: 274MB)
+
+
+Finished with CDBProcessSetClockGroups (Real Time elapsed 0h:00m:10s; CPU Time elapsed 0h:00m:09s; Memory used current: 274MB peak: 275MB)
+
+
+Start Writing Netlists (Real Time elapsed 0h:00m:10s; CPU Time elapsed 0h:00m:09s; Memory used current: 217MB peak: 275MB)
+
+Writing Analyst data base C:\Users\SHIWA\Desktop\t2mi_pps_project\impl1\synwork\T2MI_PPS_Generator_impl1_m.srm
+
+Finished Writing Netlist Databases (Real Time elapsed 0h:00m:10s; CPU Time elapsed 0h:00m:10s; Memory used current: 273MB peak: 275MB)
+
+Writing EDIF Netlist and constraint files
+@N:<a href="@N:FX1056:@XP_HELP">FX1056</a> : <!@TM:1749404964> | Writing EDF file: C:\Users\SHIWA\Desktop\t2mi_pps_project\impl1\T2MI_PPS_Generator_impl1.edi 
+@N:<a href="@N:BW106:@XP_HELP">BW106</a> : <!@TM:1749404964> | Synplicity Constraint File capacitance units using default value of 1pF  
+
+Finished Writing EDIF Netlist and constraint files (Real Time elapsed 0h:00m:12s; CPU Time elapsed 0h:00m:11s; Memory used current: 281MB peak: 281MB)
+
+
+Finished Writing Netlists (Real Time elapsed 0h:00m:12s; CPU Time elapsed 0h:00m:12s; Memory used current: 281MB peak: 282MB)
+
+
+Start final timing analysis (Real Time elapsed 0h:00m:13s; CPU Time elapsed 0h:00m:12s; Memory used current: 278MB peak: 282MB)
+
+<font color=#A52A2A>@W:<a href="@W:MT420:@XP_HELP">MT420</a> : <!@TM:1749404964> | Found inferred clock t2mi_pps_top|clk_100mhz with period 5.00ns. Please declare a user-defined clock on port clk_100mhz.</font> 
+
+
+<a name=timingReport24></a>##### START OF TIMING REPORT #####[</a>
+# Timing report written on Sun Jun  8 20:49:23 2025
+#
+
+
+Top view:               t2mi_pps_top
+Requested Frequency:    200.0 MHz
+Wire load mode:         top
+Paths requested:        5
+Constraint File(s):    
+@N:<a href="@N:MT320:@XP_HELP">MT320</a> : <!@TM:1749404964> | This timing report is an estimate of place and route data. For final timing results, use the FPGA vendor place and route report. 
+
+@N:<a href="@N:MT322:@XP_HELP">MT322</a> : <!@TM:1749404964> | Clock constraints include only register-to-register paths associated with each individual clock. 
+
+
+
+<a name=performanceSummary25></a>Performance Summary</a>
+*******************
+
+
+Worst slack in design: -0.933
+
+                            Requested     Estimated     Requested     Estimated                Clock        Clock     
+Starting Clock              Frequency     Frequency     Period        Period        Slack      Type         Group     
+----------------------------------------------------------------------------------------------------------------------
+t2mi_pps_top|clk_100mhz     200.0 MHz     168.5 MHz     5.000         5.934         -0.933     inferred     (multiple)
+======================================================================================================================
+
+
+
+
+
+<a name=clockRelationships26></a>Clock Relationships</a>
+*******************
+
+Clocks                                            |    rise  to  rise    |    fall  to  fall   |    rise  to  fall   |    fall  to  rise 
+-----------------------------------------------------------------------------------------------------------------------------------------
+Starting                 Ending                   |  constraint  slack   |  constraint  slack  |  constraint  slack  |  constraint  slack
+-----------------------------------------------------------------------------------------------------------------------------------------
+t2mi_pps_top|clk_100mhz  t2mi_pps_top|clk_100mhz  |  5.000       -0.933  |  No paths    -      |  No paths    -      |  No paths    -    
+=========================================================================================================================================
+ Note: 'No paths' indicates there are no paths in the design for that pair of clock edges.
+       'Diff grp' indicates that paths exist but the starting clock and ending clock are in different clock groups.
+
+
+
+<a name=interfaceInfo27></a>Interface Information </a>
+*********************
+
+No IO constraint found
+
+
+
+====================================
+<a name=clockReport28></a>Detailed Report for Clock: t2mi_pps_top|clk_100mhz</a>
+====================================
+
+
+
+<a name=startingSlack29></a>Starting Points with Worst Slack</a>
+********************************
+
+                                Starting                                                               Arrival           
+Instance                        Reference                   Type        Pin     Net                    Time        Slack 
+                                Clock                                                                                    
+-------------------------------------------------------------------------------------------------------------------------
+pps_inst.subsec_counter[16]     t2mi_pps_top|clk_100mhz     FD1S3DX     Q       subsec_counter[16]     0.985       -0.933
+pps_inst.subsec_counter[17]     t2mi_pps_top|clk_100mhz     FD1S3DX     Q       subsec_counter[17]     0.985       -0.933
+pps_inst.subsec_counter[18]     t2mi_pps_top|clk_100mhz     FD1S3DX     Q       subsec_counter[18]     0.985       -0.933
+pps_inst.subsec_counter[19]     t2mi_pps_top|clk_100mhz     FD1S3DX     Q       subsec_counter[19]     0.985       -0.933
+pps_inst.subsec_counter[20]     t2mi_pps_top|clk_100mhz     FD1S3DX     Q       subsec_counter[20]     0.985       -0.933
+pps_inst.subsec_counter[21]     t2mi_pps_top|clk_100mhz     FD1S3DX     Q       subsec_counter[21]     0.985       -0.933
+pps_inst.subsec_counter[22]     t2mi_pps_top|clk_100mhz     FD1S3DX     Q       subsec_counter[22]     0.985       -0.933
+pps_inst.subsec_counter[23]     t2mi_pps_top|clk_100mhz     FD1S3DX     Q       subsec_counter[23]     0.985       -0.933
+pps_inst.subsec_counter[24]     t2mi_pps_top|clk_100mhz     FD1S3DX     Q       subsec_counter[24]     0.985       -0.933
+pps_inst.subsec_counter[25]     t2mi_pps_top|clk_100mhz     FD1S3DX     Q       subsec_counter[25]     0.985       -0.933
+=========================================================================================================================
+
+
+<a name=endingSlack30></a>Ending Points with Worst Slack</a>
+******************************
+
+                                Starting                                                                 Required           
+Instance                        Reference                   Type        Pin     Net                      Time         Slack 
+                                Clock                                                                                       
+----------------------------------------------------------------------------------------------------------------------------
+pps_inst.subsec_counter[31]     t2mi_pps_top|clk_100mhz     FD1S3DX     D       subsec_counter_6[31]     4.946        -0.933
+pps_inst.subsec_counter[29]     t2mi_pps_top|clk_100mhz     FD1S3DX     D       subsec_counter_6[29]     4.946        -0.873
+pps_inst.subsec_counter[30]     t2mi_pps_top|clk_100mhz     FD1S3DX     D       subsec_counter_6[30]     4.946        -0.873
+pps_inst.subsec_counter[27]     t2mi_pps_top|clk_100mhz     FD1S3DX     D       subsec_counter_6[27]     4.946        -0.811
+pps_inst.subsec_counter[28]     t2mi_pps_top|clk_100mhz     FD1S3DX     D       subsec_counter_6[28]     4.946        -0.811
+pps_inst.subsec_counter[25]     t2mi_pps_top|clk_100mhz     FD1S3DX     D       subsec_counter_6[25]     4.946        -0.750
+pps_inst.subsec_counter[26]     t2mi_pps_top|clk_100mhz     FD1S3DX     D       subsec_counter_6[26]     4.946        -0.750
+pps_inst.subsec_counter[23]     t2mi_pps_top|clk_100mhz     FD1S3DX     D       subsec_counter_6[23]     4.946        -0.690
+pps_inst.subsec_counter[24]     t2mi_pps_top|clk_100mhz     FD1S3DX     D       subsec_counter_6[24]     4.946        -0.690
+pps_inst.subsec_counter[21]     t2mi_pps_top|clk_100mhz     FD1S3DX     D       subsec_counter_6[21]     4.946        -0.628
+============================================================================================================================
+
+
+
+<a name=worstPaths31></a>Worst Path Information</a>
+<a href="C:\Users\SHIWA\Desktop\t2mi_pps_project\impl1\T2MI_PPS_Generator_impl1.srr:srsfC:\Users\SHIWA\Desktop\t2mi_pps_project\impl1\T2MI_PPS_Generator_impl1.srs:fp:57687:63591:@XP_NAMES_GATE">View Worst Path in Analyst</a>
+***********************
+
+
+Path information for path number 1: 
+      Requested Period:                      5.000
+    - Setup time:                            0.054
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         4.946
+
+    - Propagation time:                      5.880
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (critical) :                     -0.934
+
+    Number of logic level(s):                15
+    Starting point:                          pps_inst.subsec_counter[16] / Q
+    Ending point:                            pps_inst.subsec_counter[31] / D
+    The start point is clocked by            t2mi_pps_top|clk_100mhz [rising] (rise=0.000 fall=2.500 period=5.000) on pin CK
+    The end   point is clocked by            t2mi_pps_top|clk_100mhz [rising] (rise=0.000 fall=2.500 period=5.000) on pin CK
+
+Instance / Net                                                          Pin      Pin               Arrival     No. of    
+Name                                                       Type         Name     Dir     Delay     Time        Fan Out(s)
+-------------------------------------------------------------------------------------------------------------------------
+pps_inst.subsec_counter[16]                                FD1S3DX      Q        Out     0.985     0.985 r     -         
+subsec_counter[16]                                         Net          -        -       -         -           4         
+pps_inst.subsec_counter_RNIAM37H[16]                       ORCALUT4     A        In      0.000     0.985 r     -         
+pps_inst.subsec_counter_RNIAM37H[16]                       ORCALUT4     Z        Out     0.606     1.591 f     -         
+subsec_counter_RNIAM37H[16]                                Net          -        -       -         -           1         
+pps_inst.subsec_counter_RNIA8SS42[16]                      ORCALUT4     D        In      0.000     1.591 f     -         
+pps_inst.subsec_counter_RNIA8SS42[16]                      ORCALUT4     Z        Out     0.738     2.329 r     -         
+un1_m3_0_a3_2                                              Net          -        -       -         -           4         
+pps_inst.current_seconds_0_sqmuxa_1_a2_29_11_RNIQQITM2     ORCALUT4     D        In      0.000     2.329 r     -         
+pps_inst.current_seconds_0_sqmuxa_1_a2_29_11_RNIQQITM2     ORCALUT4     Z        Out     0.798     3.127 r     -         
+un1_N_4_0                                                  Net          -        -       -         -           9         
+pps_inst.subsec_counter_6_cry_11_0_RNO                     ORCALUT4     C        In      0.000     3.127 r     -         
+pps_inst.subsec_counter_6_cry_11_0_RNO                     ORCALUT4     Z        Out     0.606     3.733 f     -         
+subsec_counter_6_cry_11_0_RNO                              Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_11_0                         CCU2C        C0       In      0.000     3.733 f     -         
+pps_inst.subsec_counter_6_cry_11_0                         CCU2C        COUT     Out     0.900     4.633 r     -         
+subsec_counter_6_cry_12                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_13_0                         CCU2C        CIN      In      0.000     4.633 r     -         
+pps_inst.subsec_counter_6_cry_13_0                         CCU2C        COUT     Out     0.061     4.694 r     -         
+subsec_counter_6_cry_14                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_15_0                         CCU2C        CIN      In      0.000     4.694 r     -         
+pps_inst.subsec_counter_6_cry_15_0                         CCU2C        COUT     Out     0.061     4.755 r     -         
+subsec_counter_6_cry_16                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_17_0                         CCU2C        CIN      In      0.000     4.755 r     -         
+pps_inst.subsec_counter_6_cry_17_0                         CCU2C        COUT     Out     0.061     4.816 r     -         
+subsec_counter_6_cry_18                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_19_0                         CCU2C        CIN      In      0.000     4.816 r     -         
+pps_inst.subsec_counter_6_cry_19_0                         CCU2C        COUT     Out     0.061     4.877 r     -         
+subsec_counter_6_cry_20                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_21_0                         CCU2C        CIN      In      0.000     4.877 r     -         
+pps_inst.subsec_counter_6_cry_21_0                         CCU2C        COUT     Out     0.061     4.938 r     -         
+subsec_counter_6_cry_22                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_23_0                         CCU2C        CIN      In      0.000     4.938 r     -         
+pps_inst.subsec_counter_6_cry_23_0                         CCU2C        COUT     Out     0.061     4.999 r     -         
+subsec_counter_6_cry_24                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_25_0                         CCU2C        CIN      In      0.000     4.999 r     -         
+pps_inst.subsec_counter_6_cry_25_0                         CCU2C        COUT     Out     0.061     5.060 r     -         
+subsec_counter_6_cry_26                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_27_0                         CCU2C        CIN      In      0.000     5.060 r     -         
+pps_inst.subsec_counter_6_cry_27_0                         CCU2C        COUT     Out     0.061     5.121 r     -         
+subsec_counter_6_cry_28                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_29_0                         CCU2C        CIN      In      0.000     5.121 r     -         
+pps_inst.subsec_counter_6_cry_29_0                         CCU2C        COUT     Out     0.061     5.182 r     -         
+subsec_counter_6_cry_30                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_s_31_0                           CCU2C        CIN      In      0.000     5.182 r     -         
+pps_inst.subsec_counter_6_s_31_0                           CCU2C        S0       Out     0.698     5.880 r     -         
+subsec_counter_6[31]                                       Net          -        -       -         -           1         
+pps_inst.subsec_counter[31]                                FD1S3DX      D        In      0.000     5.880 r     -         
+=========================================================================================================================
+
+
+Path information for path number 2: 
+      Requested Period:                      5.000
+    - Setup time:                            0.054
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         4.946
+
+    - Propagation time:                      5.880
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (critical) :                     -0.934
+
+    Number of logic level(s):                15
+    Starting point:                          pps_inst.subsec_counter[17] / Q
+    Ending point:                            pps_inst.subsec_counter[31] / D
+    The start point is clocked by            t2mi_pps_top|clk_100mhz [rising] (rise=0.000 fall=2.500 period=5.000) on pin CK
+    The end   point is clocked by            t2mi_pps_top|clk_100mhz [rising] (rise=0.000 fall=2.500 period=5.000) on pin CK
+
+Instance / Net                                                          Pin      Pin               Arrival     No. of    
+Name                                                       Type         Name     Dir     Delay     Time        Fan Out(s)
+-------------------------------------------------------------------------------------------------------------------------
+pps_inst.subsec_counter[17]                                FD1S3DX      Q        Out     0.985     0.985 r     -         
+subsec_counter[17]                                         Net          -        -       -         -           4         
+pps_inst.subsec_counter_RNIAM37H[16]                       ORCALUT4     B        In      0.000     0.985 r     -         
+pps_inst.subsec_counter_RNIAM37H[16]                       ORCALUT4     Z        Out     0.606     1.591 f     -         
+subsec_counter_RNIAM37H[16]                                Net          -        -       -         -           1         
+pps_inst.subsec_counter_RNIA8SS42[16]                      ORCALUT4     D        In      0.000     1.591 f     -         
+pps_inst.subsec_counter_RNIA8SS42[16]                      ORCALUT4     Z        Out     0.738     2.329 r     -         
+un1_m3_0_a3_2                                              Net          -        -       -         -           4         
+pps_inst.current_seconds_0_sqmuxa_1_a2_29_11_RNIQQITM2     ORCALUT4     D        In      0.000     2.329 r     -         
+pps_inst.current_seconds_0_sqmuxa_1_a2_29_11_RNIQQITM2     ORCALUT4     Z        Out     0.798     3.127 r     -         
+un1_N_4_0                                                  Net          -        -       -         -           9         
+pps_inst.subsec_counter_6_cry_11_0_RNO                     ORCALUT4     C        In      0.000     3.127 r     -         
+pps_inst.subsec_counter_6_cry_11_0_RNO                     ORCALUT4     Z        Out     0.606     3.733 f     -         
+subsec_counter_6_cry_11_0_RNO                              Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_11_0                         CCU2C        C0       In      0.000     3.733 f     -         
+pps_inst.subsec_counter_6_cry_11_0                         CCU2C        COUT     Out     0.900     4.633 r     -         
+subsec_counter_6_cry_12                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_13_0                         CCU2C        CIN      In      0.000     4.633 r     -         
+pps_inst.subsec_counter_6_cry_13_0                         CCU2C        COUT     Out     0.061     4.694 r     -         
+subsec_counter_6_cry_14                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_15_0                         CCU2C        CIN      In      0.000     4.694 r     -         
+pps_inst.subsec_counter_6_cry_15_0                         CCU2C        COUT     Out     0.061     4.755 r     -         
+subsec_counter_6_cry_16                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_17_0                         CCU2C        CIN      In      0.000     4.755 r     -         
+pps_inst.subsec_counter_6_cry_17_0                         CCU2C        COUT     Out     0.061     4.816 r     -         
+subsec_counter_6_cry_18                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_19_0                         CCU2C        CIN      In      0.000     4.816 r     -         
+pps_inst.subsec_counter_6_cry_19_0                         CCU2C        COUT     Out     0.061     4.877 r     -         
+subsec_counter_6_cry_20                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_21_0                         CCU2C        CIN      In      0.000     4.877 r     -         
+pps_inst.subsec_counter_6_cry_21_0                         CCU2C        COUT     Out     0.061     4.938 r     -         
+subsec_counter_6_cry_22                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_23_0                         CCU2C        CIN      In      0.000     4.938 r     -         
+pps_inst.subsec_counter_6_cry_23_0                         CCU2C        COUT     Out     0.061     4.999 r     -         
+subsec_counter_6_cry_24                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_25_0                         CCU2C        CIN      In      0.000     4.999 r     -         
+pps_inst.subsec_counter_6_cry_25_0                         CCU2C        COUT     Out     0.061     5.060 r     -         
+subsec_counter_6_cry_26                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_27_0                         CCU2C        CIN      In      0.000     5.060 r     -         
+pps_inst.subsec_counter_6_cry_27_0                         CCU2C        COUT     Out     0.061     5.121 r     -         
+subsec_counter_6_cry_28                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_29_0                         CCU2C        CIN      In      0.000     5.121 r     -         
+pps_inst.subsec_counter_6_cry_29_0                         CCU2C        COUT     Out     0.061     5.182 r     -         
+subsec_counter_6_cry_30                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_s_31_0                           CCU2C        CIN      In      0.000     5.182 r     -         
+pps_inst.subsec_counter_6_s_31_0                           CCU2C        S0       Out     0.698     5.880 r     -         
+subsec_counter_6[31]                                       Net          -        -       -         -           1         
+pps_inst.subsec_counter[31]                                FD1S3DX      D        In      0.000     5.880 r     -         
+=========================================================================================================================
+
+
+Path information for path number 3: 
+      Requested Period:                      5.000
+    - Setup time:                            0.054
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         4.946
+
+    - Propagation time:                      5.880
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (critical) :                     -0.934
+
+    Number of logic level(s):                15
+    Starting point:                          pps_inst.subsec_counter[18] / Q
+    Ending point:                            pps_inst.subsec_counter[31] / D
+    The start point is clocked by            t2mi_pps_top|clk_100mhz [rising] (rise=0.000 fall=2.500 period=5.000) on pin CK
+    The end   point is clocked by            t2mi_pps_top|clk_100mhz [rising] (rise=0.000 fall=2.500 period=5.000) on pin CK
+
+Instance / Net                                                          Pin      Pin               Arrival     No. of    
+Name                                                       Type         Name     Dir     Delay     Time        Fan Out(s)
+-------------------------------------------------------------------------------------------------------------------------
+pps_inst.subsec_counter[18]                                FD1S3DX      Q        Out     0.985     0.985 r     -         
+subsec_counter[18]                                         Net          -        -       -         -           4         
+pps_inst.subsec_counter_RNIAM37H[16]                       ORCALUT4     C        In      0.000     0.985 r     -         
+pps_inst.subsec_counter_RNIAM37H[16]                       ORCALUT4     Z        Out     0.606     1.591 f     -         
+subsec_counter_RNIAM37H[16]                                Net          -        -       -         -           1         
+pps_inst.subsec_counter_RNIA8SS42[16]                      ORCALUT4     D        In      0.000     1.591 f     -         
+pps_inst.subsec_counter_RNIA8SS42[16]                      ORCALUT4     Z        Out     0.738     2.329 r     -         
+un1_m3_0_a3_2                                              Net          -        -       -         -           4         
+pps_inst.current_seconds_0_sqmuxa_1_a2_29_11_RNIQQITM2     ORCALUT4     D        In      0.000     2.329 r     -         
+pps_inst.current_seconds_0_sqmuxa_1_a2_29_11_RNIQQITM2     ORCALUT4     Z        Out     0.798     3.127 r     -         
+un1_N_4_0                                                  Net          -        -       -         -           9         
+pps_inst.subsec_counter_6_cry_11_0_RNO                     ORCALUT4     C        In      0.000     3.127 r     -         
+pps_inst.subsec_counter_6_cry_11_0_RNO                     ORCALUT4     Z        Out     0.606     3.733 f     -         
+subsec_counter_6_cry_11_0_RNO                              Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_11_0                         CCU2C        C0       In      0.000     3.733 f     -         
+pps_inst.subsec_counter_6_cry_11_0                         CCU2C        COUT     Out     0.900     4.633 r     -         
+subsec_counter_6_cry_12                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_13_0                         CCU2C        CIN      In      0.000     4.633 r     -         
+pps_inst.subsec_counter_6_cry_13_0                         CCU2C        COUT     Out     0.061     4.694 r     -         
+subsec_counter_6_cry_14                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_15_0                         CCU2C        CIN      In      0.000     4.694 r     -         
+pps_inst.subsec_counter_6_cry_15_0                         CCU2C        COUT     Out     0.061     4.755 r     -         
+subsec_counter_6_cry_16                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_17_0                         CCU2C        CIN      In      0.000     4.755 r     -         
+pps_inst.subsec_counter_6_cry_17_0                         CCU2C        COUT     Out     0.061     4.816 r     -         
+subsec_counter_6_cry_18                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_19_0                         CCU2C        CIN      In      0.000     4.816 r     -         
+pps_inst.subsec_counter_6_cry_19_0                         CCU2C        COUT     Out     0.061     4.877 r     -         
+subsec_counter_6_cry_20                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_21_0                         CCU2C        CIN      In      0.000     4.877 r     -         
+pps_inst.subsec_counter_6_cry_21_0                         CCU2C        COUT     Out     0.061     4.938 r     -         
+subsec_counter_6_cry_22                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_23_0                         CCU2C        CIN      In      0.000     4.938 r     -         
+pps_inst.subsec_counter_6_cry_23_0                         CCU2C        COUT     Out     0.061     4.999 r     -         
+subsec_counter_6_cry_24                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_25_0                         CCU2C        CIN      In      0.000     4.999 r     -         
+pps_inst.subsec_counter_6_cry_25_0                         CCU2C        COUT     Out     0.061     5.060 r     -         
+subsec_counter_6_cry_26                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_27_0                         CCU2C        CIN      In      0.000     5.060 r     -         
+pps_inst.subsec_counter_6_cry_27_0                         CCU2C        COUT     Out     0.061     5.121 r     -         
+subsec_counter_6_cry_28                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_29_0                         CCU2C        CIN      In      0.000     5.121 r     -         
+pps_inst.subsec_counter_6_cry_29_0                         CCU2C        COUT     Out     0.061     5.182 r     -         
+subsec_counter_6_cry_30                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_s_31_0                           CCU2C        CIN      In      0.000     5.182 r     -         
+pps_inst.subsec_counter_6_s_31_0                           CCU2C        S0       Out     0.698     5.880 r     -         
+subsec_counter_6[31]                                       Net          -        -       -         -           1         
+pps_inst.subsec_counter[31]                                FD1S3DX      D        In      0.000     5.880 r     -         
+=========================================================================================================================
+
+
+Path information for path number 4: 
+      Requested Period:                      5.000
+    - Setup time:                            0.054
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         4.946
+
+    - Propagation time:                      5.880
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (critical) :                     -0.934
+
+    Number of logic level(s):                15
+    Starting point:                          pps_inst.subsec_counter[19] / Q
+    Ending point:                            pps_inst.subsec_counter[31] / D
+    The start point is clocked by            t2mi_pps_top|clk_100mhz [rising] (rise=0.000 fall=2.500 period=5.000) on pin CK
+    The end   point is clocked by            t2mi_pps_top|clk_100mhz [rising] (rise=0.000 fall=2.500 period=5.000) on pin CK
+
+Instance / Net                                                          Pin      Pin               Arrival     No. of    
+Name                                                       Type         Name     Dir     Delay     Time        Fan Out(s)
+-------------------------------------------------------------------------------------------------------------------------
+pps_inst.subsec_counter[19]                                FD1S3DX      Q        Out     0.985     0.985 r     -         
+subsec_counter[19]                                         Net          -        -       -         -           4         
+pps_inst.subsec_counter_RNIAM37H[16]                       ORCALUT4     D        In      0.000     0.985 r     -         
+pps_inst.subsec_counter_RNIAM37H[16]                       ORCALUT4     Z        Out     0.606     1.591 f     -         
+subsec_counter_RNIAM37H[16]                                Net          -        -       -         -           1         
+pps_inst.subsec_counter_RNIA8SS42[16]                      ORCALUT4     D        In      0.000     1.591 f     -         
+pps_inst.subsec_counter_RNIA8SS42[16]                      ORCALUT4     Z        Out     0.738     2.329 r     -         
+un1_m3_0_a3_2                                              Net          -        -       -         -           4         
+pps_inst.current_seconds_0_sqmuxa_1_a2_29_11_RNIQQITM2     ORCALUT4     D        In      0.000     2.329 r     -         
+pps_inst.current_seconds_0_sqmuxa_1_a2_29_11_RNIQQITM2     ORCALUT4     Z        Out     0.798     3.127 r     -         
+un1_N_4_0                                                  Net          -        -       -         -           9         
+pps_inst.subsec_counter_6_cry_11_0_RNO                     ORCALUT4     C        In      0.000     3.127 r     -         
+pps_inst.subsec_counter_6_cry_11_0_RNO                     ORCALUT4     Z        Out     0.606     3.733 f     -         
+subsec_counter_6_cry_11_0_RNO                              Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_11_0                         CCU2C        C0       In      0.000     3.733 f     -         
+pps_inst.subsec_counter_6_cry_11_0                         CCU2C        COUT     Out     0.900     4.633 r     -         
+subsec_counter_6_cry_12                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_13_0                         CCU2C        CIN      In      0.000     4.633 r     -         
+pps_inst.subsec_counter_6_cry_13_0                         CCU2C        COUT     Out     0.061     4.694 r     -         
+subsec_counter_6_cry_14                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_15_0                         CCU2C        CIN      In      0.000     4.694 r     -         
+pps_inst.subsec_counter_6_cry_15_0                         CCU2C        COUT     Out     0.061     4.755 r     -         
+subsec_counter_6_cry_16                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_17_0                         CCU2C        CIN      In      0.000     4.755 r     -         
+pps_inst.subsec_counter_6_cry_17_0                         CCU2C        COUT     Out     0.061     4.816 r     -         
+subsec_counter_6_cry_18                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_19_0                         CCU2C        CIN      In      0.000     4.816 r     -         
+pps_inst.subsec_counter_6_cry_19_0                         CCU2C        COUT     Out     0.061     4.877 r     -         
+subsec_counter_6_cry_20                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_21_0                         CCU2C        CIN      In      0.000     4.877 r     -         
+pps_inst.subsec_counter_6_cry_21_0                         CCU2C        COUT     Out     0.061     4.938 r     -         
+subsec_counter_6_cry_22                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_23_0                         CCU2C        CIN      In      0.000     4.938 r     -         
+pps_inst.subsec_counter_6_cry_23_0                         CCU2C        COUT     Out     0.061     4.999 r     -         
+subsec_counter_6_cry_24                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_25_0                         CCU2C        CIN      In      0.000     4.999 r     -         
+pps_inst.subsec_counter_6_cry_25_0                         CCU2C        COUT     Out     0.061     5.060 r     -         
+subsec_counter_6_cry_26                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_27_0                         CCU2C        CIN      In      0.000     5.060 r     -         
+pps_inst.subsec_counter_6_cry_27_0                         CCU2C        COUT     Out     0.061     5.121 r     -         
+subsec_counter_6_cry_28                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_29_0                         CCU2C        CIN      In      0.000     5.121 r     -         
+pps_inst.subsec_counter_6_cry_29_0                         CCU2C        COUT     Out     0.061     5.182 r     -         
+subsec_counter_6_cry_30                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_s_31_0                           CCU2C        CIN      In      0.000     5.182 r     -         
+pps_inst.subsec_counter_6_s_31_0                           CCU2C        S0       Out     0.698     5.880 r     -         
+subsec_counter_6[31]                                       Net          -        -       -         -           1         
+pps_inst.subsec_counter[31]                                FD1S3DX      D        In      0.000     5.880 r     -         
+=========================================================================================================================
+
+
+Path information for path number 5: 
+      Requested Period:                      5.000
+    - Setup time:                            0.054
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         4.946
+
+    - Propagation time:                      5.880
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (critical) :                     -0.934
+
+    Number of logic level(s):                15
+    Starting point:                          pps_inst.subsec_counter[20] / Q
+    Ending point:                            pps_inst.subsec_counter[31] / D
+    The start point is clocked by            t2mi_pps_top|clk_100mhz [rising] (rise=0.000 fall=2.500 period=5.000) on pin CK
+    The end   point is clocked by            t2mi_pps_top|clk_100mhz [rising] (rise=0.000 fall=2.500 period=5.000) on pin CK
+
+Instance / Net                                                          Pin      Pin               Arrival     No. of    
+Name                                                       Type         Name     Dir     Delay     Time        Fan Out(s)
+-------------------------------------------------------------------------------------------------------------------------
+pps_inst.subsec_counter[20]                                FD1S3DX      Q        Out     0.985     0.985 r     -         
+subsec_counter[20]                                         Net          -        -       -         -           4         
+pps_inst.subsec_counter_RNIM577H[20]                       ORCALUT4     A        In      0.000     0.985 r     -         
+pps_inst.subsec_counter_RNIM577H[20]                       ORCALUT4     Z        Out     0.606     1.591 f     -         
+subsec_counter_RNIM577H[20]                                Net          -        -       -         -           1         
+pps_inst.subsec_counter_RNIA8SS42[16]                      ORCALUT4     C        In      0.000     1.591 f     -         
+pps_inst.subsec_counter_RNIA8SS42[16]                      ORCALUT4     Z        Out     0.738     2.329 r     -         
+un1_m3_0_a3_2                                              Net          -        -       -         -           4         
+pps_inst.current_seconds_0_sqmuxa_1_a2_29_11_RNIQQITM2     ORCALUT4     D        In      0.000     2.329 r     -         
+pps_inst.current_seconds_0_sqmuxa_1_a2_29_11_RNIQQITM2     ORCALUT4     Z        Out     0.798     3.127 r     -         
+un1_N_4_0                                                  Net          -        -       -         -           9         
+pps_inst.subsec_counter_6_cry_11_0_RNO                     ORCALUT4     C        In      0.000     3.127 r     -         
+pps_inst.subsec_counter_6_cry_11_0_RNO                     ORCALUT4     Z        Out     0.606     3.733 f     -         
+subsec_counter_6_cry_11_0_RNO                              Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_11_0                         CCU2C        C0       In      0.000     3.733 f     -         
+pps_inst.subsec_counter_6_cry_11_0                         CCU2C        COUT     Out     0.900     4.633 r     -         
+subsec_counter_6_cry_12                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_13_0                         CCU2C        CIN      In      0.000     4.633 r     -         
+pps_inst.subsec_counter_6_cry_13_0                         CCU2C        COUT     Out     0.061     4.694 r     -         
+subsec_counter_6_cry_14                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_15_0                         CCU2C        CIN      In      0.000     4.694 r     -         
+pps_inst.subsec_counter_6_cry_15_0                         CCU2C        COUT     Out     0.061     4.755 r     -         
+subsec_counter_6_cry_16                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_17_0                         CCU2C        CIN      In      0.000     4.755 r     -         
+pps_inst.subsec_counter_6_cry_17_0                         CCU2C        COUT     Out     0.061     4.816 r     -         
+subsec_counter_6_cry_18                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_19_0                         CCU2C        CIN      In      0.000     4.816 r     -         
+pps_inst.subsec_counter_6_cry_19_0                         CCU2C        COUT     Out     0.061     4.877 r     -         
+subsec_counter_6_cry_20                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_21_0                         CCU2C        CIN      In      0.000     4.877 r     -         
+pps_inst.subsec_counter_6_cry_21_0                         CCU2C        COUT     Out     0.061     4.938 r     -         
+subsec_counter_6_cry_22                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_23_0                         CCU2C        CIN      In      0.000     4.938 r     -         
+pps_inst.subsec_counter_6_cry_23_0                         CCU2C        COUT     Out     0.061     4.999 r     -         
+subsec_counter_6_cry_24                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_25_0                         CCU2C        CIN      In      0.000     4.999 r     -         
+pps_inst.subsec_counter_6_cry_25_0                         CCU2C        COUT     Out     0.061     5.060 r     -         
+subsec_counter_6_cry_26                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_27_0                         CCU2C        CIN      In      0.000     5.060 r     -         
+pps_inst.subsec_counter_6_cry_27_0                         CCU2C        COUT     Out     0.061     5.121 r     -         
+subsec_counter_6_cry_28                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_cry_29_0                         CCU2C        CIN      In      0.000     5.121 r     -         
+pps_inst.subsec_counter_6_cry_29_0                         CCU2C        COUT     Out     0.061     5.182 r     -         
+subsec_counter_6_cry_30                                    Net          -        -       -         -           1         
+pps_inst.subsec_counter_6_s_31_0                           CCU2C        CIN      In      0.000     5.182 r     -         
+pps_inst.subsec_counter_6_s_31_0                           CCU2C        S0       Out     0.698     5.880 r     -         
+subsec_counter_6[31]                                       Net          -        -       -         -           1         
+pps_inst.subsec_counter[31]                                FD1S3DX      D        In      0.000     5.880 r     -         
+=========================================================================================================================
+
+
+
+##### END OF TIMING REPORT #####]
+
+Timing exceptions that could not be applied
+
+Finished final timing analysis (Real Time elapsed 0h:00m:13s; CPU Time elapsed 0h:00m:12s; Memory used current: 279MB peak: 282MB)
+
+
+Finished timing report (Real Time elapsed 0h:00m:13s; CPU Time elapsed 0h:00m:13s; Memory used current: 279MB peak: 282MB)
+
+---------------------------------------
+<a name=resourceUsage32></a>Resource Usage Report</a>
+Part: lfe5u_25f-6
+
+Register bits: 491 of 24288 (2%)
+PIC Latch:       0
+I/O cells:       26
+
+
+Details:
+CCU2C:          145
+FD1P3DX:        415
+FD1S3BX:        5
+FD1S3DX:        62
+GSR:            1
+IB:             11
+IFS1P3DX:       9
+INV:            2
+OB:             15
+ORCALUT4:       268
+PFUMX:          1
+PUR:            1
+VHI:            5
+VLO:            5
+Mapper successful!
+
+At Mapper Exit (Real Time elapsed 0h:00m:14s; CPU Time elapsed 0h:00m:13s; Memory used current: 135MB peak: 282MB)
+
+Process took 0h:00m:14s realtime, 0h:00m:13s cputime
+# Sun Jun  8 20:49:24 2025
+
+###########################################################]
+
+</pre></samp></body></html>

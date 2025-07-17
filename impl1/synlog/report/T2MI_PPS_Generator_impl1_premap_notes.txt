@@ -1,0 +1,15 @@
+@N: MF916 |Option synthesis_strategy=base is enabled. 
+@N: MF248 |Running in 64-bit mode.
+@N: MF666 |Clock conversion enabled. (Command "set_option -fix_gated_and_generated_clocks 1" in the project file.)
+@N: BN115 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_pps_top.v":75:16:75:28|Removing instance clk_sync_inst (in view: work.t2mi_pps_top(verilog)) because it does not drive other instances.
+@N: BN362 :"c:\users\shiwa\desktop\t2mi_pps_project\src\sync_modules.v":15:0:15:5|Removing sequential instance clk_sync (in view: work.clk_sync_module(verilog)) of type view:PrimLib.dff(prim) because it does not drive other instances.
+@N: BN362 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_packet_parser.v":188:0:188:5|Removing sequential instance packet_length[15:0] (in view: work.t2mi_packet_parser(verilog)) of type view:PrimLib.dffre(prim) because it does not drive other instances.
+@N: BN362 :"c:\users\shiwa\desktop\t2mi_pps_project\src\timestamp_extractor.v":207:0:207:5|Removing sequential instance utc_offset[12:0] (in view: work.timestamp_extractor(verilog)) of type view:PrimLib.dffre(prim) because it does not drive other instances.
+@N: BN362 :"c:\users\shiwa\desktop\t2mi_pps_project\src\timestamp_extractor.v":207:0:207:5|Removing sequential instance bandwidth_code[3:0] (in view: work.timestamp_extractor(verilog)) of type view:PrimLib.dffre(prim) because it does not drive other instances.
+@N: BN362 :"c:\users\shiwa\desktop\t2mi_pps_project\src\timestamp_extractor.v":107:0:107:5|Removing sequential instance utco_field[12:0] (in view: work.timestamp_extractor(verilog)) of type view:PrimLib.dffre(prim) because it does not drive other instances.
+@N: BN362 :"c:\users\shiwa\desktop\t2mi_pps_project\src\timestamp_extractor.v":107:0:107:5|Removing sequential instance bw_field[3:0] (in view: work.timestamp_extractor(verilog)) of type view:PrimLib.dffre(prim) because it does not drive other instances.
+@N: BN362 :"c:\users\shiwa\desktop\t2mi_pps_project\src\timestamp_extractor.v":73:0:73:5|Removing sequential instance timestamp_buffer\[1\][4:0] (in view: work.timestamp_extractor(verilog)) of type view:PrimLib.dffre(prim) because it does not drive other instances.
+@N: BN362 :"c:\users\shiwa\desktop\t2mi_pps_project\src\timestamp_extractor.v":73:0:73:5|Removing sequential instance timestamp_buffer\[2\][7:0] (in view: work.timestamp_extractor(verilog)) of type view:PrimLib.dffre(prim) because it does not drive other instances.
+@N: BN362 :"c:\users\shiwa\desktop\t2mi_pps_project\src\pps_generator.v":210:0:210:5|Removing sequential instance pps_counter[31:0] (in view: work.pps_generator(verilog)) of type view:PrimLib.dffr(prim) because it does not drive other instances.
+@N: FX1184 |Applying syn_allowed_resources blockrams=56 on top level netlist t2mi_pps_top 
+@N: FX1143 |Skipping assigning INTERNAL_VREF to iobanks, because the table of mapping from pin to iobank is not initialized.

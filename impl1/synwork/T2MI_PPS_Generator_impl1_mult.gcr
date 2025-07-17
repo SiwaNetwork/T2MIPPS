@@ -1,0 +1,8 @@
+i clk_100mhz
+m 0 0
+u 62 494
+p {p:clk_100mhz}{t:pps_inst.clk}{p:pps_inst.clk}{t:pps_inst.pps_state[4].C}
+e ckid0_0 {t:pps_inst.pps_state[4].C} dffr
+c ckid0_0 {p:clk_100mhz} port Unsupported/too complex instance on clock path
+l 0 0 0 0 0 0
+r 0 0 0 0 0 0 0 0

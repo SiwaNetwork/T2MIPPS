@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BuildStatus>
+    <Strategy name="Strategy1">
+        <Milestone name="Export" build_result="0" build_time="0">
+            <Task name="IBIS" build_result="0" update_result="3" update_time="0"/>
+            <Task name="TimingSimFileVlg" build_result="0" update_result="3" update_time="0"/>
+            <Task name="TimingSimFileVHD" build_result="0" update_result="3" update_time="0"/>
+            <Task name="Bitgen" build_result="0" update_result="3" update_time="0"/>
+            <Task name="Promgen" build_result="0" update_result="3" update_time="0"/>
+        </Milestone>
+        <Milestone name="Map" build_result="0" build_time="1749458991">
+            <Task name="Map" build_result="0" update_result="2" update_time="1749458991"/>
+            <Task name="MapTrace" build_result="0" update_result="2" update_time="1749458991"/>
+            <Task name="MapVerilogSimFile" build_result="0" update_result="2" update_time="1749458991"/>
+            <Task name="MapVHDLSimFile" build_result="0" update_result="2" update_time="1749458991"/>
+        </Milestone>
+        <Milestone name="PAR" build_result="0" build_time="1749458991">
+            <Task name="PAR" build_result="0" update_result="2" update_time="1749458991"/>
+            <Task name="PARTrace" build_result="0" update_result="2" update_time="1749458991"/>
+            <Task name="IOTiming" build_result="0" update_result="2" update_time="1749458991"/>
+        </Milestone>
+        <Milestone name="Synthesis" build_result="2" build_time="1749406532">
+            <Task name="Synplify_Synthesis" build_result="2" update_result="0" update_time="1749406532"/>
+        </Milestone>
+        <Milestone name="TOOL_Report" build_result="0" build_time="0">
+            <Task name="HDLE" build_result="0" update_result="3" update_time="0"/>
+            <Task name="BKM" build_result="0" update_result="3" update_time="0"/>
+            <Task name="SSO" build_result="0" update_result="3" update_time="0"/>
+            <Task name="PIODRC" build_result="0" update_result="3" update_time="0"/>
+            <Task name="DEC" build_result="0" update_result="3" update_time="0"/>
+        </Milestone>
+        <Milestone name="Translate" build_result="0" build_time="1749406586">
+            <Task name="Translate" build_result="0" update_result="2" update_time="1749406586"/>
+        </Milestone>
+        <Report name="T2MI_PPS_Generator_impl1.edi" last_build_time="1749406532" last_build_size="674091"/>
+        <Report name="T2MI_PPS_Generator_impl1.ior" last_build_time="1749405101" last_build_size="3979"/>
+        <Report name="T2MI_PPS_Generator_impl1.ncd" last_build_time="1749405088" last_build_size="726812"/>
+        <Report name="T2MI_PPS_Generator_impl1.ngd" last_build_time="1749405023" last_build_size="586490"/>
+        <Report name="T2MI_PPS_Generator_impl1.tw1" last_build_time="1749405036" last_build_size="10532"/>
+        <Report name="T2MI_PPS_Generator_impl1.twr" last_build_time="1749405091" last_build_size="47453"/>
+        <Report name="T2MI_PPS_Generator_impl1_map.ncd" last_build_time="1749405031" last_build_size="517334"/>
+        <Report name="T2MI_PPS_Generator_impl1_mapvho.sdf" last_build_time="1749405044" last_build_size="535011"/>
+        <Report name="T2MI_PPS_Generator_impl1_mapvho.vho" last_build_time="1749405044" last_build_size="501601"/>
+        <Report name="T2MI_PPS_Generator_impl1_mapvo.sdf" last_build_time="1749405040" last_build_size="535355"/>
+        <Report name="T2MI_PPS_Generator_impl1_mapvo.vo" last_build_time="1749405040" last_build_size="348166"/>
+    </Strategy>
+</BuildStatus>

@@ -1,0 +1,37 @@
+@N: MF916 |Option synthesis_strategy=base is enabled. 
+@N: MF248 |Running in 64-bit mode.
+@N: MF666 |Clock conversion enabled. (Command "set_option -fix_gated_and_generated_clocks 1" in the project file.)
+@N: MT206 |Auto Constrain mode is enabled
+@N: MO231 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_packet_parser.v":188:0:188:5|Found counter in view:work.t2mi_packet_parser(verilog) instance byte_counter[15:0] 
+@N: BN362 :"c:\users\shiwa\desktop\t2mi_pps_project\src\timestamp_extractor.v":73:0:73:5|Removing sequential instance timestamp_buffer\[0\][3] (in view: work.timestamp_extractor(verilog)) because it does not drive other instances.
+@N: BN362 :"c:\users\shiwa\desktop\t2mi_pps_project\src\timestamp_extractor.v":73:0:73:5|Removing sequential instance timestamp_buffer\[0\][2] (in view: work.timestamp_extractor(verilog)) because it does not drive other instances.
+@N: BN362 :"c:\users\shiwa\desktop\t2mi_pps_project\src\timestamp_extractor.v":73:0:73:5|Removing sequential instance timestamp_buffer\[0\][1] (in view: work.timestamp_extractor(verilog)) because it does not drive other instances.
+@N: BN362 :"c:\users\shiwa\desktop\t2mi_pps_project\src\timestamp_extractor.v":73:0:73:5|Removing sequential instance timestamp_buffer\[0\][0] (in view: work.timestamp_extractor(verilog)) because it does not drive other instances.
+@N: MO231 :"c:\users\shiwa\desktop\t2mi_pps_project\src\timestamp_extractor.v":73:0:73:5|Found counter in view:work.timestamp_extractor(verilog) instance byte_index[3:0] 
+@N: MO231 :"c:\users\shiwa\desktop\t2mi_pps_project\src\pps_generator.v":87:0:87:5|Found counter in view:work.pps_generator(verilog) instance current_seconds[39:0] 
+@N: MO231 :"c:\users\shiwa\desktop\t2mi_pps_project\src\pps_generator.v":210:0:210:5|Found counter in view:work.pps_generator(verilog) instance pps_pulse_counter[31:0] 
+@N: MF179 :"c:\users\shiwa\desktop\t2mi_pps_project\src\pps_generator.v":129:16:129:53|Found 40 by 40 bit equality operator ('==') sync_error18 (in view: work.pps_generator(verilog))
+@N: FA113 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_packet_parser.v":94:16:94:35|Pipelining module sync_counter6. For more information, search for "pipelining" in Online Help.
+@N: MF169 :"c:\users\shiwa\desktop\t2mi_pps_project\src\t2mi_packet_parser.v":87:0:87:5|Pushed in register sync_counter[3:0].
+@N: FX271 :"c:\users\shiwa\desktop\t2mi_pps_project\src\pps_generator.v":87:0:87:5|Replicating instance pps_inst.subsec_counter[12] (in view: work.t2mi_pps_top(verilog)) with 4 loads 1 time to improve timing.
+@N: FX271 :"c:\users\shiwa\desktop\t2mi_pps_project\src\timestamp_extractor.v":207:0:207:5|Replicating instance extractor_inst.timestamp_valid (in view: work.t2mi_pps_top(verilog)) with 129 loads 3 times to improve timing.
+@N: FX271 :"c:\users\shiwa\desktop\t2mi_pps_project\src\pps_generator.v":87:0:87:5|Replicating instance pps_inst.time_valid (in view: work.t2mi_pps_top(verilog)) with 21 loads 2 times to improve timing.
+@N: FX271 :"c:\users\shiwa\desktop\t2mi_pps_project\src\pps_generator.v":87:0:87:5|Replicating instance pps_inst.subsec_counter[19] (in view: work.t2mi_pps_top(verilog)) with 4 loads 1 time to improve timing.
+@N: FX271 :"c:\users\shiwa\desktop\t2mi_pps_project\src\pps_generator.v":87:0:87:5|Replicating instance pps_inst.subsec_counter[18] (in view: work.t2mi_pps_top(verilog)) with 4 loads 1 time to improve timing.
+@N: FX271 :"c:\users\shiwa\desktop\t2mi_pps_project\src\pps_generator.v":87:0:87:5|Replicating instance pps_inst.subsec_counter[16] (in view: work.t2mi_pps_top(verilog)) with 4 loads 1 time to improve timing.
+@N: FX271 :"c:\users\shiwa\desktop\t2mi_pps_project\src\pps_generator.v":87:0:87:5|Replicating instance pps_inst.subsec_counter[17] (in view: work.t2mi_pps_top(verilog)) with 4 loads 1 time to improve timing.
+@N: FX271 :"c:\users\shiwa\desktop\t2mi_pps_project\src\pps_generator.v":87:0:87:5|Replicating instance pps_inst.subsec_counter[1] (in view: work.t2mi_pps_top(verilog)) with 4 loads 1 time to improve timing.
+@N: FX271 :"c:\users\shiwa\desktop\t2mi_pps_project\src\pps_generator.v":87:0:87:5|Replicating instance pps_inst.subsec_counter[8] (in view: work.t2mi_pps_top(verilog)) with 4 loads 1 time to improve timing.
+@N: FX271 :"c:\users\shiwa\desktop\t2mi_pps_project\src\pps_generator.v":87:0:87:5|Replicating instance pps_inst.subsec_counter[9] (in view: work.t2mi_pps_top(verilog)) with 4 loads 1 time to improve timing.
+@N: FX271 :"c:\users\shiwa\desktop\t2mi_pps_project\src\pps_generator.v":87:0:87:5|Replicating instance pps_inst.subsec_counter[14] (in view: work.t2mi_pps_top(verilog)) with 4 loads 1 time to improve timing.
+@N: FX271 :"c:\users\shiwa\desktop\t2mi_pps_project\src\pps_generator.v":87:0:87:5|Replicating instance pps_inst.subsec_counter[20] (in view: work.t2mi_pps_top(verilog)) with 4 loads 1 time to improve timing.
+@N: FX271 :"c:\users\shiwa\desktop\t2mi_pps_project\src\pps_generator.v":87:0:87:5|Replicating instance pps_inst.subsec_counter[21] (in view: work.t2mi_pps_top(verilog)) with 4 loads 1 time to improve timing.
+@N: FX271 :"c:\users\shiwa\desktop\t2mi_pps_project\src\pps_generator.v":87:0:87:5|Replicating instance pps_inst.subsec_counter[25] (in view: work.t2mi_pps_top(verilog)) with 4 loads 1 time to improve timing.
+@N: FX271 :"c:\users\shiwa\desktop\t2mi_pps_project\src\pps_generator.v":87:0:87:5|Replicating instance pps_inst.subsec_counter[15] (in view: work.t2mi_pps_top(verilog)) with 4 loads 1 time to improve timing.
+@N: FX271 :"c:\users\shiwa\desktop\t2mi_pps_project\src\pps_generator.v":87:0:87:5|Replicating instance pps_inst.subsec_counter[13] (in view: work.t2mi_pps_top(verilog)) with 4 loads 1 time to improve timing.
+@N: FX271 :"c:\users\shiwa\desktop\t2mi_pps_project\src\pps_generator.v":87:0:87:5|Replicating instance pps_inst.subsec_counter[26] (in view: work.t2mi_pps_top(verilog)) with 4 loads 1 time to improve timing.
+@N: FX164 |The option to pack registers in the IOB has not been specified. Please set syn_useioff attribute.  
+@N: FX1056 |Writing EDF file: C:\Users\SHIWA\Desktop\t2mi_pps_project\impl1\impl1.edi
+@N: BW106 |Synplicity Constraint File capacitance units using default value of 1pF 
+@N: MT320 |This timing report is an estimate of place and route data. For final timing results, use the FPGA vendor place and route report.
+@N: MT322 |Clock constraints include only register-to-register paths associated with each individual clock.

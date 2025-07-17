@@ -1,0 +1,46 @@
+
+fsm_encoding {612301233} onehot
+
+fsm_state_encoding {612301233} STATE_SYNC {000001}
+
+fsm_state_encoding {612301233} STATE_TYPE {000010}
+
+fsm_state_encoding {612301233} STATE_LENGTH_H {000100}
+
+fsm_state_encoding {612301233} STATE_LENGTH_L {001000}
+
+fsm_state_encoding {612301233} STATE_DATA {010000}
+
+fsm_state_encoding {612301233} STATE_ERROR {100000}
+
+fsm_registers {612301233} {parser_state[5]}  {parser_state[4]}  {parser_state[3]}  {parser_state[2]}  {parser_state[1]}  {parser_state[0]} 
+
+fsm_encoding {714901492} onehot
+
+fsm_state_encoding {714901492} STATE_IDLE {000001}
+
+fsm_state_encoding {714901492} STATE_HEADER {000010}
+
+fsm_state_encoding {714901492} STATE_SECONDS {000100}
+
+fsm_state_encoding {714901492} STATE_SUBSEC {001000}
+
+fsm_state_encoding {714901492} STATE_COMPLETE {010000}
+
+fsm_state_encoding {714901492} STATE_ERROR {100000}
+
+fsm_registers {714901492} {extract_state[5]}  {extract_state[4]}  {extract_state[3]}  {extract_state[2]}  {extract_state[1]}  {extract_state[0]} 
+
+fsm_encoding {816001601} onehot
+
+fsm_state_encoding {816001601} STATE_INIT {00001}
+
+fsm_state_encoding {816001601} STATE_SYNC {00010}
+
+fsm_state_encoding {816001601} STATE_TRACKING {00100}
+
+fsm_state_encoding {816001601} STATE_GENERATE {01000}
+
+fsm_state_encoding {816001601} STATE_ERROR {10000}
+
+fsm_registers {816001601} {pps_state[4]}  {pps_state[3]}  {pps_state[2]}  {pps_state[1]}  {pps_state[0]} 

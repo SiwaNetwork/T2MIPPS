@@ -1,0 +1,45 @@
+
+Copyright (C) 1994-2023 Synopsys, Inc.
+This Synopsys software and all associated documentation are proprietary to Synopsys, Inc.
+and may only be used pursuant to the terms and conditions of a written license agreement
+with Synopsys, Inc. All other use, reproduction, modification, or distribution of the
+Synopsys software or the associated documentation is strictly prohibited.
+Tool: Synplify Pro (R)
+Build: V-2023.09L-2
+Install: C:\lscc\diamond\3.14\synpbase
+OS: Windows 10 or later
+Hostname: DESKTOP-0S2UTBE
+
+Implementation : impl1
+Synopsys HDL compiler and linker, Version comp202309synp1, Build 349R, Built Sep 17 2024 08:16:26, @
+
+Modified Files: 0
+FID:  path (prevtimestamp, timestamp)
+
+*******************************************************************
+Modules that may have changed as a result of file changes: 0
+MID:  lib.cell.view
+
+*******************************************************************
+Unmodified files: 10
+FID:  path (timestamp)
+0        C:\Users\SHIWA\Desktop\t2mi_pps_project\src\pps_generator.v (2025-06-06 14:28:51)
+1        C:\Users\SHIWA\Desktop\t2mi_pps_project\src\sync_modules.v (2025-06-06 14:29:02)
+2        C:\Users\SHIWA\Desktop\t2mi_pps_project\src\t2mi_packet_parser.v (2025-06-06 14:27:42)
+3        C:\Users\SHIWA\Desktop\t2mi_pps_project\src\t2mi_pps_top.v (2025-06-06 14:27:11)
+4        C:\Users\SHIWA\Desktop\t2mi_pps_project\src\timestamp_extractor.v (2025-06-06 14:48:55)
+5        C:\lscc\diamond\3.14\synpbase\lib\lucent\ecp5u.v (2024-08-22 23:48:19)
+6        C:\lscc\diamond\3.14\synpbase\lib\lucent\pmi_def.v (2024-09-24 02:33:10)
+7        C:\lscc\diamond\3.14\synpbase\lib\vlog\hypermods.v (2024-09-24 02:33:35)
+8        C:\lscc\diamond\3.14\synpbase\lib\vlog\scemi_objects.v (2024-09-24 02:33:35)
+9        C:\lscc\diamond\3.14\synpbase\lib\vlog\scemi_pipes.svh (2024-09-24 02:33:35)
+
+*******************************************************************
+Unchanged modules: 6
+MID:  lib.cell.view
+0        work.clk_sync_module.verilog
+1        work.pps_generator.verilog
+2        work.reset_sync_module.verilog
+3        work.t2mi_packet_parser.verilog
+4        work.t2mi_pps_top.verilog
+5        work.timestamp_extractor.verilog

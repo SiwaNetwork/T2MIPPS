@@ -1,0 +1,5 @@
+-rem
+-distrce
+-log "T2MI_PPS_Generator_impl1.log"
+-o "T2MI_PPS_Generator_impl1.csv"
+-pr "T2MI_PPS_Generator_impl1.prf"

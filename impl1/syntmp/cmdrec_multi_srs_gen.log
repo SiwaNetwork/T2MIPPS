@@ -1,0 +1,7 @@
+C:\lscc\diamond\3.14\synpbase\bin64\syn_nfilter.exe  -link  -top  t2mi_pps_top  -multisrs  C:\Users\SHIWA\Desktop\t2mi_pps_project\impl1\synwork\impl1_comp.srs  -osyn  C:\Users\SHIWA\Desktop\t2mi_pps_project\impl1\synwork\impl1_mult.srs  -log  C:\Users\SHIWA\Desktop\t2mi_pps_project\impl1\synlog\impl1_multi_srs_gen.srr 
+relcom:..\..\..\..\..\..\lscc\diamond\3.14\synpbase\bin64\syn_nfilter.exe -link -top t2mi_pps_top -multisrs ..\synwork\impl1_comp.srs -osyn ..\synwork\impl1_mult.srs -log ..\synlog\impl1_multi_srs_gen.srr
+rc:0 success:1 runtime:1
+file:..\synwork\impl1_comp.srs|io:i|time:1749406513|size:19165|exec:0|csum:6FDF2B86AFB34913A783F867D6DAAD4E
+file:..\synwork\impl1_mult.srs|io:o|time:1749406514|size:5262|exec:0|csum:
+file:..\synlog\impl1_multi_srs_gen.srr|io:o|time:1749406514|size:1045|exec:0|csum:
+file:..\..\..\..\..\..\lscc\diamond\3.14\synpbase\bin64\syn_nfilter.exe|io:i|time:1727134362|size:10549248|exec:1|csum:D91EA53737F6BC51A484A15DD0EB29F5

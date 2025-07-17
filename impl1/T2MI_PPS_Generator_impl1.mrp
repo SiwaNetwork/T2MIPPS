@@ -1,0 +1,534 @@
+
+         Lattice Mapping Report File for Design Module 't2mi_pps_top'
+
+
+Design Information
+------------------
+
+Command line:   map -a ECP5U -p LFE5U-25F -t CABGA256 -s 6 -oc Commercial
+     T2MI_PPS_Generator_impl1.ngd -o T2MI_PPS_Generator_impl1_map.ncd -pr
+     T2MI_PPS_Generator_impl1.prf -mp T2MI_PPS_Generator_impl1.mrp -lpf C:/Users
+     /SHIWA/Desktop/t2mi_pps_project/impl1/T2MI_PPS_Generator_impl1_synplify.lpf
+     -lpf C:/Users/SHIWA/Desktop/t2mi_pps_project/constraints/t2mi_pps.lpf -gui
+     
+Target Vendor:  LATTICE
+Target Device:  LFE5U-25FCABGA256
+Target Performance:   6
+Mapper:  sa5p00,  version:  Diamond (64-bit) 3.14.0.75.2
+Mapped on:  06/08/25  20:50:30
+
+Design Summary
+--------------
+
+   Number of registers:    491 out of 24879 (2%)
+      PFU registers:          482 out of 24288 (2%)
+      PIO registers:            9 out of   591 (2%)
+   Number of SLICEs:       429 out of 12144 (4%)
+      SLICEs as Logic/ROM:    429 out of 12144 (4%)
+      SLICEs as RAM:            0 out of  9108 (0%)
+      SLICEs as Carry:        145 out of 12144 (1%)
+   Number of LUT4s:        559 out of 24288 (2%)
+      Number used as logic LUTs:        269
+      Number used as distributed RAM:     0
+      Number used as ripple logic:      290
+      Number used as shift registers:     0
+   Number of PIO sites used: 26 out of 197 (13%)
+   Number of block RAMs:  0 out of 56 (0%)
+   Number of GSRs:  1 out of 1 (100%)
+   JTAG used :      No
+   Readback used :  No
+   Oscillator used :  No
+   Startup used :   No
+   DTR used :   No
+   Number of Dynamic Bank Controller (BCINRD):  0 out of 4 (0%)
+   Number of Dynamic Bank Controller (BCLVDSOB):  0 out of 4 (0%)
+   Number of DCC:  0 out of 60 (0%)
+   Number of DCS:  0 out of 2 (0%)
+   Number of PLLs:  0 out of 2 (0%)
+   Number of DDRDLLs:  0 out of 4 (0%)
+   Number of CLKDIV:  0 out of 4 (0%)
+   Number of ECLKSYNC:  0 out of 10 (0%)
+   Number of ECLKBRIDGECS:  0 out of 2 (0%)
+   Notes:-
+      1. Total number of LUT4s = (Number of logic LUT4s) + 2*(Number of
+     distributed RAMs) + 2*(Number of ripple logic)
+      2. Number of logic LUT4s does not include count of distributed RAM and
+     ripple logic.
+
+        Number Of Mapped DSP Components:
+   --------------------------------
+   MULT18X18D          0
+   MULT9X9D            0
+   ALU54B              0
+
+                                    Page 1
+
+
+
+
+Design:  t2mi_pps_top                                  Date:  06/08/25  20:50:30
+
+Design Summary (cont)
+---------------------
+   ALU24B              0
+   PRADD18A            0
+   PRADD9A             0
+   --------------------------------
+   Number of Used DSP MULT Sites:  0 out of 56 (0 %)
+   Number of Used DSP ALU Sites:  0 out of 28 (0 %)
+   Number of Used DSP PRADD Sites:  0 out of 56 (0 %)
+   Number of clocks:  1
+     Net clk_100mhz_c: 264 loads, 264 rising, 0 falling (Driver: PIO clk_100mhz
+     )
+   Number of Clock Enables:  26
+     Net pps_inst/pps_pulse_countere: 17 loads, 17 LSLICEs
+     Net pps_inst/sync_error22: 17 loads, 17 LSLICEs
+     Net pps_inst/un1_next_pps_time_1_sqmuxa_i: 1 loads, 1 LSLICEs
+     Net pps_inst/time_valid_2: 16 loads, 16 LSLICEs
+     Net pps_inst/current_secondse: 21 loads, 21 LSLICEs
+     Net extractor_inst/extract_state[4]: 36 loads, 36 LSLICEs
+     Net extractor_inst/timestamp_buffer[9]_0_sqmuxa: 4 loads, 4 LSLICEs
+     Net extractor_inst/timestamp_buffer[8]_0_sqmuxa: 4 loads, 4 LSLICEs
+     Net extractor_inst/timestamp_buffer[7]_0_sqmuxa: 4 loads, 4 LSLICEs
+     Net extractor_inst/timestamp_buffer[6]_0_sqmuxa: 4 loads, 4 LSLICEs
+     Net extractor_inst/timestamp_buffer[5]_0_sqmuxa: 4 loads, 4 LSLICEs
+     Net extractor_inst/timestamp_buffer[4]_0_sqmuxa: 4 loads, 4 LSLICEs
+     Net extractor_inst/timestamp_buffer[3]_0_sqmuxa: 4 loads, 4 LSLICEs
+     Net extractor_inst/timestamp_buffer[11]_0_sqmuxa: 4 loads, 4 LSLICEs
+     Net extractor_inst/timestamp_buffer[10]_0_sqmuxa: 4 loads, 4 LSLICEs
+     Net extractor_inst/timestamp_buffer[0]_0_sqmuxa: 2 loads, 2 LSLICEs
+     Net extractor_inst/data_complete: 37 loads, 37 LSLICEs
+     Net extractor_inst/N_62_i: 1 loads, 1 LSLICEs
+     Net extractor_inst/un1_packet_active8_i_0: 1 loads, 1 LSLICEs
+     Net extractor_inst/byte_indexe: 2 loads, 2 LSLICEs
+     Net parser_inst/N_4_i: 9 loads, 9 LSLICEs
+     Net parser_inst.t2mi_valid_sync: 1 loads, 1 LSLICEs
+     Net parser_inst/parser_state_RNI7DD56[2]: 4 loads, 4 LSLICEs
+     Net parser_inst/N_85_i: 4 loads, 4 LSLICEs
+     Net parser_inst/N_87_i: 4 loads, 4 LSLICEs
+     Net parser_inst/packet_length_regce[8]: 4 loads, 4 LSLICEs
+   Number of local set/reset loads for net led_power_c merged into GSR:  487
+   Number of LSRs:  1
+     Net rst_n_c: 2 loads, 2 LSLICEs
+   Number of nets driven by tri-state buffers:  0
+   Top 10 highest fanout non-clock nets:
+     Net debug_status_c[3]: 130 loads
+     Net extractor_inst/data_complete: 39 loads
+     Net extractor_inst/extract_state[4]: 39 loads
+     Net pps_inst/N_166: 33 loads
+     Net pps_inst/sync_error18_i: 32 loads
+     Net pps_inst/sync_error12: 31 loads
+     Net parser_inst/byte_counter: 23 loads
+     Net pps_inst/current_secondse: 21 loads
+     Net pps_inst/time_valid: 20 loads
+     Net pps_inst/pps_pulse_countere: 17 loads
+
+
+
+
+
+                                    Page 2
+
+
+
+
+Design:  t2mi_pps_top                                  Date:  06/08/25  20:50:30
+
+
+
+
+   Number of warnings:  3
+   Number of errors:    0
+     
+
+Design Errors/Warnings
+----------------------
+
+WARNING - map: Using local reset signal 'led_power_c' to infer global GSR net.
+WARNING - map: IO buffer missing for top level port t2mi_clk...logic will be
+     discarded.
+WARNING - map: IO buffer missing for top level port t2mi_sync...logic will be
+     discarded.
+
+IO (PIO) Attributes
+-------------------
+
++---------------------+-----------+-----------+------------+
+| IO Name             | Direction | Levelmode | IO         |
+|                     |           |  IO_TYPE  | Register   |
++---------------------+-----------+-----------+------------+
+| pps_out             | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| clk_100mhz          | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| led_error           | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| led_pps             | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| led_sync            | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| led_power           | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| debug_status[7]     | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| debug_status[6]     | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| debug_status[5]     | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| debug_status[4]     | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| debug_status[3]     | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| debug_status[2]     | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| debug_status[1]     | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| debug_status[0]     | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| sync_locked         | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| timestamp_valid     | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| t2mi_data[7]        | INPUT     | LVCMOS33  | IN         |
++---------------------+-----------+-----------+------------+
+| t2mi_data[6]        | INPUT     | LVCMOS33  | IN         |
+
+                                    Page 3
+
+
+
+
+Design:  t2mi_pps_top                                  Date:  06/08/25  20:50:30
+
+IO (PIO) Attributes (cont)
+--------------------------
++---------------------+-----------+-----------+------------+
+| t2mi_data[5]        | INPUT     | LVCMOS33  | IN         |
++---------------------+-----------+-----------+------------+
+| t2mi_data[4]        | INPUT     | LVCMOS33  | IN         |
++---------------------+-----------+-----------+------------+
+| t2mi_data[3]        | INPUT     | LVCMOS33  | IN         |
++---------------------+-----------+-----------+------------+
+| t2mi_data[2]        | INPUT     | LVCMOS33  | IN         |
++---------------------+-----------+-----------+------------+
+| t2mi_data[1]        | INPUT     | LVCMOS33  | IN         |
++---------------------+-----------+-----------+------------+
+| t2mi_data[0]        | INPUT     | LVCMOS33  | IN         |
++---------------------+-----------+-----------+------------+
+| t2mi_valid          | INPUT     | LVCMOS33  | IN         |
++---------------------+-----------+-----------+------------+
+| rst_n               | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+
+Removed logic
+-------------
+
+Block VCC undriven or does not drive anything - clipped.
+Block GND undriven or does not drive anything - clipped.
+Block reset_sync_inst/GND undriven or does not drive anything - clipped.
+Block parser_inst/GND undriven or does not drive anything - clipped.
+Block extractor_inst/GND undriven or does not drive anything - clipped.
+Block extractor_inst/VCC undriven or does not drive anything - clipped.
+Block pps_inst/GND undriven or does not drive anything - clipped.
+Signal rst_n_c_i was merged into signal rst_n_c
+Signal led_power_c_i was merged into signal led_power_c
+Signal parser_inst/VCC undriven or does not drive anything - clipped.
+Signal pps_inst/VCC undriven or does not drive anything - clipped.
+Signal VCC undriven or does not drive anything - clipped.
+Signal parser_inst/un1_byte_counter_cry_15_0_S1 undriven or does not drive
+     anything - clipped.
+Signal parser_inst/un1_byte_counter_cry_15_0_S0 undriven or does not drive
+     anything - clipped.
+Signal parser_inst/un1_byte_counter_cry_13_0_S1 undriven or does not drive
+     anything - clipped.
+Signal parser_inst/un1_byte_counter_cry_13_0_S0 undriven or does not drive
+     anything - clipped.
+Signal parser_inst/un1_byte_counter_cry_11_0_S1 undriven or does not drive
+     anything - clipped.
+Signal parser_inst/un1_byte_counter_cry_11_0_S0 undriven or does not drive
+     anything - clipped.
+Signal parser_inst/un1_byte_counter_cry_9_0_S1 undriven or does not drive
+     anything - clipped.
+Signal parser_inst/un1_byte_counter_cry_9_0_S0 undriven or does not drive
+     anything - clipped.
+Signal parser_inst/un1_byte_counter_cry_7_0_S1 undriven or does not drive
+     anything - clipped.
+Signal parser_inst/un1_byte_counter_cry_7_0_S0 undriven or does not drive
+     anything - clipped.
+Signal parser_inst/un1_byte_counter_cry_5_0_S1 undriven or does not drive
+     anything - clipped.
+Signal parser_inst/un1_byte_counter_cry_5_0_S0 undriven or does not drive
+
+                                    Page 4
+
+
+
+
+Design:  t2mi_pps_top                                  Date:  06/08/25  20:50:30
+
+Removed logic (cont)
+--------------------
+     anything - clipped.
+Signal parser_inst/un1_byte_counter_cry_3_0_S1 undriven or does not drive
+     anything - clipped.
+Signal parser_inst/un1_byte_counter_cry_3_0_S0 undriven or does not drive
+     anything - clipped.
+Signal parser_inst/un1_byte_counter_cry_1_0_S1 undriven or does not drive
+     anything - clipped.
+Signal parser_inst/un1_byte_counter_cry_1_0_S0 undriven or does not drive
+     anything - clipped.
+Signal parser_inst/un1_byte_counter_cry_0_0_S1 undriven or does not drive
+     anything - clipped.
+Signal parser_inst/un1_byte_counter_cry_0_0_S0 undriven or does not drive
+     anything - clipped.
+Signal parser_inst/N_23 undriven or does not drive anything - clipped.
+Signal parser_inst/un1_packet_length_reg_0_cry_15_0_COUT undriven or does not
+     drive anything - clipped.
+Signal parser_inst/un1_packet_length_reg_0_cry_0_0_S1 undriven or does not drive
+     anything - clipped.
+Signal parser_inst/un1_packet_length_reg_0_cry_0_0_S0 undriven or does not drive
+     anything - clipped.
+Signal parser_inst/N_24 undriven or does not drive anything - clipped.
+Signal parser_inst/byte_counter_s_0_S1[15] undriven or does not drive anything -
+     clipped.
+Signal parser_inst/byte_counter_s_0_COUT[15] undriven or does not drive anything
+     - clipped.
+Signal parser_inst/byte_counter_cry_0_S0[0] undriven or does not drive anything
+     - clipped.
+Signal parser_inst/N_25 undriven or does not drive anything - clipped.
+Signal parser_inst/un1_byte_counter_cry_16_0_S1 undriven or does not drive
+     anything - clipped.
+Signal parser_inst/un1_byte_counter_cry_16_0_COUT undriven or does not drive
+     anything - clipped.
+Signal pps_inst/sync_error18_0_I_93_0_S0 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error18_0_I_93_0_COUT undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error18_0_I_9_0_S1 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error18_0_I_9_0_S0 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error18_0_I_15_0_S1 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error18_0_I_15_0_S0 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error18_0_I_75_0_S1 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error18_0_I_75_0_S0 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error18_0_I_81_0_S1 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error18_0_I_81_0_S0 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error18_0_I_51_0_S1 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error18_0_I_51_0_S0 undriven or does not drive anything -
+     clipped.
+
+                                    Page 5
+
+
+
+
+Design:  t2mi_pps_top                                  Date:  06/08/25  20:50:30
+
+Removed logic (cont)
+--------------------
+Signal pps_inst/sync_error18_0_I_27_0_S1 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error18_0_I_27_0_S0 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error18_0_I_105_0_S1 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error18_0_I_105_0_S0 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error18_0_I_111_0_S1 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error18_0_I_111_0_S0 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error18_0_I_57_0_S1 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error18_0_I_57_0_S0 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error18_0_I_1_0_S1 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error18_0_I_1_0_S0 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/N_38 undriven or does not drive anything - clipped.
+Signal pps_inst/sync_error12_cry_31_0_S0 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error12_cry_31_0_COUT undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error12_cry_29_0_S1 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error12_cry_29_0_S0 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error12_cry_27_0_S1 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error12_cry_27_0_S0 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error12_cry_25_0_S1 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error12_cry_25_0_S0 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error12_cry_23_0_S1 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error12_cry_23_0_S0 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error12_cry_21_0_S1 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error12_cry_21_0_S0 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error12_cry_19_0_S1 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error12_cry_19_0_S0 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error12_cry_17_0_S1 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error12_cry_17_0_S0 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error12_cry_15_0_S1 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error12_cry_15_0_S0 undriven or does not drive anything -
+
+                                    Page 6
+
+
+
+
+Design:  t2mi_pps_top                                  Date:  06/08/25  20:50:30
+
+Removed logic (cont)
+--------------------
+     clipped.
+Signal pps_inst/sync_error12_cry_13_0_S1 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error12_cry_13_0_S0 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error12_cry_11_0_S1 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error12_cry_11_0_S0 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error12_cry_9_0_S1 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error12_cry_9_0_S0 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error12_cry_7_0_S1 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error12_cry_7_0_S0 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error12_cry_5_0_S1 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error12_cry_5_0_S0 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error12_cry_3_0_S1 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error12_cry_3_0_S0 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error12_cry_1_0_S1 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error12_cry_1_0_S0 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error12_cry_0_0_S1 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error12_cry_0_0_S0 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/N_39 undriven or does not drive anything - clipped.
+Signal pps_inst/un1_current_subseconds_0_s_31_0_S1 undriven or does not drive
+     anything - clipped.
+Signal pps_inst/un1_current_subseconds_0_s_31_0_COUT undriven or does not drive
+     anything - clipped.
+Signal pps_inst/un1_current_subseconds_0_cry_0_0_S1 undriven or does not drive
+     anything - clipped.
+Signal pps_inst/un1_current_subseconds_0_cry_0_0_S0 undriven or does not drive
+     anything - clipped.
+Signal pps_inst/N_40 undriven or does not drive anything - clipped.
+Signal pps_inst/current_seconds_s_0_S1[39] undriven or does not drive anything -
+     clipped.
+Signal pps_inst/current_seconds_s_0_COUT[39] undriven or does not drive anything
+     - clipped.
+Signal pps_inst/current_seconds_cry_0_S0[0] undriven or does not drive anything
+     - clipped.
+Signal pps_inst/N_41 undriven or does not drive anything - clipped.
+Signal pps_inst/pps_pulse_counter_s_0_S1[31] undriven or does not drive anything
+     - clipped.
+Signal pps_inst/pps_pulse_counter_s_0_COUT[31] undriven or does not drive
+     anything - clipped.
+Signal pps_inst/pps_pulse_counter_cry_0_S0[0] undriven or does not drive
+     anything - clipped.
+
+                                    Page 7
+
+
+
+
+Design:  t2mi_pps_top                                  Date:  06/08/25  20:50:30
+
+Removed logic (cont)
+--------------------
+Signal pps_inst/N_42 undriven or does not drive anything - clipped.
+Signal pps_inst/sync_error_5_0_0_s_31_0_S1 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/sync_error_5_0_0_s_31_0_COUT undriven or does not drive anything
+     - clipped.
+Signal pps_inst/sync_error_5_0_0_cry_0_0_S1 undriven or does not drive anything
+     - clipped.
+Signal pps_inst/sync_error_5_0_0_cry_0_0_S0 undriven or does not drive anything
+     - clipped.
+Signal pps_inst/N_43 undriven or does not drive anything - clipped.
+Signal pps_inst/subsec_counter_6_s_31_0_S1 undriven or does not drive anything -
+     clipped.
+Signal pps_inst/subsec_counter_6_s_31_0_COUT undriven or does not drive anything
+     - clipped.
+Signal pps_inst/subsec_counter_6_cry_0_0_S1 undriven or does not drive anything
+     - clipped.
+Signal pps_inst/subsec_counter_6_cry_0_0_S0 undriven or does not drive anything
+     - clipped.
+Signal pps_inst/N_44 undriven or does not drive anything - clipped.
+Block rst_n_pad_RNIQR5E7 was optimized away.
+Block reset_sync_inst/rst_n_out_RNI70NP was optimized away.
+Block parser_inst/VCC was optimized away.
+Block pps_inst/VCC was optimized away.
+
+     
+
+GSR Usage
+---------
+
+GSR Component:
+   The local reset signal 'led_power_c' of the design has been inferred as
+        Global Set Reset (GSR). The reset signal used for GSR control is
+        'led_power_c'.
+        
+
+     GSR Property:
+   The design components with GSR property set to ENABLED will respond to global
+        set reset while the components with GSR property set to DISABLED will
+        not.
+        
+
+Run Time and Memory Usage
+-------------------------
+
+   Total CPU Time: 1 secs  
+   Total REAL Time: 2 secs  
+   Peak Memory Usage: 114 MB
+        
+
+
+
+
+
+
+
+
+
+                                    Page 8
+
+
+Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
+     Copyright (c) 1995 AT&T Corp.   All rights reserved.
+     Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
+     Copyright (c) 2001 Agere Systems   All rights reserved.
+     Copyright (c) 2002-2024 Lattice Semiconductor Corporation,  All rights
+     reserved.
