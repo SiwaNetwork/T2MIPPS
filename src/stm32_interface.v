@@ -38,8 +38,8 @@ module stm32_interface (
     // Configuration outputs
     output reg  [31:0] cable_delay_ns,     // Cable delay compensation
     output reg  [31:0] antenna_delay_ns,   // Antenna delay compensation
-    output reg  [15:0] dpll_kp,           // DPLL proportional gain
-    output reg  [15:0] dpll_ki,           // DPLL integral gain
+    output reg  [31:0] dpll_kp,           // DPLL proportional gain (16.16 fixed point)
+    output reg  [31:0] dpll_ki,           // DPLL integral gain (16.16 fixed point)
     output reg         kalman_enable,      // Enable Kalman filter
     output reg  [31:0] kalman_q,          // Process noise
     output reg  [31:0] kalman_r,          // Measurement noise
@@ -286,8 +286,8 @@ always @(posedge clk or negedge rst_n) begin
                         
                         3'b101: begin // DPLL parameters
                             case (cmd_addr[1:0])
-                                2'd0: dpll_kp <= data_reg[15:0];
-                                2'd1: dpll_ki <= data_reg[15:0];
+                                2'd0: dpll_kp <= data_reg;  // Full 32-bit value
+                                2'd1: dpll_ki <= data_reg;  // Full 32-bit value
                                 default: ;
                             endcase
                             spi_state <= SPI_IDLE;

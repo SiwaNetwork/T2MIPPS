@@ -34,6 +34,10 @@ module t2mi_pps_top_v3 (
     output wire        gnss_tx,          // GNSS UART TX
     input  wire        gnss_pps_in,      // GNSS PPS input
     
+    // UART Monitor interface
+    input  wire        uart_rx,          // UART RX for monitor
+    output wire        uart_tx,          // UART TX for monitor
+    
     // Temperature sensor
     input  wire [15:0] temperature,      // Temperature in 0.01°C
     
@@ -93,16 +97,37 @@ wire [3:0]  kalman_state;
 wire        dpll_pps;
 wire [39:0] dpll_seconds;
 wire [31:0] dpll_subseconds;
-wire [31:0] dpll_phase_error;
-wire [31:0] dpll_freq_error;
+wire signed [47:0] dpll_phase_error;     // Changed to 48-bit signed
+wire signed [47:0] dpll_freq_error;      // Changed to 48-bit signed
 wire        dpll_holdover;
 wire [31:0] dpll_holdover_quality;
+wire [31:0] dpll_holdover_duration;
+wire [3:0]  dpll_state;
+
+// Advanced DPLL diagnostics
+wire [47:0] dpll_phase_variance;
+wire [47:0] dpll_frequency_variance;
+wire [31:0] dpll_allan_deviation;
+wire [31:0] dpll_mtie;
+wire [31:0] dpll_tdev;
+wire signed [47:0] dpll_phase_prediction;
+wire [15:0] dpll_lock_quality;
+
+// PID components
+wire signed [47:0] dpll_p_term;
+wire signed [47:0] dpll_i_term;
+wire signed [47:0] dpll_d_term;
+wire signed [47:0] dpll_pid_output;
 
 // STM32 interface signals
 wire [31:0] cable_delay_ns;
 wire [31:0] antenna_delay_ns;
-wire [15:0] dpll_kp;
-wire [15:0] dpll_ki;
+wire [31:0] dpll_kp;         // Changed to 32-bit for PID controller
+wire [31:0] dpll_ki;         // Changed to 32-bit for PID controller
+wire [31:0] dpll_kd;         // Added derivative gain
+wire [31:0] dpll_integral_limit;
+wire [15:0] dpll_derivative_filter;
+wire [15:0] dpll_prediction_depth;
 wire        kalman_enable;
 wire [31:0] kalman_q;
 wire [31:0] kalman_r;
@@ -215,33 +240,64 @@ kalman_filter #(
 );
 
 // =============================================================================
-// Enhanced DPLL
+// Advanced DPLL with PID Controller
 // =============================================================================
 
-enhanced_dpll #(
+advanced_dpll_pid #(
     .CLK_FREQ_HZ(100_000_000),
-    .PHASE_BITS(32),
-    .FREQ_BITS(32)
+    .PHASE_BITS(48),
+    .FREQ_BITS(48),
+    .FIXED_POINT_BITS(16)
 ) dpll_inst (
     .clk                (clk_100mhz),
     .rst_n              (rst_n_sync),
     .ref_pulse          (source_valid),
     .ref_seconds        (selected_seconds),
     .ref_subseconds     (selected_subseconds),
-    .local_clk          (sit5503_clk),
+    .ref_valid          (source_valid),
+    .local_clk_10mhz    (sit5503_clk),
+    
+    // PID control parameters
     .kp                 (dpll_kp),
     .ki                 (dpll_ki),
-    .bandwidth          (16'd8),
+    .kd                 (dpll_kd),
+    .loop_bandwidth     (16'd8),
     .adaptive_enable    (1'b1),
+    .prediction_depth   (dpll_prediction_depth),
+    
+    // Advanced control
+    .integral_limit     (dpll_integral_limit),
+    .derivative_filter  (dpll_derivative_filter),
+    .holdover_enable    (1'b1),
+    
+    // Outputs
     .pps_out            (dpll_pps),
     .locked_seconds     (dpll_seconds),
     .locked_subseconds  (dpll_subseconds),
     .phase_error        (dpll_phase_error),
     .frequency_error    (dpll_freq_error),
     .dpll_locked        (dpll_locked),
-    .dpll_state         (),
+    .dpll_state         (dpll_state),
+    
+    // Holdover mode
     .holdover_active    (dpll_holdover),
-    .holdover_quality   (dpll_holdover_quality)
+    .holdover_quality   (dpll_holdover_quality),
+    .holdover_duration  (dpll_holdover_duration),
+    
+    // Advanced diagnostics
+    .phase_variance     (dpll_phase_variance),
+    .frequency_variance (dpll_frequency_variance),
+    .allan_deviation    (dpll_allan_deviation),
+    .mtie               (dpll_mtie),
+    .tdev               (dpll_tdev),
+    .phase_prediction   (dpll_phase_prediction),
+    .lock_quality       (dpll_lock_quality),
+    
+    // PID components
+    .p_term             (dpll_p_term),
+    .i_term             (dpll_i_term),
+    .d_term             (dpll_d_term),
+    .pid_output         (dpll_pid_output)
 );
 
 // =============================================================================
@@ -267,8 +323,8 @@ stm32_interface stm32_inst (
     .dpll_locked        (dpll_locked),
     .current_seconds    (time_seconds_comp),
     .current_subseconds (time_subseconds_comp),
-    .phase_error        (dpll_phase_error),
-    .frequency_error    (dpll_freq_error),
+    .phase_error        (dpll_phase_error[31:0]),  // Take lower 32 bits
+    .frequency_error    (dpll_freq_error[31:0]),   // Take lower 32 bits
     .cable_delay_ns     (cable_delay_ns),
     .antenna_delay_ns   (antenna_delay_ns),
     .dpll_kp            (dpll_kp),
@@ -306,6 +362,50 @@ gnss_interface gnss_inst (
     .fix_type           (),
     .gnss_status        (gnss_status)
 );
+
+// =============================================================================
+// UART Monitor
+// =============================================================================
+
+uart_monitor #(
+    .CLK_FREQ(100_000_000),
+    .BAUD_RATE(115200)
+) uart_monitor_inst (
+    .clk                (clk_100mhz),
+    .rst_n              (rst_n_sync),
+    .uart_rx            (uart_rx),
+    .uart_tx            (uart_tx),
+    
+    // Status inputs
+    .sync_locked        (sync_locked),
+    .dpll_locked        (dpll_locked),
+    .dpll_state         (dpll_state),
+    .lock_quality       (dpll_lock_quality),
+    .phase_error        (dpll_phase_error[31:0]),
+    
+    // Statistics inputs
+    .allan_deviation    (dpll_allan_deviation),
+    .mtie               (dpll_mtie),
+    
+    // Time inputs
+    .current_seconds    (time_seconds),
+    .current_subseconds (time_subseconds),
+    
+    // Control outputs
+    .cmd_valid          (),
+    .cmd_type           (),
+    .cmd_data           ()
+);
+
+// =============================================================================
+// Default PID Parameters
+// =============================================================================
+
+// These can be overridden by STM32 interface
+assign dpll_kd = 32'h0000_0100;              // Default Kd = 1.0 in 16.16 fixed point
+assign dpll_integral_limit = 32'h0010_0000;  // Default integral limit
+assign dpll_derivative_filter = 16'd10;      // Default derivative filter
+assign dpll_prediction_depth = 16'd5;        // Default prediction depth
 
 // =============================================================================
 // Time Source Selection
