@@ -1,0 +1,183 @@
+T2MI-PPS-MIB DEFINITIONS ::= BEGIN
+
+IMPORTS
+    MODULE-IDENTITY, OBJECT-TYPE, Integer32, enterprises
+        FROM SNMPv2-SMI
+    MODULE-COMPLIANCE, OBJECT-GROUP
+        FROM SNMPv2-CONF;
+
+t2miPpsMIB MODULE-IDENTITY
+    LAST-UPDATED "202401010000Z"
+    ORGANIZATION "T2MI PPS Generator Project"
+    CONTACT-INFO
+        "Email: admin@t2mi-pps.local"
+    DESCRIPTION
+        "MIB module for T2MI PPS Generator monitoring"
+    REVISION "202401010000Z"
+    DESCRIPTION
+        "Initial version"
+    ::= { enterprises 99999 }
+
+-- Main branches
+t2miPpsObjects OBJECT IDENTIFIER ::= { t2miPpsMIB 1 }
+t2miPpsConformance OBJECT IDENTIFIER ::= { t2miPpsMIB 2 }
+
+-- Status objects
+systemStatus OBJECT-TYPE
+    SYNTAX      Integer32 (0..2)
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "System status: 0=offline, 1=online, 2=error"
+    ::= { t2miPpsObjects 1 }
+
+ppsCount OBJECT-TYPE
+    SYNTAX      Integer32
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "Total number of PPS pulses generated"
+    ::= { t2miPpsObjects 2 }
+
+syncStatus OBJECT-TYPE
+    SYNTAX      Integer32 (0..1)
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "Synchronization status: 0=not synced, 1=synced"
+    ::= { t2miPpsObjects 3 }
+
+frequencyError OBJECT-TYPE
+    SYNTAX      Integer32
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "Frequency error in parts per billion (ppb)"
+    ::= { t2miPpsObjects 4 }
+
+phaseError OBJECT-TYPE
+    SYNTAX      Integer32
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "Phase error in nanoseconds"
+    ::= { t2miPpsObjects 5 }
+
+temperature OBJECT-TYPE
+    SYNTAX      Integer32
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "Temperature in celsius * 100"
+    ::= { t2miPpsObjects 6 }
+
+uptime OBJECT-TYPE
+    SYNTAX      Integer32
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "System uptime in seconds"
+    ::= { t2miPpsObjects 7 }
+
+lastSyncTime OBJECT-TYPE
+    SYNTAX      Integer32
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "Timestamp of last successful synchronization"
+    ::= { t2miPpsObjects 8 }
+
+t2miPackets OBJECT-TYPE
+    SYNTAX      Integer32
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "Number of T2MI packets received"
+    ::= { t2miPpsObjects 9 }
+
+errorCount OBJECT-TYPE
+    SYNTAX      Integer32
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "Total error count"
+    ::= { t2miPpsObjects 10 }
+
+allanDeviation OBJECT-TYPE
+    SYNTAX      Integer32
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "Allan deviation * 1e12"
+    ::= { t2miPpsObjects 11 }
+
+mtie OBJECT-TYPE
+    SYNTAX      Integer32
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "Maximum Time Interval Error (MTIE) in nanoseconds"
+    ::= { t2miPpsObjects 12 }
+
+gnssStatus OBJECT-TYPE
+    SYNTAX      Integer32 (0..2)
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "GNSS status: 0=no fix, 1=2D fix, 2=3D fix"
+    ::= { t2miPpsObjects 13 }
+
+holdoverStatus OBJECT-TYPE
+    SYNTAX      Integer32 (0..1)
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "Holdover status: 0=normal operation, 1=in holdover"
+    ::= { t2miPpsObjects 14 }
+
+dpllLock OBJECT-TYPE
+    SYNTAX      Integer32 (0..1)
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "DPLL lock status: 0=unlocked, 1=locked"
+    ::= { t2miPpsObjects 15 }
+
+-- Conformance information
+t2miPpsCompliances OBJECT IDENTIFIER ::= { t2miPpsConformance 1 }
+t2miPpsGroups OBJECT IDENTIFIER ::= { t2miPpsConformance 2 }
+
+-- Compliance statement
+t2miPpsCompliance MODULE-COMPLIANCE
+    STATUS      current
+    DESCRIPTION
+        "The compliance statement for T2MI PPS Generator"
+    MODULE      -- this module
+        MANDATORY-GROUPS { t2miPpsStatusGroup }
+    ::= { t2miPpsCompliances 1 }
+
+-- Object groups
+t2miPpsStatusGroup OBJECT-GROUP
+    OBJECTS {
+        systemStatus,
+        ppsCount,
+        syncStatus,
+        frequencyError,
+        phaseError,
+        temperature,
+        uptime,
+        lastSyncTime,
+        t2miPackets,
+        errorCount,
+        allanDeviation,
+        mtie,
+        gnssStatus,
+        holdoverStatus,
+        dpllLock
+    }
+    STATUS      current
+    DESCRIPTION
+        "Status objects for T2MI PPS Generator"
+    ::= { t2miPpsGroups 1 }
+
+END
