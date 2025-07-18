@@ -34,6 +34,11 @@ module t2mi_pps_top_v3 (
     output wire        gnss_tx,          // GNSS UART TX
     input  wire        gnss_pps_in,      // GNSS PPS input
     
+    // External PPS interface
+    input  wire        ext_pps_in,       // External PPS reference input
+    output wire        ext_pps_locked,   // External PPS locked status
+    output wire [15:0] ext_pps_quality,  // External PPS quality metric
+    
     // UART Monitor interface
     input  wire        uart_rx,          // UART RX for monitor
     output wire        uart_tx,          // UART TX for monitor
@@ -59,7 +64,8 @@ module t2mi_pps_top_v3 (
     output wire        led_pps,          // PPS LED
     output wire        led_error,        // Error LED
     output wire        led_gnss,         // GNSS LED
-    output wire        led_stm32         // STM32 communication LED
+    output wire        led_stm32,        // STM32 communication LED
+    output wire        led_ext_pps       // External PPS LED
 );
 
 // =============================================================================
@@ -156,10 +162,37 @@ wire [31:0] total_delay_ns;
 wire        compensation_active;
 
 // Source selection
-reg  [1:0]  time_source;  // 00=T2MI, 01=GNSS, 10=SiT5503
+reg  [1:0]  time_source;  // 00=T2MI, 01=GNSS, 10=External PPS
 wire        source_valid;
 wire [39:0] selected_seconds;
 wire [31:0] selected_subseconds;
+
+// External PPS processor signals
+wire        ext_pps_processed;
+wire [39:0] ext_pps_seconds;
+wire [31:0] ext_pps_subseconds;
+wire        ext_pps_valid;
+wire [31:0] ext_frequency_offset;
+wire [31:0] ext_phase_offset;
+wire [31:0] ext_jitter_rms;
+wire        ext_signal_present;
+wire        ext_frequency_locked;
+wire        ext_phase_locked;
+
+// PPS source selector signals
+wire        pps_selected;
+wire [39:0] time_seconds_selected;
+wire [31:0] time_subseconds_selected;
+wire        time_valid_selected;
+wire [1:0]  active_pps_source;
+wire [15:0] active_pps_quality;
+wire [2:0]  pps_sources_available;
+wire        pps_failover_active;
+wire [47:0] pps_source_phase_error;
+
+// Control signals from STM32
+wire [1:0]  pps_source_select;
+wire        pps_auto_select_enable;
 
 // =============================================================================
 // Clock domain synchronization
@@ -334,7 +367,9 @@ stm32_interface stm32_inst (
     .kalman_r           (kalman_r),
     .gnss_enable        (gnss_enable),
     .gnss_mode          (gnss_mode),
-    .gnss_reset_n       (gnss_reset_n)
+    .gnss_reset_n       (gnss_reset_n),
+    .pps_source_select  (pps_source_select),
+    .pps_auto_select_enable (pps_auto_select_enable)
 );
 
 // =============================================================================
@@ -361,6 +396,99 @@ gnss_interface gnss_inst (
     .hdop               (),
     .fix_type           (),
     .gnss_status        (gnss_status)
+);
+
+// =============================================================================
+// External PPS Processor
+// =============================================================================
+
+external_pps_processor #(
+    .CLK_FREQ(100_000_000),
+    .MEASUREMENT_WINDOW(1000),
+    .JITTER_THRESHOLD(1000)
+) ext_pps_proc_inst (
+    .clk                (clk_100mhz),
+    .rst_n              (rst_n_sync),
+    
+    // External PPS input
+    .ext_pps_in         (ext_pps_in),
+    
+    // Reference time from Kalman filter
+    .ref_seconds        (kalman_seconds),
+    .ref_subseconds     (kalman_subseconds),
+    .ref_time_valid     (kalman_valid),
+    
+    // Processed outputs
+    .ext_pps_out        (ext_pps_processed),
+    .ext_seconds        (ext_pps_seconds),
+    .ext_subseconds     (ext_pps_subseconds),
+    .ext_valid          (ext_pps_valid),
+    .ext_quality        (ext_pps_quality),
+    
+    // Measurement outputs
+    .frequency_offset   (ext_frequency_offset),
+    .phase_offset       (ext_phase_offset),
+    .jitter_rms         (ext_jitter_rms),
+    .pulse_width        (),
+    .pulse_period       (),
+    
+    // Status outputs
+    .signal_present     (ext_signal_present),
+    .frequency_locked   (ext_frequency_locked),
+    .phase_locked       (ext_phase_locked),
+    .lock_counter       (),
+    .missed_pulses      ()
+);
+
+// =============================================================================
+// PPS Source Selector
+// =============================================================================
+
+pps_source_selector #(
+    .QUALITY_THRESHOLD(16'h8000),
+    .HOLDOVER_TIMEOUT(32'd10)
+) pps_selector_inst (
+    .clk                (clk_100mhz),
+    .rst_n              (rst_n_sync),
+    
+    // Source selection control
+    .source_select      (pps_source_select),
+    .auto_select_enable (pps_auto_select_enable),
+    
+    // T2MI PPS input
+    .t2mi_pps_in        (dpll_pps),
+    .t2mi_seconds       (dpll_seconds),
+    .t2mi_subseconds    (dpll_subseconds),
+    .t2mi_valid         (dpll_locked),
+    .t2mi_quality       ({8'd0, dpll_lock_quality}),
+    
+    // GNSS PPS input
+    .gnss_pps_in        (gnss_pps_in),
+    .gnss_seconds       (gnss_seconds),
+    .gnss_subseconds    (gnss_subseconds),
+    .gnss_valid         (gnss_time_valid),
+    .gnss_quality       ({8'd0, gnss_satellites, 8'd0}),
+    
+    // External PPS input
+    .ext_pps_in         (ext_pps_processed),
+    .ext_seconds        (ext_pps_seconds),
+    .ext_subseconds     (ext_pps_subseconds),
+    .ext_valid          (ext_pps_valid),
+    .ext_quality        (ext_pps_quality),
+    
+    // Selected output
+    .pps_out            (pps_selected),
+    .time_seconds       (time_seconds_selected),
+    .time_subseconds    (time_subseconds_selected),
+    .time_valid         (time_valid_selected),
+    .active_source      (active_pps_source),
+    .active_quality     (active_pps_quality),
+    
+    // Status outputs
+    .sources_available  (pps_sources_available),
+    .failover_active    (pps_failover_active),
+    .time_since_switch  (),
+    .source_phase_error (pps_source_phase_error)
 );
 
 // =============================================================================
@@ -474,23 +602,22 @@ delay_compensation #(
 // Output assignments
 // =============================================================================
 
-assign pps_out = pps_compensated;
-assign pps_backup = gnss_pps_pulse;  // GNSS PPS as backup
-assign time_seconds = time_seconds_comp;
-assign time_subseconds = time_subseconds_comp;
+assign pps_out = pps_selected;  // Now uses source selector output
+assign pps_backup = pps_compensated;  // Original compensated PPS as backup
+assign time_seconds = time_seconds_selected;
+assign time_subseconds = time_subseconds_selected;
 
 // =============================================================================
 // Status and LED control
 // =============================================================================
 
 assign debug_status = {
-    compensation_active,
-    gnss_time_valid,
-    kalman_converged,
+    ext_phase_locked,
+    pps_failover_active,
+    active_pps_source,
     dpll_holdover,
     dpll_locked,
-    sync_locked,
-    time_source
+    sync_locked
 };
 
 // LED drivers with PWM for activity indication
@@ -507,7 +634,7 @@ always @(posedge clk_100mhz or negedge rst_n_sync) begin
         led_pwm_counter <= led_pwm_counter + 1;
         
         // PPS activity detector
-        if (pps_compensated) begin
+        if (pps_selected) begin
             pps_activity <= 8'hFF;
         end else if (pps_activity > 0) begin
             pps_activity <= pps_activity - 1;
@@ -525,8 +652,10 @@ end
 assign led_power = 1'b1;
 assign led_sync = sync_locked;
 assign led_pps = |pps_activity;
-assign led_error = (parser_error_count > 0) || !dpll_locked;
+assign led_error = (parser_error_count > 0) || pps_failover_active;
 assign led_gnss = gnss_time_valid && gnss_position_valid;
 assign led_stm32 = |comm_activity;
+assign led_ext_pps = ext_signal_present && ext_phase_locked;
+assign ext_pps_locked = ext_phase_locked && ext_frequency_locked;
 
 endmodule

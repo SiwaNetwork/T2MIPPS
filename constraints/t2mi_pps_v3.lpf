@@ -139,6 +139,10 @@ IOBUF PORT "gnss_tx" IO_TYPE=LVCMOS33 DRIVE=8;
 LOCATE COMP "gnss_pps_in" SITE "U3";
 IOBUF PORT "gnss_pps_in" IO_TYPE=LVCMOS33;
 
+# External PPS reference input
+LOCATE COMP "ext_pps_in" SITE "U4";
+IOBUF PORT "ext_pps_in" IO_TYPE=LVCMOS33 PULLMODE=DOWN;
+
 # Temperature sensor input
 LOCATE COMP "temperature[0]" SITE "V1";
 LOCATE COMP "temperature[1]" SITE "V2";
@@ -188,6 +192,28 @@ IOBUF PORT "dpll_locked" IO_TYPE=LVCMOS33;
 LOCATE COMP "kalman_converged" SITE "AC3";
 IOBUF PORT "kalman_converged" IO_TYPE=LVCMOS33;
 
+LOCATE COMP "ext_pps_locked" SITE "AC4";
+IOBUF PORT "ext_pps_locked" IO_TYPE=LVCMOS33;
+
+# External PPS quality output
+LOCATE COMP "ext_pps_quality[0]" SITE "AE1";
+LOCATE COMP "ext_pps_quality[1]" SITE "AE2";
+LOCATE COMP "ext_pps_quality[2]" SITE "AE3";
+LOCATE COMP "ext_pps_quality[3]" SITE "AE4";
+LOCATE COMP "ext_pps_quality[4]" SITE "AF1";
+LOCATE COMP "ext_pps_quality[5]" SITE "AF2";
+LOCATE COMP "ext_pps_quality[6]" SITE "AF3";
+LOCATE COMP "ext_pps_quality[7]" SITE "AF4";
+LOCATE COMP "ext_pps_quality[8]" SITE "AG1";
+LOCATE COMP "ext_pps_quality[9]" SITE "AG2";
+LOCATE COMP "ext_pps_quality[10]" SITE "AG3";
+LOCATE COMP "ext_pps_quality[11]" SITE "AG4";
+LOCATE COMP "ext_pps_quality[12]" SITE "AH1";
+LOCATE COMP "ext_pps_quality[13]" SITE "AH2";
+LOCATE COMP "ext_pps_quality[14]" SITE "AH3";
+LOCATE COMP "ext_pps_quality[15]" SITE "AH4";
+IOBUF PORT "ext_pps_quality[*]" IO_TYPE=LVCMOS33;
+
 # Debug status bus
 LOCATE COMP "debug_status[0]" SITE "B1";
 LOCATE COMP "debug_status[1]" SITE "C1";
@@ -218,6 +244,9 @@ IOBUF PORT "led_gnss" IO_TYPE=LVCMOS33 DRIVE=8;
 
 LOCATE COMP "led_stm32" SITE "AD2";
 IOBUF PORT "led_stm32" IO_TYPE=LVCMOS33 DRIVE=8;
+
+LOCATE COMP "led_ext_pps" SITE "AD3";
+IOBUF PORT "led_ext_pps" IO_TYPE=LVCMOS33 DRIVE=8;
 
 # Timing Constraints
 BLOCK ASYNCPATHS;
