@@ -82,6 +82,13 @@ sim_icarus:
 	iverilog -I../$(SRC_DIR) -o t2mi_pps_sim ../$(SRC_DIR)/*.v t2mi_pps_tb.v && \
 	vvp t2mi_pps_sim
 
+# Run external PPS testbench
+sim_ext_pps:
+	@echo "Running external PPS processor simulation..."
+	cd $(SIM_DIR) && \
+	iverilog -I../$(SRC_DIR) -o tb_external_pps ../$(SRC_DIR)/external_pps_processor.v tb_external_pps.v && \
+	vvp tb_external_pps
+
 # Clean build files
 clean:
 	rm -rf $(BUILD_DIR)
@@ -123,11 +130,12 @@ help:
 	@echo "  bitstream  - Generate final bitstream"
 	@echo "  simulate   - Run simulation with ModelSim"
 	@echo "  sim_icarus - Run simulation with Icarus Verilog"
+	@echo "  sim_ext_pps- Run external PPS testbench"
 	@echo "  lint       - Run lint check with Verilator"
 	@echo "  clean      - Clean build files"
 	@echo "  docs       - Generate documentation"
 	@echo "  info       - Show project information"
 	@echo "  help       - Show this help"
 
-.PHONY: all synthesis place_route bitstream simulate sim_icarus clean lint docs info help
+.PHONY: all synthesis place_route bitstream simulate sim_icarus sim_ext_pps clean lint docs info help
 

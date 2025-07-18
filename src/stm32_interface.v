@@ -47,7 +47,11 @@ module stm32_interface (
     // GPS/GLONASS interface control
     output reg         gnss_enable,        // Enable GNSS receiver
     output reg  [2:0]  gnss_mode,         // GNSS mode selection
-    output reg         gnss_reset_n       // GNSS module reset
+    output reg         gnss_reset_n,      // GNSS module reset
+    
+    // PPS source selection control
+    output reg  [1:0]  pps_source_select,     // PPS source selection
+    output reg         pps_auto_select_enable // Enable automatic source selection
 );
 
 // =============================================================================
@@ -144,6 +148,20 @@ always @(posedge clk or negedge rst_n) begin
         spi_state <= SPI_IDLE;
         bit_counter <= 5'd0;
         cmd_reg <= 16'd0;
+        
+        // Initialize configuration registers
+        cable_delay_ns <= 32'd0;
+        antenna_delay_ns <= 32'd0;
+        dpll_kp <= 32'h00010000;  // Default Kp = 1.0 in 16.16 format
+        dpll_ki <= 32'h00000100;  // Default Ki = 0.01 in 16.16 format
+        kalman_enable <= 1'b0;
+        kalman_q <= 32'd100;
+        kalman_r <= 32'd1000;
+        gnss_enable <= 1'b0;
+        gnss_mode <= 3'd0;
+        gnss_reset_n <= 1'b1;
+        pps_source_select <= 2'b00;  // Default to T2MI
+        pps_auto_select_enable <= 1'b1;  // Default to auto-select
         data_reg <= 32'd0;
         tx_data <= 32'd0;
         spi_miso <= 1'b0;
@@ -298,6 +316,15 @@ always @(posedge clk or negedge rst_n) begin
                                 2'd0: kalman_enable <= data_reg[0];
                                 2'd1: kalman_q <= data_reg;
                                 2'd2: kalman_r <= data_reg;
+                                default: ;
+                            endcase
+                            spi_state <= SPI_IDLE;
+                        end
+                        
+                        3'b111: begin // PPS source selection
+                            case (cmd_addr[1:0])
+                                2'd0: pps_source_select <= data_reg[1:0];
+                                2'd1: pps_auto_select_enable <= data_reg[0];
                                 default: ;
                             endcase
                             spi_state <= SPI_IDLE;
