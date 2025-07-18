@@ -1,0 +1,19 @@
+# T2MI PPS Generator - Project Summary
+
+This project generates high-precision PPS (Pulse Per Second) signal from T2MI satellite TV stream.
+
+Key Features:
+- FPGA: Lattice LFE5U-25F-6BG256C
+- Accuracy: ±10ns (v1.0), ±5ppb with SiT5503 (v2.0)
+- Input: DVB-T2 Modulator Interface (T2MI)
+- Output: PPS signal (1 pulse per second)
+
+Documentation files:
+-rw-r--r-- 1 ubuntu ubuntu 10412 Jul 18 16:28 CHANGELOG.md
+-rw-r--r-- 1 ubuntu ubuntu  1970 Jul 18 16:28 QUICKSTART.md
+-rw-r--r-- 1 ubuntu ubuntu 11062 Jul 18 16:28 README.md
+-rw-r--r-- 1 ubuntu ubuntu 68760 Jul 18 17:30 README_UNIFIED.md
+-rw-r--r-- 1 ubuntu ubuntu 11722 Jul 18 17:24 README_v2.md
+-rw-r--r-- 1 ubuntu ubuntu  6854 Jul 18 16:28 SiT5503_Integration_Guide.md
+-rw-r--r-- 1 ubuntu ubuntu 12874 Jul 18 16:28 T2MI_PPS_Generator_Analysis.md
+-rw-r--r-- 1 ubuntu ubuntu 13866 Jul 18 17:24 T2MI_PPS_Improvement_Plan.md
