@@ -1,87 +1,91 @@
 // =============================================================================
 // PPS Generator Module
+// Модуль генератора PPS
 // =============================================================================
 // Description: Generates precise 1 pulse per second (PPS) signal based on
 // extracted timestamp information from T2-MI stream
+// Описание: Генерирует точный сигнал 1 импульс в секунду (PPS) на основе
+// извлеченной информации о временных метках из потока T2-MI
 // =============================================================================
 
 module pps_generator (
-    input  wire        clk,              // 100 MHz system clock
+    input  wire        clk,              // 100 MHz system clock / Системная тактовая частота 100 МГц
     input  wire        rst_n,
     
-    // Timestamp input interface
-    input  wire        timestamp_valid,
-    input  wire [39:0] seconds_since_2000,
-    input  wire [31:0] subseconds,
-    input  wire        timestamp_ready,
+    // Timestamp input interface / Входной интерфейс временных меток
+    input  wire        timestamp_valid,   // Флаг валидности временной метки
+    input  wire [39:0] seconds_since_2000,// Секунды с 2000 года
+    input  wire [31:0] subseconds,       // Доли секунды
+    input  wire        timestamp_ready,   // Временная метка готова
     
-    // PPS output interface
-    output reg         pps_pulse,
-    output reg [31:0]  pps_counter,
+    // PPS output interface / Выходной интерфейс PPS
+    output reg         pps_pulse,        // Импульс PPS
+    output reg [31:0]  pps_counter,      // Счетчик PPS
     
-    // Status output
-    output reg         pps_error
+    // Status output / Выход статуса
+    output reg         pps_error         // Ошибка PPS
 );
 
 // =============================================================================
-// Parameters and Constants
+// Parameters and Constants / Параметры и константы
 // =============================================================================
 
-// Clock parameters
-parameter CLK_FREQ_HZ = 100_000_000;    // 100 MHz system clock
-parameter PPS_PULSE_WIDTH = 1000;       // PPS pulse width in clock cycles (10 us)
+// Clock parameters / Параметры тактирования
+parameter CLK_FREQ_HZ = 100_000_000;    // 100 MHz system clock / Системная частота 100 МГц
+parameter PPS_PULSE_WIDTH = 1000;       // PPS pulse width in clock cycles (10 us) / Ширина импульса PPS в тактах (10 мкс)
 
-// Subseconds resolution
-parameter SUBSEC_RESOLUTION = 32'hFFFFFFFF;  // 32-bit subseconds resolution
+// Subseconds resolution / Разрешение долей секунды
+parameter SUBSEC_RESOLUTION = 32'hFFFFFFFF;  // 32-bit subseconds resolution / 32-битное разрешение долей секунды
 
-// Synchronization parameters
-parameter SYNC_THRESHOLD = 1000;        // Sync threshold in clock cycles
-parameter MAX_DRIFT = 10000;            // Maximum allowed drift in clock cycles
-
-// =============================================================================
-// Internal Signals
-// =============================================================================
-
-// Time tracking
-reg [39:0]  current_seconds;
-reg [31:0]  current_subseconds;
-reg [31:0]  subsec_counter;
-reg [31:0]  subsec_increment;
-reg         time_valid;
-
-// PPS generation
-reg [31:0]  pps_pulse_counter;
-reg         pps_active;
-reg [31:0]  next_pps_time;
-reg         pps_armed;
-
-// Synchronization
-reg [39:0]  last_sync_seconds;
-reg [31:0]  last_sync_subseconds;
-reg [31:0]  sync_error;
-reg         sync_valid;
-reg [31:0]  drift_accumulator;
-
-// State machine
-reg [2:0]   pps_state;
-localparam  STATE_INIT      = 3'b000;
-localparam  STATE_SYNC      = 3'b001;
-localparam  STATE_TRACKING  = 3'b010;
-localparam  STATE_GENERATE  = 3'b011;
-localparam  STATE_ERROR     = 3'b100;
+// Synchronization parameters / Параметры синхронизации
+parameter SYNC_THRESHOLD = 1000;        // Sync threshold in clock cycles / Порог синхронизации в тактах
+parameter MAX_DRIFT = 10000;            // Maximum allowed drift in clock cycles / Максимальный допустимый дрейф в тактах
 
 // =============================================================================
-// Subseconds Increment Calculation
+// Internal Signals / Внутренние сигналы
+// =============================================================================
+
+// Time tracking / Отслеживание времени
+reg [39:0]  current_seconds;        // Текущие секунды
+reg [31:0]  current_subseconds;     // Текущие доли секунды
+reg [31:0]  subsec_counter;         // Счетчик долей секунды
+reg [31:0]  subsec_increment;       // Приращение долей секунды за такт
+reg         time_valid;             // Время валидно
+
+// PPS generation / Генерация PPS
+reg [31:0]  pps_pulse_counter;      // Счетчик длительности импульса PPS
+reg         pps_active;             // Импульс PPS активен
+reg [31:0]  next_pps_time;          // Время следующего PPS
+reg         pps_armed;              // PPS взведен
+
+// Synchronization / Синхронизация
+reg [39:0]  last_sync_seconds;      // Последние синхронизированные секунды
+reg [31:0]  last_sync_subseconds;   // Последние синхронизированные доли секунды
+reg [31:0]  sync_error;             // Ошибка синхронизации
+reg         sync_valid;             // Синхронизация валидна
+reg [31:0]  drift_accumulator;      // Накопитель дрейфа
+
+// State machine / Конечный автомат
+reg [2:0]   pps_state;              // Состояние автомата
+localparam  STATE_INIT      = 3'b000;   // Инициализация
+localparam  STATE_SYNC      = 3'b001;   // Синхронизация
+localparam  STATE_TRACKING  = 3'b010;   // Отслеживание
+localparam  STATE_GENERATE  = 3'b011;   // Генерация
+localparam  STATE_ERROR     = 3'b100;   // Ошибка
+
+// =============================================================================
+// Subseconds Increment Calculation / Расчет приращения долей секунды
 // =============================================================================
 
 // Calculate increment per clock cycle for subseconds counter
+// Расчет приращения за такт для счетчика долей секунды
 // subsec_increment = (2^32) / CLK_FREQ_HZ
 always @(*) begin
-    subsec_increment = 32'd42949673;  // Approximately 2^32 / 100MHz
+    subsec_increment = 32'd42949673;  // Approximately 2^32 / 100MHz / Приблизительно 2^32 / 100МГц
 end
 
 // =============================================================================
-// Time Tracking Logic
+// Time Tracking Logic / Логика отслеживания времени
 // =============================================================================
 
 always @(posedge clk or negedge rst_n) begin
@@ -92,16 +96,16 @@ always @(posedge clk or negedge rst_n) begin
         time_valid <= 1'b0;
     end else begin
         if (timestamp_ready && timestamp_valid) begin
-            // Synchronize to incoming timestamp
+            // Synchronize to incoming timestamp / Синхронизация с входной временной меткой
             current_seconds <= seconds_since_2000;
             current_subseconds <= subseconds;
             subsec_counter <= subseconds;
             time_valid <= 1'b1;
         end else if (time_valid) begin
-            // Free-running time tracking
+            // Free-running time tracking / Свободное отслеживание времени
             subsec_counter <= subsec_counter + subsec_increment;
             
-            // Handle subseconds overflow (new second)
+            // Handle subseconds overflow (new second) / Обработка переполнения долей секунды (новый момент)
             if (subsec_counter >= SUBSEC_RESOLUTION) begin
                 subsec_counter <= subsec_counter - SUBSEC_RESOLUTION;
                 current_seconds <= current_seconds + 1'b1;
@@ -113,7 +117,7 @@ always @(posedge clk or negedge rst_n) begin
 end
 
 // =============================================================================
-// Synchronization Error Calculation
+// Synchronization Error Calculation / Расчет ошибки синхронизации
 // =============================================================================
 
 always @(posedge clk or negedge rst_n) begin
@@ -125,20 +129,20 @@ always @(posedge clk or negedge rst_n) begin
         last_sync_subseconds <= 32'h00000000;
     end else begin
         if (timestamp_ready && timestamp_valid && time_valid) begin
-            // Calculate synchronization error
+            // Calculate synchronization error / Расчет ошибки синхронизации
             if (seconds_since_2000 == current_seconds) begin
-                // Same second, calculate subseconds difference
+                // Same second, calculate subseconds difference / Одинаковые секунды, расчет разницы долей секунды
                 if (subseconds > current_subseconds) begin
                     sync_error <= subseconds - current_subseconds;
                 end else begin
                     sync_error <= current_subseconds - subseconds;
                 end
             end else begin
-                // Different seconds, large error
+                // Different seconds, large error / Разные секунды, большая ошибка
                 sync_error <= 32'hFFFFFFFF;
             end
             
-            // Update drift accumulator
+            // Update drift accumulator / Обновление накопителя дрейфа
             if (sync_error < SYNC_THRESHOLD) begin
                 drift_accumulator <= drift_accumulator + sync_error;
                 sync_valid <= 1'b1;
@@ -154,7 +158,7 @@ always @(posedge clk or negedge rst_n) begin
 end
 
 // =============================================================================
-// PPS Generation State Machine
+// PPS Generation State Machine / Конечный автомат генерации PPS
 // =============================================================================
 
 always @(posedge clk or negedge rst_n) begin
@@ -204,7 +208,7 @@ always @(posedge clk or negedge rst_n) begin
 end
 
 // =============================================================================
-// PPS Pulse Generation Logic
+// PPS Pulse Generation Logic / Логика генерации импульса PPS
 // =============================================================================
 
 always @(posedge clk or negedge rst_n) begin
@@ -217,7 +221,7 @@ always @(posedge clk or negedge rst_n) begin
         pps_active <= 1'b0;
         pps_error <= 1'b0;
     end else begin
-        // Default values
+        // Default values / Значения по умолчанию
         pps_error <= 1'b0;
         
         case (pps_state)
@@ -238,14 +242,14 @@ always @(posedge clk or negedge rst_n) begin
                 pps_pulse <= 1'b0;
                 pps_pulse_counter <= 32'h00000000;
                 
-                // Arm PPS for next second boundary
+                // Arm PPS for next second boundary / Взведение PPS для следующей границы секунды
                 if (!pps_armed) begin
-                    next_pps_time <= 32'h00000000;  // Target start of next second
+                    next_pps_time <= 32'h00000000;  // Target start of next second / Цель - начало следующей секунды
                     pps_armed <= 1'b1;
                 end
                 
-                // Check if we should generate PPS
-                if (pps_armed && (current_subseconds < 32'h10000000)) begin  // Near second boundary
+                // Check if we should generate PPS / Проверка, нужно ли генерировать PPS
+                if (pps_armed && (current_subseconds < 32'h10000000)) begin  // Near second boundary / Близкая к границе секунды
                     pps_active <= 1'b1;
                 end
             end
@@ -280,12 +284,12 @@ always @(posedge clk or negedge rst_n) begin
 end
 
 // =============================================================================
-// Debug and Monitoring
+// Debug and Monitoring / Отладка и мониторинг
 // =============================================================================
 
 // Synthesis translate_off
 always @(posedge clk) begin
-    if (pps_pulse && !pps_active) begin  // Rising edge of PPS
+    if (pps_pulse && !pps_active) begin  // Rising edge of PPS / Переход импульса PPS в 1
         $display("PPS pulse generated at time %t", $time);
         $display("  Current seconds: %d", current_seconds);
         $display("  Current subseconds: 0x%08x", current_subseconds);
