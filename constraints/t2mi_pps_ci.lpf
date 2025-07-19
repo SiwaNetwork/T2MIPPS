@@ -1,0 +1,426 @@
+# =============================================================================
+# Lattice Physical Constraints File (.lpf)
+# Target Device: LFE5U-25F-6BG256C
+# Project: T2MI PPS Generator with CI Interface (8-bit)
+# Version: 1.0 - CI Interface version
+# =============================================================================
+
+# Device Configuration
+BLOCK RESETPATHS ;
+BLOCK ASYNCPATHS ;
+
+# =============================================================================
+# Clock Constraints
+# =============================================================================
+
+# System Clock
+LOCATE COMP "clk" SITE "L16" ;
+IOBUF PORT "clk" IO_TYPE=LVCMOS33 ;
+FREQUENCY PORT "clk" 100.000000 MHz ;
+
+# =============================================================================
+# CI Interface - Control Signals
+# =============================================================================
+
+LOCATE COMP "ci_reset" SITE "B1" ;
+IOBUF PORT "ci_reset" IO_TYPE=LVCMOS33 ;
+
+LOCATE COMP "ci_reg_n" SITE "B14" ;
+IOBUF PORT "ci_reg_n" IO_TYPE=LVCMOS33 ;
+
+LOCATE COMP "ci_ce1_n" SITE "K1" ;
+IOBUF PORT "ci_ce1_n" IO_TYPE=LVCMOS33 ;
+
+LOCATE COMP "ci_oe_n" SITE "K2" ;
+IOBUF PORT "ci_oe_n" IO_TYPE=LVCMOS33 ;
+
+LOCATE COMP "ci_we_n" SITE "G1" ;
+IOBUF PORT "ci_we_n" IO_TYPE=LVCMOS33 ;
+
+LOCATE COMP "ci_iord_n" SITE "J1" ;
+IOBUF PORT "ci_iord_n" IO_TYPE=LVCMOS33 ;
+
+LOCATE COMP "ci_iowr_n" SITE "M2" ;
+IOBUF PORT "ci_iowr_n" IO_TYPE=LVCMOS33 ;
+
+LOCATE COMP "ci_ireq_n" SITE "A14" ;
+IOBUF PORT "ci_ireq_n" IO_TYPE=LVCMOS33 ;
+
+LOCATE COMP "ci_inpack_n" SITE "A12" ;
+IOBUF PORT "ci_inpack_n" IO_TYPE=LVCMOS33 ;
+
+LOCATE COMP "bus_oe" SITE "A11" ;
+IOBUF PORT "bus_oe" IO_TYPE=LVCMOS33 ;
+
+# =============================================================================
+# CI Interface - Address Bus
+# =============================================================================
+
+# 8-bit address bus
+LOCATE COMP "ci_a[0]" SITE "C7" ;
+LOCATE COMP "ci_a[1]" SITE "A8" ;
+LOCATE COMP "ci_a[2]" SITE "B7" ;
+LOCATE COMP "ci_a[3]" SITE "A7" ;
+LOCATE COMP "ci_a[4]" SITE "B6" ;
+LOCATE COMP "ci_a[5]" SITE "A6" ;
+LOCATE COMP "ci_a[6]" SITE "B5" ;
+LOCATE COMP "ci_a[7]" SITE "A5" ;
+
+IOBUF PORT "ci_a[0]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "ci_a[1]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "ci_a[2]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "ci_a[3]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "ci_a[4]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "ci_a[5]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "ci_a[6]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "ci_a[7]" IO_TYPE=LVCMOS33 ;
+
+# Extended address bits
+LOCATE COMP "ci_a_ext[0]" SITE "A3" ;
+LOCATE COMP "ci_a_ext[1]" SITE "A4" ;
+LOCATE COMP "ci_a_ext[2]" SITE "C4" ;
+LOCATE COMP "ci_a_ext[3]" SITE "A2" ;
+LOCATE COMP "ci_a_ext[4]" SITE "B4" ;
+LOCATE COMP "ci_a_ext[5]" SITE "D4" ;
+LOCATE COMP "ci_a_ext[6]" SITE "B3" ;
+
+IOBUF PORT "ci_a_ext[0]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "ci_a_ext[1]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "ci_a_ext[2]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "ci_a_ext[3]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "ci_a_ext[4]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "ci_a_ext[5]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "ci_a_ext[6]" IO_TYPE=LVCMOS33 ;
+
+# =============================================================================
+# CI Interface - Data Bus (8-bit bidirectional)
+# =============================================================================
+
+LOCATE COMP "ci_d[0]" SITE "N5" ;
+LOCATE COMP "ci_d[1]" SITE "N4" ;
+LOCATE COMP "ci_d[2]" SITE "N3" ;
+LOCATE COMP "ci_d[3]" SITE "P4" ;
+LOCATE COMP "ci_d[4]" SITE "R5" ;
+LOCATE COMP "ci_d[5]" SITE "R4" ;
+LOCATE COMP "ci_d[6]" SITE "T4" ;
+LOCATE COMP "ci_d[7]" SITE "R3" ;
+
+IOBUF PORT "ci_d[0]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "ci_d[1]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "ci_d[2]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "ci_d[3]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "ci_d[4]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "ci_d[5]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "ci_d[6]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "ci_d[7]" IO_TYPE=LVCMOS33 ;
+
+# =============================================================================
+# CI Interface - Media Data Input (from CAM to Host)
+# =============================================================================
+
+LOCATE COMP "ci_mdi[0]" SITE "J2" ;
+LOCATE COMP "ci_mdi[1]" SITE "H2" ;
+LOCATE COMP "ci_mdi[2]" SITE "G2" ;
+LOCATE COMP "ci_mdi[3]" SITE "F1" ;
+LOCATE COMP "ci_mdi[4]" SITE "E1" ;
+LOCATE COMP "ci_mdi[5]" SITE "D1" ;
+LOCATE COMP "ci_mdi[6]" SITE "C2" ;
+LOCATE COMP "ci_mdi[7]" SITE "C1" ;
+
+IOBUF PORT "ci_mdi[0]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "ci_mdi[1]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "ci_mdi[2]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "ci_mdi[3]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "ci_mdi[4]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "ci_mdi[5]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "ci_mdi[6]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "ci_mdi[7]" IO_TYPE=LVCMOS33 ;
+
+LOCATE COMP "ci_mclki" SITE "M1" ;
+IOBUF PORT "ci_mclki" IO_TYPE=LVCMOS33 ;
+
+LOCATE COMP "ci_mival" SITE "F2" ;
+IOBUF PORT "ci_mival" IO_TYPE=LVCMOS33 ;
+
+LOCATE COMP "ci_mistrt" SITE "L2" ;
+IOBUF PORT "ci_mistrt" IO_TYPE=LVCMOS33 ;
+
+# =============================================================================
+# CI Interface - Media Data Output (from Host to CAM)
+# =============================================================================
+
+LOCATE COMP "ci_mdo[0]" SITE "P2" ;
+LOCATE COMP "ci_mdo[1]" SITE "P1" ;
+LOCATE COMP "ci_mdo[2]" SITE "N1" ;
+LOCATE COMP "ci_mdo[3]" SITE "T3" ;
+LOCATE COMP "ci_mdo[4]" SITE "P3" ;
+LOCATE COMP "ci_mdo[5]" SITE "T2" ;
+LOCATE COMP "ci_mdo[6]" SITE "R2" ;
+LOCATE COMP "ci_mdo[7]" SITE "R1" ;
+
+IOBUF PORT "ci_mdo[0]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "ci_mdo[1]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "ci_mdo[2]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "ci_mdo[3]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "ci_mdo[4]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "ci_mdo[5]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "ci_mdo[6]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "ci_mdo[7]" IO_TYPE=LVCMOS33 ;
+
+LOCATE COMP "ci_mclko" SITE "L1" ;
+IOBUF PORT "ci_mclko" IO_TYPE=LVCMOS33 ;
+
+LOCATE COMP "ci_moval" SITE "A13" ;
+IOBUF PORT "ci_moval" IO_TYPE=LVCMOS33 ;
+
+LOCATE COMP "ci_mostrt" SITE "B12" ;
+IOBUF PORT "ci_mostrt" IO_TYPE=LVCMOS33 ;
+
+# =============================================================================
+# Reset Signal
+# =============================================================================
+
+LOCATE COMP "rst_n" SITE "B4" ;
+IOBUF PORT "rst_n" IO_TYPE=LVCMOS33 PULLMODE=UP ;
+
+# =============================================================================
+# T2-MI Input Interface
+# =============================================================================
+
+# T2-MI Clock Input
+LOCATE COMP "t2mi_clk" SITE "P4";
+IOBUF PORT "t2mi_clk" IO_TYPE=LVCMOS33;
+FREQUENCY PORT "t2mi_clk" 27.000000 MHz;
+
+# T2-MI Data Bus [7:0]
+LOCATE COMP "t2mi_data[0]" SITE "R14" ;
+LOCATE COMP "t2mi_data[1]" SITE "P14" ;
+LOCATE COMP "t2mi_data[2]" SITE "N14" ;
+LOCATE COMP "t2mi_data[3]" SITE "M14" ;
+LOCATE COMP "t2mi_data[4]" SITE "L14" ;
+LOCATE COMP "t2mi_data[5]" SITE "K14" ;
+LOCATE COMP "t2mi_data[6]" SITE "J14" ;
+LOCATE COMP "t2mi_data[7]" SITE "H14" ;
+
+# T2-MI Control Signals
+LOCATE COMP "t2mi_valid" SITE "G14" ;
+LOCATE COMP "t2mi_sync" SITE "F14";
+
+# Set I/O standards for T2-MI interface
+IOBUF PORT "t2mi_data[0]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "t2mi_data[1]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "t2mi_data[2]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "t2mi_data[3]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "t2mi_data[4]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "t2mi_data[5]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "t2mi_data[6]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "t2mi_data[7]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "t2mi_valid" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "t2mi_sync" IO_TYPE=LVCMOS33;
+
+# =============================================================================
+# Control Inputs
+# =============================================================================
+
+LOCATE COMP "cam_bypass" SITE "G9" ;
+IOBUF PORT "cam_bypass" IO_TYPE=LVCMOS33 PULLMODE=DOWN ;
+
+# =============================================================================
+# PPS Output
+# =============================================================================
+
+# Main PPS Output
+LOCATE COMP "pps_out" SITE "E14" ;
+IOBUF PORT "pps_out" IO_TYPE=LVCMOS33 DRIVE=12 ;
+
+# Backup PPS Output
+LOCATE COMP "pps_backup" SITE "D14" ;
+IOBUF PORT "pps_backup" IO_TYPE=LVCMOS33 DRIVE=12 ;
+
+# =============================================================================
+# SiT5503 High-Stability Oscillator Interface
+# =============================================================================
+
+# SiT5503 10 MHz Clock Input
+LOCATE COMP "sit5503_clk" SITE "C14" ;
+IOBUF PORT "sit5503_clk" IO_TYPE=LVCMOS33 ;
+FREQUENCY PORT "sit5503_clk" 10.000000 MHz ;
+
+# SiT5503 I2C Interface
+LOCATE COMP "sit5503_scl" SITE "B15" ;
+LOCATE COMP "sit5503_sda" SITE "A15" ;
+IOBUF PORT "sit5503_scl" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "sit5503_sda" IO_TYPE=LVCMOS33 DRIVE=8 ;
+
+# =============================================================================
+# Status and Debug Outputs
+# =============================================================================
+
+# Status Signals
+LOCATE COMP "timestamp_valid" SITE "T16" ;
+LOCATE COMP "sync_locked" SITE "R16" ;
+LOCATE COMP "autonomous_mode" SITE "P16" ;
+LOCATE COMP "sit5503_ready" SITE "N16" ;
+LOCATE COMP "cam_present" SITE "M16" ;
+LOCATE COMP "cam_initialized" SITE "L15" ;
+
+# Debug Status Bus [7:0]
+LOCATE COMP "debug_status[0]" SITE "K15" ;
+LOCATE COMP "debug_status[1]" SITE "J15" ;
+LOCATE COMP "debug_status[2]" SITE "H15" ;
+LOCATE COMP "debug_status[3]" SITE "G16" ;
+LOCATE COMP "debug_status[4]" SITE "F16" ;
+LOCATE COMP "debug_status[5]" SITE "E15" ;
+LOCATE COMP "debug_status[6]" SITE "D15" ;
+LOCATE COMP "debug_status[7]" SITE "C15" ;
+
+# PPS Status Bus [7:0]
+LOCATE COMP "pps_status[0]" SITE "B16" ;
+LOCATE COMP "pps_status[1]" SITE "A16" ;
+LOCATE COMP "pps_status[2]" SITE "T11" ;
+LOCATE COMP "pps_status[3]" SITE "R11" ;
+LOCATE COMP "pps_status[4]" SITE "P11" ;
+LOCATE COMP "pps_status[5]" SITE "N11" ;
+LOCATE COMP "pps_status[6]" SITE "M11" ;
+LOCATE COMP "pps_status[7]" SITE "L11" ;
+
+# CAM Status Bus [7:0]
+LOCATE COMP "cam_status[0]" SITE "K11" ;
+LOCATE COMP "cam_status[1]" SITE "J11" ;
+LOCATE COMP "cam_status[2]" SITE "H11" ;
+LOCATE COMP "cam_status[3]" SITE "G11" ;
+LOCATE COMP "cam_status[4]" SITE "F11" ;
+LOCATE COMP "cam_status[5]" SITE "E11" ;
+LOCATE COMP "cam_status[6]" SITE "D11" ;
+LOCATE COMP "cam_status[7]" SITE "C11" ;
+
+# Set I/O standards for status signals
+IOBUF PORT "timestamp_valid" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "sync_locked" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "autonomous_mode" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "sit5503_ready" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "cam_present" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "cam_initialized" IO_TYPE=LVCMOS33 ;
+
+IOBUF PORT "debug_status[0]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "debug_status[1]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "debug_status[2]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "debug_status[3]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "debug_status[4]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "debug_status[5]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "debug_status[6]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "debug_status[7]" IO_TYPE=LVCMOS33 ;
+
+IOBUF PORT "pps_status[0]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "pps_status[1]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "pps_status[2]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "pps_status[3]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "pps_status[4]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "pps_status[5]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "pps_status[6]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "pps_status[7]" IO_TYPE=LVCMOS33 ;
+
+IOBUF PORT "cam_status[0]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "cam_status[1]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "cam_status[2]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "cam_status[3]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "cam_status[4]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "cam_status[5]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "cam_status[6]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "cam_status[7]" IO_TYPE=LVCMOS33 ;
+
+# =============================================================================
+# LED Indicators
+# =============================================================================
+
+# Main Status LED
+LOCATE COMP "led_1" SITE "D16" ;
+IOBUF PORT "led_1" IO_TYPE=LVCMOS33 ;
+
+# Additional Status LEDs
+LOCATE COMP "led_power" SITE "K12" ;
+LOCATE COMP "led_sync" SITE "J12" ;
+LOCATE COMP "led_pps" SITE "H12" ;
+LOCATE COMP "led_error" SITE "G12" ;
+LOCATE COMP "led_cam" SITE "F12" ;
+
+# Set I/O standards for LEDs
+IOBUF PORT "led_power" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "led_sync" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "led_pps" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "led_error" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "led_cam" IO_TYPE=LVCMOS33 DRIVE=8 ;
+
+# =============================================================================
+# SPI Interfaces (unused but included from original constraints)
+# =============================================================================
+
+LOCATE COMP "spi2_mosi" SITE "G15" ;
+IOBUF PORT "spi2_mosi" IO_TYPE=LVCMOS33 ;
+
+LOCATE COMP "spi2_cs_n" SITE "E16" ;
+IOBUF PORT "spi2_cs_n" IO_TYPE=LVCMOS33 ;
+
+LOCATE COMP "spi2_clk" SITE "F15" ;
+IOBUF PORT "spi2_clk" IO_TYPE=LVCMOS33 ;
+
+LOCATE COMP "program_n" SITE "T15" ;
+IOBUF PORT "program_n" IO_TYPE=LVCMOS33 ;
+
+LOCATE COMP "sspi_clk" SITE "T14" ;
+IOBUF PORT "sspi_clk" IO_TYPE=LVCMOS33 ;
+
+LOCATE COMP "sspi_cs_n" SITE "R13" ;
+IOBUF PORT "sspi_cs_n" IO_TYPE=LVCMOS33 ;
+
+LOCATE COMP "sspi_mosi" SITE "R15" ;
+IOBUF PORT "sspi_mosi" IO_TYPE=LVCMOS33 ;
+
+LOCATE COMP "sspi_miso" SITE "T13" ;
+IOBUF PORT "sspi_miso" IO_TYPE=LVCMOS33 ;
+
+# =============================================================================
+# Timing Constraints
+# =============================================================================
+
+# CI Interface Timing
+MAXDELAY FROM PORT "ci_d*" TO CELL "*ci_inst*" 10.000000 ns;
+MAXDELAY FROM CELL "*ci_inst*" TO PORT "ci_d*" 10.000000 ns;
+MAXDELAY FROM CELL "*ci_inst*" TO PORT "ci_a*" 5.000000 ns;
+MAXDELAY FROM CELL "*ci_inst*" TO PORT "ci_oe_n" 5.000000 ns;
+MAXDELAY FROM CELL "*ci_inst*" TO PORT "ci_we_n" 5.000000 ns;
+
+# Media Interface Timing
+MAXDELAY FROM PORT "ci_mdi*" TO CELL "*ci_inst*" 5.000000 ns;
+MAXDELAY FROM CELL "*ci_inst*" TO PORT "ci_mdo*" 5.000000 ns;
+
+# Clock Domain Crossing Constraints
+MAXDELAY FROM CELL "*t2mi_data_sync*" TO CELL "*parser_inst*" 10.000000 ns;
+MAXDELAY FROM CELL "*timestamp_ready*" TO CELL "*pps_inst*" 5.000000 ns;
+
+# PPS Output Timing - Critical for precision
+MAXDELAY FROM CELL "*pps_pulse*" TO PORT "pps_out" 2.000000 ns;
+MAXDELAY FROM CELL "*pps_pulse*" TO PORT "pps_backup" 2.000000 ns;
+
+# =============================================================================
+# Configuration Settings
+# =============================================================================
+
+# Configuration mode
+SYSCONFIG CONFIG_MODE=SPI_SERIAL MCCLK_FREQ=2.4 WAKE_UP=21 ;
+
+# Compression settings
+SYSCONFIG COMPRESS_CONFIG=ON ;
+
+# =============================================================================
+# Power Optimization
+# =============================================================================
+
+# High-performance mode for critical timing signals
+IOBUF PORT "pps_out" OPENDRAIN=OFF TERMINATION=OFF ;
+IOBUF PORT "pps_backup" OPENDRAIN=OFF TERMINATION=OFF ;
+IOBUF PORT "sit5503_clk" OPENDRAIN=OFF TERMINATION=OFF ;
+
+# Optimize I2C interface for power
+IOBUF PORT "sit5503_scl" OPENDRAIN=ON TERMINATION=OFF ;
+IOBUF PORT "sit5503_sda" OPENDRAIN=ON TERMINATION=OFF ;
