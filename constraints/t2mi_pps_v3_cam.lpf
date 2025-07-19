@@ -1,0 +1,376 @@
+# =============================================================================
+# Lattice Physical Constraints File (.lpf)
+# Target Device: LFE5U-25F-6BG256C
+# Project: T2MI PPS Generator with CAM Interface
+# Version: 3.0 - Added PCMCIA/CAM interface pins
+# =============================================================================
+
+# Device Configuration
+BLOCK RESETPATHS ;
+BLOCK ASYNCPATHS ;
+
+# =============================================================================
+# Clock Constraints
+# =============================================================================
+
+# System Clock - 100 MHz
+LOCATE COMP "clk_100mhz" SITE "A7" ;
+IOBUF PORT "clk_100mhz" IO_TYPE=LVCMOS33 ;
+FREQUENCY PORT "clk_100mhz" 100.000000 MHz ;
+
+# T2-MI Clock Input
+LOCATE COMP "t2mi_clk" SITE "P4";
+IOBUF PORT "t2mi_clk" IO_TYPE=LVCMOS33;
+FREQUENCY PORT "t2mi_clk" 27.000000 MHz;
+
+# =============================================================================
+# Reset Signal
+# =============================================================================
+
+LOCATE COMP "rst_n" SITE "B4" ;
+IOBUF PORT "rst_n" IO_TYPE=LVCMOS33 PULLMODE=UP ;
+
+# =============================================================================
+# T2-MI Input Interface
+# =============================================================================
+
+# T2-MI Data Bus [7:0]
+LOCATE COMP "t2mi_data[0]" SITE "R1" ;
+LOCATE COMP "t2mi_data[1]" SITE "P1" ;
+LOCATE COMP "t2mi_data[2]" SITE "N1" ;
+LOCATE COMP "t2mi_data[3]" SITE "M1" ;
+LOCATE COMP "t2mi_data[4]" SITE "L1" ;
+LOCATE COMP "t2mi_data[5]" SITE "K1" ;
+LOCATE COMP "t2mi_data[6]" SITE "J1" ;
+LOCATE COMP "t2mi_data[7]" SITE "B5" ;
+
+# T2-MI Control Signals
+LOCATE COMP "t2mi_valid" SITE "G1" ;
+LOCATE COMP "t2mi_sync" SITE "F1";
+
+# Set I/O standards for T2-MI interface
+IOBUF PORT "t2mi_data[0]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "t2mi_data[1]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "t2mi_data[2]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "t2mi_data[3]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "t2mi_data[4]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "t2mi_data[5]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "t2mi_data[6]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "t2mi_data[7]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "t2mi_valid" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "t2mi_sync" IO_TYPE=LVCMOS33;
+
+# =============================================================================
+# PCMCIA/CAM Interface (16-bit data bus according to PC Card Standard)
+# =============================================================================
+
+# PCMCIA Data Bus [15:0] - 16-bit wide according to PC Card Standard
+LOCATE COMP "pcmcia_data[0]" SITE "T3" ;
+LOCATE COMP "pcmcia_data[1]" SITE "R3" ;
+LOCATE COMP "pcmcia_data[2]" SITE "P3" ;
+LOCATE COMP "pcmcia_data[3]" SITE "N3" ;
+LOCATE COMP "pcmcia_data[4]" SITE "M3" ;
+LOCATE COMP "pcmcia_data[5]" SITE "L3" ;
+LOCATE COMP "pcmcia_data[6]" SITE "K4" ;
+LOCATE COMP "pcmcia_data[7]" SITE "J4" ;
+LOCATE COMP "pcmcia_data[8]" SITE "T4" ;
+LOCATE COMP "pcmcia_data[9]" SITE "R4" ;
+LOCATE COMP "pcmcia_data[10]" SITE "P5" ;
+LOCATE COMP "pcmcia_data[11]" SITE "N5" ;
+LOCATE COMP "pcmcia_data[12]" SITE "M5" ;
+LOCATE COMP "pcmcia_data[13]" SITE "L5" ;
+LOCATE COMP "pcmcia_data[14]" SITE "K5" ;
+LOCATE COMP "pcmcia_data[15]" SITE "J5" ;
+
+# PCMCIA Address Bus [25:0] - 26-bit addressing for 64MB
+LOCATE COMP "pcmcia_addr[0]" SITE "H4" ;
+LOCATE COMP "pcmcia_addr[1]" SITE "G4" ;
+LOCATE COMP "pcmcia_addr[2]" SITE "F4" ;
+LOCATE COMP "pcmcia_addr[3]" SITE "E4" ;
+LOCATE COMP "pcmcia_addr[4]" SITE "D4" ;
+LOCATE COMP "pcmcia_addr[5]" SITE "C4" ;
+LOCATE COMP "pcmcia_addr[6]" SITE "B8" ;
+LOCATE COMP "pcmcia_addr[7]" SITE "A8" ;
+LOCATE COMP "pcmcia_addr[8]" SITE "H5" ;
+LOCATE COMP "pcmcia_addr[9]" SITE "G5" ;
+LOCATE COMP "pcmcia_addr[10]" SITE "F5" ;
+LOCATE COMP "pcmcia_addr[11]" SITE "E5" ;
+LOCATE COMP "pcmcia_addr[12]" SITE "D5" ;
+LOCATE COMP "pcmcia_addr[13]" SITE "C5" ;
+LOCATE COMP "pcmcia_addr[14]" SITE "B9" ;
+LOCATE COMP "pcmcia_addr[15]" SITE "A9" ;
+LOCATE COMP "pcmcia_addr[16]" SITE "H6" ;
+LOCATE COMP "pcmcia_addr[17]" SITE "G6" ;
+LOCATE COMP "pcmcia_addr[18]" SITE "F6" ;
+LOCATE COMP "pcmcia_addr[19]" SITE "E6" ;
+LOCATE COMP "pcmcia_addr[20]" SITE "D6" ;
+LOCATE COMP "pcmcia_addr[21]" SITE "C6" ;
+LOCATE COMP "pcmcia_addr[22]" SITE "B10" ;
+LOCATE COMP "pcmcia_addr[23]" SITE "A10" ;
+LOCATE COMP "pcmcia_addr[24]" SITE "H7" ;
+LOCATE COMP "pcmcia_addr[25]" SITE "G7" ;
+
+# PCMCIA Control Signals
+LOCATE COMP "pcmcia_ce1_n" SITE "F7" ;
+LOCATE COMP "pcmcia_ce2_n" SITE "E7" ;
+LOCATE COMP "pcmcia_oe_n" SITE "D7" ;
+LOCATE COMP "pcmcia_we_n" SITE "C7" ;
+LOCATE COMP "pcmcia_reg_n" SITE "B11" ;
+LOCATE COMP "pcmcia_wait_n" SITE "A11" ;
+LOCATE COMP "pcmcia_reset" SITE "H8" ;
+LOCATE COMP "pcmcia_ready" SITE "G8" ;
+LOCATE COMP "pcmcia_ireq_n" SITE "F8" ;
+
+# PCMCIA Card Detection
+LOCATE COMP "pcmcia_cd1_n" SITE "E8" ;
+LOCATE COMP "pcmcia_cd2_n" SITE "D8" ;
+
+# PCMCIA Power Control
+LOCATE COMP "pcmcia_vcc_en" SITE "C8" ;
+LOCATE COMP "pcmcia_vpp_en" SITE "B12" ;
+LOCATE COMP "pcmcia_vs[0]" SITE "A12" ;
+LOCATE COMP "pcmcia_vs[1]" SITE "H9" ;
+
+# Set I/O standards for PCMCIA interface - bidirectional data bus
+IOBUF PORT "pcmcia_data[0]" IO_TYPE=LVCMOS33 PULLMODE=NONE ;
+IOBUF PORT "pcmcia_data[1]" IO_TYPE=LVCMOS33 PULLMODE=NONE ;
+IOBUF PORT "pcmcia_data[2]" IO_TYPE=LVCMOS33 PULLMODE=NONE ;
+IOBUF PORT "pcmcia_data[3]" IO_TYPE=LVCMOS33 PULLMODE=NONE ;
+IOBUF PORT "pcmcia_data[4]" IO_TYPE=LVCMOS33 PULLMODE=NONE ;
+IOBUF PORT "pcmcia_data[5]" IO_TYPE=LVCMOS33 PULLMODE=NONE ;
+IOBUF PORT "pcmcia_data[6]" IO_TYPE=LVCMOS33 PULLMODE=NONE ;
+IOBUF PORT "pcmcia_data[7]" IO_TYPE=LVCMOS33 PULLMODE=NONE ;
+IOBUF PORT "pcmcia_data[8]" IO_TYPE=LVCMOS33 PULLMODE=NONE ;
+IOBUF PORT "pcmcia_data[9]" IO_TYPE=LVCMOS33 PULLMODE=NONE ;
+IOBUF PORT "pcmcia_data[10]" IO_TYPE=LVCMOS33 PULLMODE=NONE ;
+IOBUF PORT "pcmcia_data[11]" IO_TYPE=LVCMOS33 PULLMODE=NONE ;
+IOBUF PORT "pcmcia_data[12]" IO_TYPE=LVCMOS33 PULLMODE=NONE ;
+IOBUF PORT "pcmcia_data[13]" IO_TYPE=LVCMOS33 PULLMODE=NONE ;
+IOBUF PORT "pcmcia_data[14]" IO_TYPE=LVCMOS33 PULLMODE=NONE ;
+IOBUF PORT "pcmcia_data[15]" IO_TYPE=LVCMOS33 PULLMODE=NONE ;
+
+# Address bus - outputs
+IOBUF PORT "pcmcia_addr[0]" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "pcmcia_addr[1]" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "pcmcia_addr[2]" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "pcmcia_addr[3]" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "pcmcia_addr[4]" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "pcmcia_addr[5]" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "pcmcia_addr[6]" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "pcmcia_addr[7]" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "pcmcia_addr[8]" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "pcmcia_addr[9]" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "pcmcia_addr[10]" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "pcmcia_addr[11]" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "pcmcia_addr[12]" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "pcmcia_addr[13]" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "pcmcia_addr[14]" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "pcmcia_addr[15]" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "pcmcia_addr[16]" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "pcmcia_addr[17]" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "pcmcia_addr[18]" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "pcmcia_addr[19]" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "pcmcia_addr[20]" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "pcmcia_addr[21]" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "pcmcia_addr[22]" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "pcmcia_addr[23]" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "pcmcia_addr[24]" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "pcmcia_addr[25]" IO_TYPE=LVCMOS33 DRIVE=8 ;
+
+# Control signals
+IOBUF PORT "pcmcia_ce1_n" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "pcmcia_ce2_n" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "pcmcia_oe_n" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "pcmcia_we_n" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "pcmcia_reg_n" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "pcmcia_wait_n" IO_TYPE=LVCMOS33 PULLMODE=UP ;
+IOBUF PORT "pcmcia_reset" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "pcmcia_ready" IO_TYPE=LVCMOS33 PULLMODE=UP ;
+IOBUF PORT "pcmcia_ireq_n" IO_TYPE=LVCMOS33 PULLMODE=UP ;
+
+# Card detection - inputs with pull-ups
+IOBUF PORT "pcmcia_cd1_n" IO_TYPE=LVCMOS33 PULLMODE=UP ;
+IOBUF PORT "pcmcia_cd2_n" IO_TYPE=LVCMOS33 PULLMODE=UP ;
+
+# Power control - outputs
+IOBUF PORT "pcmcia_vcc_en" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "pcmcia_vpp_en" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "pcmcia_vs[0]" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "pcmcia_vs[1]" IO_TYPE=LVCMOS33 DRIVE=8 ;
+
+# =============================================================================
+# Control Inputs
+# =============================================================================
+
+LOCATE COMP "cam_bypass" SITE "G9" ;
+IOBUF PORT "cam_bypass" IO_TYPE=LVCMOS33 PULLMODE=DOWN ;
+
+# =============================================================================
+# PPS Output
+# =============================================================================
+
+# Main PPS Output
+LOCATE COMP "pps_out" SITE "E1" ;
+IOBUF PORT "pps_out" IO_TYPE=LVCMOS33 DRIVE=12 ;
+
+# Backup PPS Output
+LOCATE COMP "pps_backup" SITE "F1" ;
+IOBUF PORT "pps_backup" IO_TYPE=LVCMOS33 DRIVE=12 ;
+
+# =============================================================================
+# SiT5503 High-Stability Oscillator Interface
+# =============================================================================
+
+# SiT5503 10 MHz Clock Input
+LOCATE COMP "sit5503_clk" SITE "F2" ;
+IOBUF PORT "sit5503_clk" IO_TYPE=LVCMOS33 ;
+FREQUENCY PORT "sit5503_clk" 10.000000 MHz ;
+
+# SiT5503 I2C Interface
+LOCATE COMP "sit5503_scl" SITE "H1" ;
+LOCATE COMP "sit5503_sda" SITE "H2" ;
+IOBUF PORT "sit5503_scl" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "sit5503_sda" IO_TYPE=LVCMOS33 DRIVE=8 ;
+
+# =============================================================================
+# Status and Debug Outputs
+# =============================================================================
+
+# Status Signals
+LOCATE COMP "timestamp_valid" SITE "D1" ;
+LOCATE COMP "sync_locked" SITE "C1" ;
+LOCATE COMP "autonomous_mode" SITE "C2" ;
+LOCATE COMP "sit5503_ready" SITE "A1" ;
+LOCATE COMP "cam_present" SITE "F9" ;
+LOCATE COMP "cam_initialized" SITE "E9" ;
+
+# Debug Status Bus [7:0]
+LOCATE COMP "debug_status[0]" SITE "B1" ;
+LOCATE COMP "debug_status[1]" SITE "T14" ;
+LOCATE COMP "debug_status[2]" SITE "T2" ;
+LOCATE COMP "debug_status[3]" SITE "R2" ;
+LOCATE COMP "debug_status[4]" SITE "P2" ;
+LOCATE COMP "debug_status[5]" SITE "B7" ;
+LOCATE COMP "debug_status[6]" SITE "M2" ;
+LOCATE COMP "debug_status[7]" SITE "L2" ;
+
+# PPS Status Bus [7:0]
+LOCATE COMP "pps_status[0]" SITE "K3" ;
+LOCATE COMP "pps_status[1]" SITE "J3" ;
+LOCATE COMP "pps_status[2]" SITE "H3" ;
+LOCATE COMP "pps_status[3]" SITE "G3" ;
+LOCATE COMP "pps_status[4]" SITE "F3" ;
+LOCATE COMP "pps_status[5]" SITE "E3" ;
+LOCATE COMP "pps_status[6]" SITE "D3" ;
+LOCATE COMP "pps_status[7]" SITE "C3" ;
+
+# CAM Status Bus [7:0]
+LOCATE COMP "cam_status[0]" SITE "D9" ;
+LOCATE COMP "cam_status[1]" SITE "C9" ;
+LOCATE COMP "cam_status[2]" SITE "B13" ;
+LOCATE COMP "cam_status[3]" SITE "A13" ;
+LOCATE COMP "cam_status[4]" SITE "H10" ;
+LOCATE COMP "cam_status[5]" SITE "G10" ;
+LOCATE COMP "cam_status[6]" SITE "F10" ;
+LOCATE COMP "cam_status[7]" SITE "E10" ;
+
+# Set I/O standards for status signals
+IOBUF PORT "timestamp_valid" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "sync_locked" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "autonomous_mode" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "sit5503_ready" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "cam_present" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "cam_initialized" IO_TYPE=LVCMOS33 ;
+
+IOBUF PORT "debug_status[0]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "debug_status[1]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "debug_status[2]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "debug_status[3]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "debug_status[4]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "debug_status[5]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "debug_status[6]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "debug_status[7]" IO_TYPE=LVCMOS33 ;
+
+IOBUF PORT "pps_status[0]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "pps_status[1]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "pps_status[2]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "pps_status[3]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "pps_status[4]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "pps_status[5]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "pps_status[6]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "pps_status[7]" IO_TYPE=LVCMOS33 ;
+
+IOBUF PORT "cam_status[0]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "cam_status[1]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "cam_status[2]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "cam_status[3]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "cam_status[4]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "cam_status[5]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "cam_status[6]" IO_TYPE=LVCMOS33 ;
+IOBUF PORT "cam_status[7]" IO_TYPE=LVCMOS33 ;
+
+# =============================================================================
+# LED Indicators
+# =============================================================================
+
+# Status LEDs
+LOCATE COMP "led_power" SITE "K2" ;
+LOCATE COMP "led_sync" SITE "J2" ;
+LOCATE COMP "led_pps" SITE "B6" ;
+LOCATE COMP "led_error" SITE "G2" ;
+LOCATE COMP "led_autonomous" SITE "A2" ;
+LOCATE COMP "led_sit5503" SITE "A3" ;
+LOCATE COMP "led_cam" SITE "D10" ;
+
+# Set I/O standards for LEDs
+IOBUF PORT "led_power" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "led_sync" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "led_pps" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "led_error" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "led_autonomous" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "led_sit5503" IO_TYPE=LVCMOS33 DRIVE=8 ;
+IOBUF PORT "led_cam" IO_TYPE=LVCMOS33 DRIVE=8 ;
+
+# =============================================================================
+# Timing Constraints
+# =============================================================================
+
+# PCMCIA Interface Timing (according to PC Card Standard)
+MAXDELAY FROM PORT "pcmcia_data*" TO CELL "*cam_inst*" 20.000000 ns;
+MAXDELAY FROM CELL "*cam_inst*" TO PORT "pcmcia_data*" 20.000000 ns;
+MAXDELAY FROM CELL "*cam_inst*" TO PORT "pcmcia_addr*" 10.000000 ns;
+MAXDELAY FROM CELL "*cam_inst*" TO PORT "pcmcia_ce1_n" 10.000000 ns;
+MAXDELAY FROM CELL "*cam_inst*" TO PORT "pcmcia_ce2_n" 10.000000 ns;
+MAXDELAY FROM CELL "*cam_inst*" TO PORT "pcmcia_oe_n" 10.000000 ns;
+MAXDELAY FROM CELL "*cam_inst*" TO PORT "pcmcia_we_n" 10.000000 ns;
+
+# Clock Domain Crossing Constraints
+MAXDELAY FROM CELL "*t2mi_data_sync*" TO CELL "*parser_inst*" 10.000000 ns;
+MAXDELAY FROM CELL "*timestamp_ready*" TO CELL "*pps_inst*" 5.000000 ns;
+
+# PPS Output Timing - Critical for precision
+MAXDELAY FROM CELL "*pps_pulse*" TO PORT "pps_out" 2.000000 ns;
+MAXDELAY FROM CELL "*pps_pulse*" TO PORT "pps_backup" 2.000000 ns;
+
+# =============================================================================
+# Configuration Settings
+# =============================================================================
+
+# Configuration mode
+SYSCONFIG CONFIG_MODE=SPI_SERIAL MCCLK_FREQ=2.4 WAKE_UP=21 ;
+
+# Compression settings
+SYSCONFIG COMPRESS_CONFIG=ON ;
+
+# =============================================================================
+# Power Optimization
+# =============================================================================
+
+# High-performance mode for critical timing signals
+IOBUF PORT "pps_out" OPENDRAIN=OFF TERMINATION=OFF ;
+IOBUF PORT "pps_backup" OPENDRAIN=OFF TERMINATION=OFF ;
+IOBUF PORT "sit5503_clk" OPENDRAIN=OFF TERMINATION=OFF ;
+
+# Optimize I2C interface for power
+IOBUF PORT "sit5503_scl" OPENDRAIN=ON TERMINATION=OFF ;
+IOBUF PORT "sit5503_sda" OPENDRAIN=ON TERMINATION=OFF ;

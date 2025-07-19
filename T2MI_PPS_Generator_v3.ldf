@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BaliProject version="3.2" title="T2MI_PPS_Generator_v3" device="LFE5U-25F-6BG256C" default_implementation="impl1">
+    <Options/>
+    <Implementation title="impl1" dir="impl1" description="impl1" synthesis="synplify" default_strategy="Strategy1">
+        <Options def_top="t2mi_pps_top_v3" top="t2mi_pps_top_v3"/>
+        <Source name="src/t2mi_packet_parser.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="src/timestamp_extractor.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="src/pps_generator.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="src/sync_modules.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="src/i2c_master.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="src/sit5503_controller.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="src/enhanced_pps_generator.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="src/cam_interface.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="src/en50221_protocol.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="src/t2mi_pps_top_v3.v" type="Verilog" type_short="Verilog">
+            <Options top_module="t2mi_pps_top_v3"/>
+        </Source>
+        <Source name="constraints/t2mi_pps_v3_cam.lpf" type="Logic Preference" type_short="LPF">
+            <Options/>
+        </Source>
+    </Implementation>
+    <Strategy name="Strategy1" file="T2MI_PPS_Generator1.sty"/>
+</BaliProject>
