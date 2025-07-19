@@ -41,6 +41,8 @@ status_data = {
     'gnss_status': 'no_fix',
     'holdover_status': False,
     'dpll_lock': False,
+    'satellite_delay_active': False,
+    'satellite_delay_value': 0.0,
     'timestamp': datetime.now().isoformat()
 }
 
@@ -53,7 +55,9 @@ config = {
     'temperature_compensation': True,
     'gnss_enabled': True,
     'allan_deviation_window': 100,
-    'mtie_window': 1000
+    'mtie_window': 1000,
+    'satellite_delay_compensation': 0.0,  # Компенсация задержки сигнала от геостационарного спутника (мс)
+    'satellite_delay_enabled': False      # Включение/выключение компенсации
 }
 
 # Historical data storage (for charts)
@@ -102,6 +106,10 @@ def parse_uart_data(data):
                     status_data['mtie'] = float(values[8])
                     status_data['gnss_status'] = ['no_fix', '2d_fix', '3d_fix'][int(values[9])]
                     status_data['dpll_lock'] = bool(int(values[10]))
+                    
+                if len(values) >= 13:
+                    status_data['satellite_delay_active'] = bool(int(values[11]))
+                    status_data['satellite_delay_value'] = float(values[12])
                 
                 status_data['system_status'] = 'online' if status_data['sync_status'] else 'warning'
                 status_data['timestamp'] = datetime.now().isoformat()
@@ -216,6 +224,12 @@ def handle_config():
             send_uart_command(f"SET_TEMP_COMP:{int(new_config['temperature_compensation'])}")
         if 'gnss_enabled' in new_config:
             send_uart_command(f"SET_GNSS:{int(new_config['gnss_enabled'])}")
+        if 'satellite_delay_compensation' in new_config:
+            send_uart_command(f"SET_SAT_DELAY:{new_config['satellite_delay_compensation']}")
+            status_data['satellite_delay_value'] = new_config['satellite_delay_compensation']
+        if 'satellite_delay_enabled' in new_config:
+            send_uart_command(f"SET_SAT_DELAY_EN:{int(new_config['satellite_delay_enabled'])}")
+            status_data['satellite_delay_active'] = new_config['satellite_delay_enabled']
             
         return jsonify({'status': 'success', 'config': config})
     

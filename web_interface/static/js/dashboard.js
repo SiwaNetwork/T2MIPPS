@@ -156,6 +156,19 @@ function updateStatus(data) {
         holdoverBadge.textContent = 'Normal';
     }
 
+    // Satellite delay compensation status
+    const satDelayBadge = document.getElementById('satellite-delay-status');
+    const satDelayValue = document.getElementById('satellite-delay-value');
+    if (data.satellite_delay_active) {
+        satDelayBadge.className = 'badge bg-info';
+        satDelayBadge.textContent = 'Active';
+        satDelayValue.textContent = `(${data.satellite_delay_value.toFixed(3)} ms)`;
+    } else {
+        satDelayBadge.className = 'badge bg-secondary';
+        satDelayBadge.textContent = 'Disabled';
+        satDelayValue.textContent = '';
+    }
+
     // Uptime
     const uptimeSeconds = data.uptime;
     const hours = Math.floor(uptimeSeconds / 3600);
@@ -205,6 +218,8 @@ async function loadConfig() {
         document.getElementById('holdover-threshold').value = config.holdover_threshold;
         document.getElementById('temp-compensation').checked = config.temperature_compensation;
         document.getElementById('gnss-enabled').checked = config.gnss_enabled;
+        document.getElementById('satellite-delay').value = config.satellite_delay_compensation || 0;
+        document.getElementById('satellite-delay-enabled').checked = config.satellite_delay_enabled || false;
     } catch (error) {
         console.error('Failed to load configuration:', error);
     }
@@ -216,7 +231,9 @@ async function saveConfig() {
         dpll_bandwidth: parseFloat(document.getElementById('dpll-bandwidth').value),
         holdover_threshold: parseInt(document.getElementById('holdover-threshold').value),
         temperature_compensation: document.getElementById('temp-compensation').checked,
-        gnss_enabled: document.getElementById('gnss-enabled').checked
+        gnss_enabled: document.getElementById('gnss-enabled').checked,
+        satellite_delay_compensation: parseFloat(document.getElementById('satellite-delay').value),
+        satellite_delay_enabled: document.getElementById('satellite-delay-enabled').checked
     };
 
     try {
