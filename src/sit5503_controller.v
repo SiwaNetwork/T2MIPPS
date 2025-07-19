@@ -1,111 +1,114 @@
 // =============================================================================
 // SiT5503 Oscillator Controller
+// Контроллер осциллятора SiT5503
 // =============================================================================
 // Description: High-level controller for SiT5503 programmable oscillator.
 //              Provides frequency control and calibration capabilities.
+// Описание: Высокоуровневый контроллер для программируемого осциллятора SiT5503.
+//          Обеспечивает управление частотой и возможности калибровки.
 // Author: Manus AI
 // Date: June 6, 2025
 // =============================================================================
 
 module sit5503_controller (
-    // Clock and Reset
-    input  wire        clk,              // System clock (100 MHz)
-    input  wire        rst_n,            // Active low reset
+    // Clock and Reset / Тактирование и сброс
+    input  wire        clk,              // System clock (100 MHz) / Системная тактовая частота (100 МГц)
+    input  wire        rst_n,            // Active low reset / Сброс активным низким уровнем
     
-    // I2C Interface to SiT5503
-    output wire        scl,              // I2C clock
-    inout  wire        sda,              // I2C data
+    // I2C Interface to SiT5503 / I2C интерфейс к SiT5503
+    output wire        scl,              // I2C clock / I2C тактовая частота
+    inout  wire        sda,              // I2C data / I2C данные
     
-    // SiT5503 Clock Output
-    input  wire        sit5503_clk,      // 10 MHz from SiT5503
-    output wire        sit5503_clk_out,  // Buffered 10 MHz output
+    // SiT5503 Clock Output / Выход тактовой частоты SiT5503
+    input  wire        sit5503_clk,      // 10 MHz from SiT5503 / 10 МГц от SiT5503
+    output wire        sit5503_clk_out,  // Buffered 10 MHz output / Буферизованный выход 10 МГц
     
-    // Control Interface
-    input  wire        calibrate_start,  // Start calibration
-    input  wire [15:0] frequency_offset, // Frequency offset (signed)
-    input  wire        offset_valid,     // Offset value valid
-    output reg         calibration_done, // Calibration complete
-    output reg         oscillator_ready, // Oscillator stable and ready
-    output reg [7:0]   status_reg,       // Status register
+    // Control Interface / Интерфейс управления
+    input  wire        calibrate_start,  // Start calibration / Запуск калибровки
+    input  wire [15:0] frequency_offset, // Frequency offset (signed) / Смещение частоты (со знаком)
+    input  wire        offset_valid,     // Offset value valid / Значение смещения валидно
+    output reg         calibration_done, // Calibration complete / Калибровка завершена
+    output reg         oscillator_ready, // Oscillator stable and ready / Осциллятор стабилен и готов
+    output reg [7:0]   status_reg,       // Status register / Регистр статуса
     
-    // Reference for calibration
-    input  wire        ref_pps,          // Reference PPS signal
-    input  wire        ref_valid         // Reference signal valid
+    // Reference for calibration / Опорный сигнал для калибровки
+    input  wire        ref_pps,          // Reference PPS signal / Опорный сигнал PPS
+    input  wire        ref_valid         // Reference signal valid / Опорный сигнал валиден
 );
 
 // =============================================================================
-// Parameters
+// Parameters / Параметры
 // =============================================================================
 
-// SiT5503 I2C address (7-bit, depends on A0/A1 pins)
-parameter SIT5503_I2C_ADDR = 7'h68;     // Default address
+// SiT5503 I2C address (7-bit, depends on A0/A1 pins) / I2C адрес SiT5503 (7-бит, зависит от пинов A0/A1)
+parameter SIT5503_I2C_ADDR = 7'h68;     // Default address / Адрес по умолчанию
 
-// Register addresses (based on SiT5503 datasheet)
-parameter REG_DEVICE_ID     = 8'h00;    // Device ID register
-parameter REG_FREQ_CTRL_LSB = 8'h01;    // Frequency control LSB
-parameter REG_FREQ_CTRL_MSB = 8'h02;    // Frequency control MSB
-parameter REG_OUTPUT_CTRL   = 8'h03;    // Output control
-parameter REG_STATUS        = 8'h04;    // Status register
+// Register addresses (based on SiT5503 datasheet) / Адреса регистров (согласно даташиту SiT5503)
+parameter REG_DEVICE_ID     = 8'h00;    // Device ID register / Регистр идентификатора устройства
+parameter REG_FREQ_CTRL_LSB = 8'h01;    // Frequency control LSB / Младший байт управления частотой
+parameter REG_FREQ_CTRL_MSB = 8'h02;    // Frequency control MSB / Старший байт управления частотой
+parameter REG_OUTPUT_CTRL   = 8'h03;    // Output control / Управление выходом
+parameter REG_STATUS        = 8'h04;    // Status register / Регистр статуса
 
-// Frequency control parameters
-parameter NOMINAL_FREQ_HZ   = 10_000_000; // 10 MHz nominal
-parameter PPM_RESOLUTION    = 32;        // Resolution in ppb per LSB
-parameter MAX_OFFSET_PPM    = 25;        // ±25 ppm range
+// Frequency control parameters / Параметры управления частотой
+parameter NOMINAL_FREQ_HZ   = 10_000_000; // 10 MHz nominal / Номинальная частота 10 МГц
+parameter PPM_RESOLUTION    = 32;        // Resolution in ppb per LSB / Разрешение в ppb на младший бит
+parameter MAX_OFFSET_PPM    = 25;        // ±25 ppm range / Диапазон ±25 ppm
 
-// State machine states
-localparam [3:0] IDLE           = 4'h0,
-                 INIT_START     = 4'h1,
-                 READ_ID        = 4'h2,
-                 ENABLE_OUTPUT  = 4'h3,
-                 WAIT_STABLE    = 4'h4,
-                 READY          = 4'h5,
-                 CALIBRATE      = 4'h6,
-                 WRITE_FREQ     = 4'h7,
-                 VERIFY_FREQ    = 4'h8,
-                 ERROR_ST       = 4'h9;
+// State machine states / Состояния конечного автомата
+localparam [3:0] IDLE           = 4'h0,  // Ожидание
+                 INIT_START     = 4'h1,  // Начало инициализации
+                 READ_ID        = 4'h2,  // Чтение идентификатора
+                 ENABLE_OUTPUT  = 4'h3,  // Включение выхода
+                 WAIT_STABLE    = 4'h4,  // Ожидание стабилизации
+                 READY          = 4'h5,  // Готов к работе
+                 CALIBRATE      = 4'h6,  // Калибровка
+                 WRITE_FREQ     = 4'h7,  // Запись частоты
+                 VERIFY_FREQ    = 4'h8,  // Проверка частоты
+                 ERROR_ST       = 4'h9;  // Состояние ошибки
 
 // =============================================================================
-// Internal Signals
+// Internal Signals / Внутренние сигналы
 // =============================================================================
 
-reg [3:0]   state;
-reg [3:0]   next_state;
-reg [15:0]  init_counter;
-reg [15:0]  stable_counter;
-reg [7:0]   device_id;
-reg [15:0]  current_freq_ctrl;
-reg [15:0]  target_freq_ctrl;
+reg [3:0]   state;                  // Текущее состояние
+reg [3:0]   next_state;             // Следующее состояние
+reg [15:0]  init_counter;           // Счетчик инициализации
+reg [15:0]  stable_counter;         // Счетчик стабилизации
+reg [7:0]   device_id;              // Идентификатор устройства
+reg [15:0]  current_freq_ctrl;      // Текущее управление частотой
+reg [15:0]  target_freq_ctrl;       // Целевое управление частотой
 
-// I2C Master interface
-reg         i2c_start;
-reg         i2c_stop;
-reg [6:0]   i2c_device_addr;
-reg         i2c_rw_bit;
-reg [7:0]   i2c_write_data;
-reg         i2c_write_valid;
-wire [7:0]  i2c_read_data;
-wire        i2c_read_valid;
-wire        i2c_ack_received;
-wire        i2c_busy;
-wire        i2c_error;
+// I2C Master interface / Интерфейс I2C мастера
+reg         i2c_start;              // Запуск транзакции
+reg         i2c_stop;               // Остановка транзакции
+reg [6:0]   i2c_device_addr;        // Адрес устройства
+reg         i2c_rw_bit;             // Бит чтения/записи
+reg [7:0]   i2c_write_data;         // Данные для записи
+reg         i2c_write_valid;        // Валидность данных записи
+wire [7:0]  i2c_read_data;          // Прочитанные данные
+wire        i2c_read_valid;         // Валидность прочитанных данных
+wire        i2c_ack_received;       // Получено подтверждение
+wire        i2c_busy;               // I2C занят
+wire        i2c_error;              // Ошибка I2C
 
-// Calibration logic
-reg [31:0]  ref_period_counter;
-reg [31:0]  sit_period_counter;
-reg [31:0]  ref_period_measured;
-reg [31:0]  sit_period_measured;
-reg         ref_pps_prev;
-reg         measurement_active;
-reg [15:0]  calibration_counter;
+// Calibration logic / Логика калибровки
+reg [31:0]  ref_period_counter;     // Счетчик периода опорного сигнала
+reg [31:0]  sit_period_counter;     // Счетчик периода SiT5503
+reg [31:0]  ref_period_measured;    // Измеренный период опорного сигнала
+reg [31:0]  sit_period_measured;    // Измеренный период SiT5503
+reg         ref_pps_prev;           // Предыдущее значение PPS
+reg         measurement_active;     // Измерение активно
+reg [15:0]  calibration_counter;    // Счетчик калибровки
 
-// Clock domain crossing for SiT5503 clock
+// Clock domain crossing for SiT5503 clock / Синхронизация доменных сигналов SiT5503
 reg         sit5503_clk_sync1;
 reg         sit5503_clk_sync2;
 reg         sit5503_clk_prev;
 reg         sit5503_pulse;
 
 // =============================================================================
-// I2C Master Instance
+// I2C Master Instance / Экземпляр I2C мастера
 // =============================================================================
 
 i2c_master i2c_inst (
@@ -127,7 +130,7 @@ i2c_master i2c_inst (
 );
 
 // =============================================================================
-// Clock Domain Crossing for SiT5503
+// Clock Domain Crossing for SiT5503 / Синхронизация доменных сигналов SiT5503
 // =============================================================================
 
 always @(posedge clk or negedge rst_n) begin
@@ -147,7 +150,7 @@ end
 assign sit5503_clk_out = sit5503_clk_sync2;
 
 // =============================================================================
-// Main State Machine
+// Main State Machine / Основной конечный автомат
 // =============================================================================
 
 always @(posedge clk or negedge rst_n) begin
@@ -237,7 +240,7 @@ always @(*) begin
 end
 
 // =============================================================================
-// Control Logic
+// Control Logic / Логика управления
 // =============================================================================
 
 always @(posedge clk or negedge rst_n) begin
@@ -364,7 +367,7 @@ always @(posedge clk or negedge rst_n) begin
 end
 
 // =============================================================================
-// Calibration Measurement Logic
+// Calibration Measurement Logic / Логика измерения калибровки
 // =============================================================================
 
 always @(posedge clk or negedge rst_n) begin
