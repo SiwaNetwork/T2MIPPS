@@ -185,6 +185,10 @@
                             <p class="mb-2"><strong>Holdover:</strong> 
                                 <span id="holdover-status" class="badge bg-success">Normal</span>
                             </p>
+                            <p class="mb-2"><strong>Satellite Delay:</strong> 
+                                <span id="satellite-delay-status" class="badge bg-secondary">Disabled</span>
+                                <span id="satellite-delay-value" class="text-muted ms-1"></span>
+                            </p>
                             <p class="mb-2"><strong>Last Update:</strong> 
                                 <span id="last-update">Never</span>
                             </p>
@@ -249,6 +253,35 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Satellite Delay Compensation Section -->
+            <div class="row mt-4">
+                <div class="col-12">
+                    <h5 class="mb-3">Satellite Delay Compensation</h5>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="satellite-delay" class="form-label">Delay Compensation (ms)</label>
+                        <input type="number" class="form-control" id="satellite-delay" 
+                               value="0" min="0" max="300" step="0.001"
+                               placeholder="Typical: 119-120 ms for GEO satellites">
+                        <small class="form-text text-muted">
+                            Typical delay for geostationary satellites: 119-120 ms
+                        </small>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3 mt-4">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="satellite-delay-enabled">
+                            <label class="form-check-label" for="satellite-delay-enabled">
+                                Enable Satellite Delay Compensation
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             <div class="row mt-3">
                 <div class="col-12">
                     <button class="btn btn-primary me-2" onclick="saveConfig()">
