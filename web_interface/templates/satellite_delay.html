@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satellite Delay Calculator - T2MI PPS Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            background-color: #343a40;
+            box-shadow: 0 2px 4px rgba(0,0,0,.1);
+        }
+        .navbar-brand {
+            font-weight: bold;
+        }
+        .card {
+            box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,.075);
+            margin-bottom: 1.5rem;
+        }
+        .card-header {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+        }
+        .form-label {
+            font-weight: 600;
+        }
+        .result-item {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .result-item:last-child {
+            border-bottom: none;
+        }
+        .result-value {
+            font-weight: bold;
+            color: #007bff;
+        }
+        .delay-component {
+            margin: 0.5rem 0;
+        }
+        .progress-bar {
+            transition: width 0.6s ease;
+        }
+        .typical-value {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        .uart-command {
+            font-family: monospace;
+            background-color: #f8f9fa;
+            padding: 0.5rem;
+            border: 1px solid #dee2e6;
+            border-radius: 0.25rem;
+        }
+        .coordinate-input {
+            position: relative;
+        }
+        .coordinate-input .input-group-text {
+            background-color: #e9ecef;
+        }
+        #map {
+            height: 400px;
+            margin-top: 1rem;
+            border: 1px solid #dee2e6;
+            border-radius: 0.25rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-satellite"></i> T2MI PPS Generator
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/satellite_delay">Satellite Delay</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h1 class="mb-4">
+            <i class="fas fa-satellite-dish"></i> Satellite Delay Calculator
+        </h1>
+
+        <div class="row">
+            <!-- Input Form -->
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-map-marked-alt"></i> Station Parameters
+                    </div>
+                    <div class="card-body">
+                        <form id="delayForm">
+                            <!-- Transmitter Station -->
+                            <h5 class="mb-3">Transmitter Station</h5>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="tx_lat" class="form-label">Latitude (°)</label>
+                                    <div class="input-group coordinate-input">
+                                        <input type="number" class="form-control" id="tx_lat" 
+                                               step="0.0001" min="-90" max="90" value="55.7558" required>
+                                        <span class="input-group-text">N/S</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="tx_lon" class="form-label">Longitude (°)</label>
+                                    <div class="input-group coordinate-input">
+                                        <input type="number" class="form-control" id="tx_lon" 
+                                               step="0.0001" min="-180" max="180" value="37.6173" required>
+                                        <span class="input-group-text">E/W</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="tx_alt" class="form-label">Altitude (m)</label>
+                                <input type="number" class="form-control" id="tx_alt" 
+                                       step="1" min="0" max="9000" value="150" required>
+                            </div>
+
+                            <!-- Receiver Station -->
+                            <h5 class="mb-3 mt-4">Receiver Station</h5>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="rx_lat" class="form-label">Latitude (°)</label>
+                                    <div class="input-group coordinate-input">
+                                        <input type="number" class="form-control" id="rx_lat" 
+                                               step="0.0001" min="-90" max="90" value="59.9311" required>
+                                        <span class="input-group-text">N/S</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="rx_lon" class="form-label">Longitude (°)</label>
+                                    <div class="input-group coordinate-input">
+                                        <input type="number" class="form-control" id="rx_lon" 
+                                               step="0.0001" min="-180" max="180" value="30.3609" required>
+                                        <span class="input-group-text">E/W</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="rx_alt" class="form-label">Altitude (m)</label>
+                                <input type="number" class="form-control" id="rx_alt" 
+                                       step="1" min="0" max="9000" value="50" required>
+                            </div>
+
+                            <!-- Satellite Parameters -->
+                            <h5 class="mb-3 mt-4">Satellite Parameters</h5>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="sat_lon" class="form-label">Satellite Longitude (°)</label>
+                                    <div class="input-group">
+                                        <input type="number" class="form-control" id="sat_lon" 
+                                               step="0.1" min="-180" max="180" value="13.0" required>
+                                        <span class="input-group-text">E</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="frequency" class="form-label">Frequency (GHz)</label>
+                                    <input type="number" class="form-control" id="frequency" 
+                                           step="0.1" min="1" max="40" value="12.0" required>
+                                </div>
+                            </div>
+
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-calculator"></i> Calculate Delay
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Typical Values Reference -->
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-info-circle"></i> Typical Delay Values
+                    </div>
+                    <div class="card-body">
+                        <div class="typical-value">
+                            <strong>GEO Satellite:</strong> 119.5 ms ± 2 ms
+                        </div>
+                        <div class="typical-value">
+                            <strong>MEO Satellite:</strong> 40 ms
+                        </div>
+                        <div class="typical-value">
+                            <strong>LEO Satellite:</strong> 5 ms
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results -->
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-chart-line"></i> Calculation Results
+                    </div>
+                    <div class="card-body" id="resultsContainer">
+                        <div class="text-center text-muted">
+                            <i class="fas fa-arrow-left fa-3x mb-3"></i>
+                            <p>Enter parameters and click "Calculate Delay" to see results</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- UART Command -->
+                <div class="card" id="uartCard" style="display: none;">
+                    <div class="card-header">
+                        <i class="fas fa-terminal"></i> UART Command
+                    </div>
+                    <div class="card-body">
+                        <div class="uart-command" id="uartCommand"></div>
+                        <button class="btn btn-success mt-3" id="applyDelayBtn">
+                            <i class="fas fa-upload"></i> Apply to CAM Module
+                        </button>
+                        <div id="applyResult" class="mt-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Map -->
+        <div class="card mt-4">
+            <div class="card-header">
+                <i class="fas fa-globe"></i> Station Locations
+            </div>
+            <div class="card-body">
+                <div id="map"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    
+    <script>
+        // Initialize map
+        var map = L.map('map').setView([50, 30], 2);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        var txMarker, rxMarker, satLine;
+
+        // Update map markers
+        function updateMap() {
+            // Remove existing markers
+            if (txMarker) map.removeLayer(txMarker);
+            if (rxMarker) map.removeLayer(rxMarker);
+            if (satLine) map.removeLayer(satLine);
+
+            // Get coordinates
+            var txLat = parseFloat($('#tx_lat').val());
+            var txLon = parseFloat($('#tx_lon').val());
+            var rxLat = parseFloat($('#rx_lat').val());
+            var rxLon = parseFloat($('#rx_lon').val());
+            var satLon = parseFloat($('#sat_lon').val());
+
+            // Add markers
+            txMarker = L.marker([txLat, txLon]).addTo(map)
+                .bindPopup('Transmitter Station');
+            rxMarker = L.marker([rxLat, rxLon]).addTo(map)
+                .bindPopup('Receiver Station');
+
+            // Add satellite position line
+            satLine = L.polyline([[-90, satLon], [90, satLon]], {
+                color: 'red',
+                weight: 2,
+                opacity: 0.5,
+                dashArray: '10, 10'
+            }).addTo(map);
+
+            // Fit map to markers
+            var bounds = L.latLngBounds([
+                [txLat, txLon],
+                [rxLat, rxLon]
+            ]);
+            map.fitBounds(bounds, {padding: [50, 50]});
+        }
+
+        // Update map on input change
+        $('.coordinate-input input, #sat_lon').on('change', updateMap);
+
+        // Form submission
+        $('#delayForm').on('submit', function(e) {
+            e.preventDefault();
+
+            // Get form data
+            var formData = {
+                tx_lat: parseFloat($('#tx_lat').val()),
+                tx_lon: parseFloat($('#tx_lon').val()),
+                tx_alt: parseFloat($('#tx_alt').val()),
+                rx_lat: parseFloat($('#rx_lat').val()),
+                rx_lon: parseFloat($('#rx_lon').val()),
+                rx_alt: parseFloat($('#rx_alt').val()),
+                sat_lon: parseFloat($('#sat_lon').val()),
+                frequency: parseFloat($('#frequency').val()) * 1e9  // Convert to Hz
+            };
+
+            // Show loading
+            $('#resultsContainer').html(`
+                <div class="text-center">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Calculating...</span>
+                    </div>
+                    <p class="mt-2">Calculating satellite delay...</p>
+                </div>
+            `);
+
+            // Make API call
+            $.ajax({
+                url: '/api/calculate_satellite_delay',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(formData),
+                success: function(response) {
+                    if (response.success) {
+                        displayResults(response.data);
+                    } else {
+                        showError(response.error);
+                    }
+                },
+                error: function(xhr) {
+                    showError('Failed to calculate delay: ' + xhr.responseText);
+                }
+            });
+        });
+
+        // Display results
+        function displayResults(data) {
+            var html = `
+                <h5 class="mb-3">Total Delay: <span class="result-value">${data.total_delay.toFixed(3)} ms</span></h5>
+                
+                <div class="delay-component">
+                    <h6>Delay Components</h6>
+                    <div class="progress mb-3" style="height: 30px;">
+                        <div class="progress-bar bg-primary" style="width: ${(data.free_space_delay / data.total_delay * 100).toFixed(1)}%">
+                            Free Space: ${data.free_space_delay.toFixed(3)} ms
+                        </div>
+                        <div class="progress-bar bg-info" style="width: ${(data.tropospheric_delay / data.total_delay * 100).toFixed(1)}%">
+                            Troposphere: ${data.tropospheric_delay.toFixed(3)} ms
+                        </div>
+                        <div class="progress-bar bg-warning" style="width: ${(data.ionospheric_delay / data.total_delay * 100).toFixed(1)}%">
+                            Ionosphere: ${data.ionospheric_delay.toFixed(3)} ms
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-item">
+                    <strong>Uplink Distance:</strong> 
+                    <span class="result-value">${(data.uplink_distance / 1000).toFixed(1)} km</span>
+                </div>
+                <div class="result-item">
+                    <strong>Downlink Distance:</strong> 
+                    <span class="result-value">${(data.downlink_distance / 1000).toFixed(1)} km</span>
+                </div>
+                <div class="result-item">
+                    <strong>TX Elevation Angle:</strong> 
+                    <span class="result-value">${data.tx_elevation.toFixed(1)}°</span>
+                </div>
+                <div class="result-item">
+                    <strong>RX Elevation Angle:</strong> 
+                    <span class="result-value">${data.rx_elevation.toFixed(1)}°</span>
+                </div>
+                <div class="result-item">
+                    <strong>One-way Delay:</strong> 
+                    <span class="result-value">${data.one_way_delay.toFixed(3)} ms</span>
+                </div>
+                <div class="result-item">
+                    <strong>Round-trip Delay:</strong> 
+                    <span class="result-value">${data.round_trip_delay.toFixed(3)} ms</span>
+                </div>
+                <div class="result-item">
+                    <strong>Compensation Value:</strong> 
+                    <span class="result-value">${data.compensation_value} μs</span>
+                </div>
+            `;
+
+            $('#resultsContainer').html(html);
+            $('#uartCommand').text(data.uart_command);
+            $('#uartCard').show();
+
+            // Store compensation value for apply button
+            $('#applyDelayBtn').data('delay', data.compensation_value);
+        }
+
+        // Show error
+        function showError(error) {
+            $('#resultsContainer').html(`
+                <div class="alert alert-danger">
+                    <i class="fas fa-exclamation-triangle"></i> ${error}
+                </div>
+            `);
+        }
+
+        // Apply delay to CAM module
+        $('#applyDelayBtn').on('click', function() {
+            var delay = $(this).data('delay');
+            
+            $('#applyResult').html(`
+                <div class="spinner-border spinner-border-sm" role="status">
+                    <span class="visually-hidden">Applying...</span>
+                </div>
+                Applying delay compensation...
+            `);
+
+            $.ajax({
+                url: '/api/set_satellite_delay',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({delay_us: delay}),
+                success: function(response) {
+                    if (response.success) {
+                        $('#applyResult').html(`
+                            <div class="alert alert-success">
+                                <i class="fas fa-check-circle"></i> 
+                                Delay compensation applied successfully!
+                                <br><small>Command: ${response.command}</small>
+                                <br><small>Response: ${response.response || 'OK'}</small>
+                            </div>
+                        `);
+                    } else {
+                        $('#applyResult').html(`
+                            <div class="alert alert-danger">
+                                <i class="fas fa-times-circle"></i> 
+                                Failed to apply delay: ${response.error}
+                            </div>
+                        `);
+                    }
+                },
+                error: function(xhr) {
+                    $('#applyResult').html(`
+                        <div class="alert alert-danger">
+                            <i class="fas fa-times-circle"></i> 
+                            Failed to apply delay: ${xhr.responseText}
+                        </div>
+                    `);
+                }
+            });
+        });
+
+        // Initialize map on load
+        $(document).ready(function() {
+            updateMap();
+        });
+    </script>
+</body>
+</html>
