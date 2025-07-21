@@ -18,6 +18,7 @@ import logging
 from collections import deque
 import numpy as np
 import secrets
+from satellite_delay_calculator import SatelliteDelayCalculator
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -344,6 +345,91 @@ def handle_update_request():
 def send_static(path):
     """Serve static files"""
     return send_from_directory('static', path)
+
+@app.route('/satellite_delay')
+@login_required
+def satellite_delay():
+    """Satellite delay calculator page"""
+    return render_template('satellite_delay.html')
+
+@app.route('/api/calculate_satellite_delay', methods=['POST'])
+@login_required
+def calculate_satellite_delay():
+    """Calculate satellite propagation delay"""
+    try:
+        data = request.json
+        
+        # Extract parameters
+        tx_lat = float(data.get('tx_lat', 0))
+        tx_lon = float(data.get('tx_lon', 0))
+        tx_alt = float(data.get('tx_alt', 0))
+        rx_lat = float(data.get('rx_lat', 0))
+        rx_lon = float(data.get('rx_lon', 0))
+        rx_alt = float(data.get('rx_alt', 0))
+        sat_lon = float(data.get('sat_lon', 0))
+        frequency = float(data.get('frequency', 12e9))
+        
+        # Create calculator instance
+        calculator = SatelliteDelayCalculator()
+        
+        # Calculate delay
+        result = calculator.calculate_satellite_delay(
+            tx_lat, tx_lon, tx_alt,
+            rx_lat, rx_lon, rx_alt,
+            sat_lon, frequency
+        )
+        
+        # Add typical values for reference
+        result['typical_values'] = calculator.get_typical_delays()
+        
+        # Add UART command
+        result['uart_command'] = f"set_sat_delay {result['compensation_value']}"
+        
+        return jsonify({
+            'success': True,
+            'data': result
+        })
+        
+    except Exception as e:
+        logger.error(f"Error calculating satellite delay: {e}")
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 400
+
+@app.route('/api/set_satellite_delay', methods=['POST'])
+@login_required
+def set_satellite_delay():
+    """Set satellite delay compensation via UART"""
+    try:
+        data = request.json
+        delay_us = int(data.get('delay_us', 0))
+        
+        if uart_connection:
+            command = f"set_sat_delay {delay_us}\n"
+            uart_connection.write(command.encode())
+            
+            # Wait for response
+            time.sleep(0.1)
+            response = uart_connection.read_all().decode('utf-8', errors='ignore')
+            
+            return jsonify({
+                'success': True,
+                'command': command.strip(),
+                'response': response
+            })
+        else:
+            return jsonify({
+                'success': False,
+                'error': 'UART not connected'
+            }), 503
+            
+    except Exception as e:
+        logger.error(f"Error setting satellite delay: {e}")
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 400
 
 if __name__ == '__main__':
     # Initialize
