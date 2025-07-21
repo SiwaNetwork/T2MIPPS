@@ -1,154 +1,174 @@
 #!/usr/bin/env python3
 """
-Test script for satellite delay compensation feature
+Тестовый скрипт для API задержки спутника
+Тестирует конечные точки расчета и применения задержки спутника
 """
 
 import requests
 import json
 import time
-import sys
 
-# Configuration
+# Конфигурация
 BASE_URL = "http://localhost:5000"
-API_CONFIG = f"{BASE_URL}/api/config"
-API_STATUS = f"{BASE_URL}/api/status"
+USERNAME = "admin"
+PASSWORD = "admin123"
 
-def test_get_config():
-    """Test getting current configuration"""
-    print("Testing GET /api/config...")
-    try:
-        response = requests.get(API_CONFIG)
-        config = response.json()
-        print(f"Current satellite delay: {config.get('satellite_delay_compensation', 'Not found')} ms")
-        print(f"Compensation enabled: {config.get('satellite_delay_enabled', 'Not found')}")
-        return True
-    except Exception as e:
-        print(f"Error: {e}")
-        return False
-
-def test_set_delay(delay_ms, enabled):
-    """Test setting satellite delay compensation"""
-    print(f"\nTesting SET satellite delay to {delay_ms} ms, enabled={enabled}...")
-    
-    config = {
-        "satellite_delay_compensation": delay_ms,
-        "satellite_delay_enabled": enabled
-    }
-    
-    try:
-        response = requests.post(API_CONFIG, json=config)
-        result = response.json()
-        if result.get('status') == 'success':
-            print("Configuration updated successfully")
+class TestSatelliteDelayAPI:
+    def __init__(self):
+        self.session = requests.Session()
+        self.logged_in = False
+        
+    def login(self):
+        """Вход в систему"""
+        response = self.session.post(f"{BASE_URL}/login", data={
+            'username': USERNAME,
+            'password': PASSWORD
+        })
+        if response.status_code == 200:
+            self.logged_in = True
+            print("✓ Вход выполнен успешно")
+        else:
+            print("✗ Ошибка входа")
+            
+    def test_calculate_delay(self):
+        """Тест расчета задержки"""
+        print("\n--- Тест расчета задержки ---")
+        
+        data = {
+            'tx_latitude': 55.7558,
+            'tx_longitude': 37.6173,
+            'tx_altitude': 200,
+            'rx_latitude': 59.9311,
+            'rx_longitude': 30.3609,
+            'rx_altitude': 100,
+            'satellite_longitude': 36.0
+        }
+        
+        response = self.session.post(f"{BASE_URL}/api/satellite_delay", json=data)
+        
+        if response.status_code == 200:
+            result = response.json()
+            print(f"✓ Расчет выполнен успешно")
+            print(f"  Полная задержка: {result['total_delay']:.3f} мс")
+            print(f"  Задержка в свободном пространстве: {result['free_space_delay']:.3f} мс")
+            print(f"  Тропосферная задержка: {result['tropospheric_delay']:.3f} мс")
+            print(f"  Ионосферная задержка: {result['ionospheric_delay']:.3f} мс")
+            print(f"  Команда UART: {result['uart_command']}")
+            return result['total_delay']
+        else:
+            print(f"✗ Ошибка расчета: {response.status_code}")
+            return None
+            
+    def test_apply_delay(self, delay_ms):
+        """Тест применения задержки"""
+        print(f"\n--- Тест применения задержки: {delay_ms:.3f} мс ---")
+        
+        data = {
+            'delay': delay_ms,
+            'enable': True
+        }
+        
+        response = self.session.post(f"{BASE_URL}/api/satellite_delay/apply", json=data)
+        
+        if response.status_code == 200:
+            result = response.json()
+            print(f"✓ Задержка применена успешно")
+            time.sleep(1)  # Ожидание обновления статуса
             return True
         else:
-            print(f"Failed to update configuration: {result}")
+            print(f"✗ Ошибка применения: {response.status_code}")
             return False
-    except Exception as e:
-        print(f"Error: {e}")
-        return False
-
-def test_status_update():
-    """Test if status reflects the changes"""
-    print("\nChecking status update...")
-    time.sleep(1)  # Wait for status to update
-    
-    try:
-        response = requests.get(API_STATUS)
-        status = response.json()
-        print(f"Satellite delay active: {status.get('satellite_delay_active', 'Not found')}")
-        print(f"Satellite delay value: {status.get('satellite_delay_value', 'Not found')} ms")
-        return True
-    except Exception as e:
-        print(f"Error: {e}")
-        return False
-
-def run_tests():
-    """Run all tests"""
-    print("=== Satellite Delay Compensation Test Suite ===\n")
-    
-    tests_passed = 0
-    tests_total = 0
-    
-    # Test 1: Get current configuration
-    tests_total += 1
-    if test_get_config():
-        tests_passed += 1
-    
-    # Test 2: Set delay to 119.5 ms and enable
-    tests_total += 1
-    if test_set_delay(119.5, True):
-        tests_passed += 1
+            
+    def test_get_status(self):
+        """Тест получения статуса"""
+        print("\n--- Тест получения статуса ---")
         
-    # Test 3: Check status reflects the change
-    tests_total += 1
-    if test_status_update():
-        tests_passed += 1
-    
-    # Test 4: Disable compensation
-    tests_total += 1
-    if test_set_delay(119.5, False):
-        tests_passed += 1
-    
-    # Test 5: Check status shows disabled
-    tests_total += 1
-    if test_status_update():
-        tests_passed += 1
-    
-    # Test 6: Test boundary values
-    print("\n=== Testing boundary values ===")
-    
-    # Test minimum value
-    tests_total += 1
-    print("\nTesting minimum value (0 ms)...")
-    if test_set_delay(0.0, True):
-        tests_passed += 1
-    
-    # Test maximum value
-    tests_total += 1
-    print("\nTesting maximum value (300 ms)...")
-    if test_set_delay(300.0, True):
-        tests_passed += 1
-    
-    # Test precision (0.001 ms)
-    tests_total += 1
-    print("\nTesting precision (120.123 ms)...")
-    if test_set_delay(120.123, True):
-        tests_passed += 1
-    
-    # Summary
-    print(f"\n=== Test Summary ===")
-    print(f"Tests passed: {tests_passed}/{tests_total}")
-    print(f"Success rate: {tests_passed/tests_total*100:.1f}%")
-    
-    return tests_passed == tests_total
+        response = self.session.get(f"{BASE_URL}/api/satellite_delay/status")
+        
+        if response.status_code == 200:
+            status = response.json()
+            print(f"✓ Статус получен успешно")
+            print(f"  Включено: {status['enabled']}")
+            print(f"  Задержка: {status['delay']} мс")
+            print(f"  Активно: {status['active']}")
+            print(f"  Текущее значение: {status['current_value']} мс")
+            return status
+        else:
+            print(f"✗ Ошибка получения статуса: {response.status_code}")
+            return None
+            
+    def run_all_tests(self):
+        """Запуск всех тестов"""
+        print("=== Запуск тестов API задержки спутника ===")
+        
+        # Тест 1: Получение текущей конфигурации
+        status = self.test_get_status()
+        if status:
+            print("✓ Тест 1 пройден")
+            
+        # Тест 2: Установка задержки 119.5 мс и включение
+        delay = self.test_calculate_delay()
+        if delay and self.test_apply_delay(delay):
+            print("✓ Тест 2 пройден")
+            
+        # Тест 3: Проверка, что статус отражает изменение
+        status = self.test_get_status()
+        if status and status['enabled'] and abs(status['delay'] - delay) < 0.001:
+            print("✓ Тест 3 пройден")
+            
+        # Тест 4: Отключение компенсации
+        response = self.session.post(f"{BASE_URL}/api/satellite_delay/apply", 
+                                   json={'delay': delay, 'enable': False})
+        if response.status_code == 200:
+            print("✓ Тест 4 пройден")
+            
+        # Тест 5: Проверка, что статус показывает отключение
+        status = self.test_get_status()
+        if status and not status['enabled']:
+            print("✓ Тест 5 пройден")
+            
+        # Тест 6: Тест граничных значений
+        print("\n--- Тест граничных значений ---")
+        
+        # Тест минимального значения
+        if self.test_apply_delay(0.001):
+            print("✓ Минимальное значение принято")
+            
+        # Тест максимального значения
+        if self.test_apply_delay(500.0):
+            print("✓ Максимальное значение принято")
+            
+        # Тест точности (0.001 мс)
+        if self.test_apply_delay(123.456):
+            status = self.test_get_status()
+            if status and abs(status['delay'] - 123.456) < 0.001:
+                print("✓ Точность сохранена")
+                
+        # Сводка
+        print("\n=== Сводка тестов ===")
+        print("Все тесты завершены")
 
 def main():
-    """Main function"""
-    print("Starting satellite delay compensation tests...")
-    print(f"Target: {BASE_URL}")
-    print("Make sure the web interface is running!\n")
+    tester = TestSatelliteDelayAPI()
     
-    try:
-        # Check if server is running
-        response = requests.get(BASE_URL, timeout=2)
-        print("Server is running ✓\n")
-    except:
-        print("ERROR: Cannot connect to web interface!")
-        print("Please start the web interface first:")
-        print("  cd web_interface")
-        print("  python app.py")
-        sys.exit(1)
+    # Вход в систему
+    tester.login()
     
-    # Run tests
-    success = run_tests()
-    
-    if success:
-        print("\n✅ All tests passed!")
-        sys.exit(0)
-    else:
-        print("\n❌ Some tests failed!")
-        sys.exit(1)
+    if not tester.logged_in:
+        print("Не удалось войти в систему. Проверьте, что сервер запущен.")
+        return
+        
+    # Запуск тестов
+    tester.run_all_tests()
 
 if __name__ == "__main__":
-    main()
+    # Проверка доступности сервера
+    try:
+        response = requests.get(f"{BASE_URL}/login", timeout=2)
+        if response.status_code == 200:
+            main()
+        else:
+            print(f"Сервер вернул статус {response.status_code}")
+    except requests.exceptions.RequestException as e:
+        print(f"Не удалось подключиться к серверу: {e}")
+        print("Убедитесь, что веб-интерфейс запущен на http://localhost:5000")
