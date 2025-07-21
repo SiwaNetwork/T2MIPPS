@@ -1,7 +1,27 @@
-Flask==3.0.0
-Flask-SocketIO==5.3.5
-python-socketio==5.10.0
+# Web Interface Requirements for T2MI PPS Generator
+# Python 3.8+
+
+# Core Flask dependencies
+Flask==2.3.3
+Flask-SocketIO==5.3.4
+Flask-Login==0.6.2
+Werkzeug==2.3.7
+
+# UART communication
 pyserial==3.5
-numpy==1.26.2
-eventlet==0.33.3
-requests==2.31.0
+
+# Data processing
+numpy==1.24.3
+
+# WebSocket support
+python-socketio==5.9.0
+python-engineio==4.7.1
+
+# Additional utilities
+python-dotenv==1.0.0
+eventlet==0.33.3  # For WebSocket support
+
+# Development dependencies (optional)
+# pytest==7.4.2
+# pytest-cov==4.1.0
+# flake8==6.1.0

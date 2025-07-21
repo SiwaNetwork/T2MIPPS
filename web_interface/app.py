@@ -4,25 +4,55 @@ Web Interface for T2MI PPS Generator
 Provides configuration and diagnostics interface
 """
 
-from flask import Flask, render_template, jsonify, request, send_from_directory
+from flask import Flask, render_template, jsonify, request, send_from_directory, session, redirect, url_for
 from flask_socketio import SocketIO, emit
+from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
+from werkzeug.security import generate_password_hash, check_password_hash
 import serial
 import threading
 import time
 import json
 import os
-from datetime import datetime
+from datetime import datetime, timedelta
 import logging
 from collections import deque
 import numpy as np
+import secrets
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'your-secret-key-change-in-production'
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', secrets.token_hex(32))
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=24)
+
+# Initialize Flask-Login
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'login'
+
 socketio = SocketIO(app, cors_allowed_origins="*")
+
+# Simple user class for authentication
+class User(UserMixin):
+    def __init__(self, id, username, password_hash):
+        self.id = id
+        self.username = username
+        self.password_hash = password_hash
+
+# In-memory user storage (in production, use a database)
+users = {
+    'admin': User('1', 'admin', generate_password_hash('admin123')),
+    'operator': User('2', 'operator', generate_password_hash('operator123'))
+}
+
+@login_manager.user_loader
+def load_user(user_id):
+    for user in users.values():
+        if user.id == user_id:
+            return user
+    return None
 
 # Global variables
 uart_connection = None
@@ -199,16 +229,38 @@ def demo_mode_thread():
 
 # Routes
 @app.route('/')
+@login_required
 def index():
     """Main dashboard page"""
     return render_template('index.html')
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        user = users.get(username)
+
+        if user and check_password_hash(user.password_hash, password):
+            login_user(user)
+            return redirect(url_for('index'))
+        else:
+            return render_template('login.html', error='Invalid username or password')
+    return render_template('login.html')
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
+
 @app.route('/api/status')
+@login_required
 def get_status():
     """Get current status"""
     return jsonify(status_data)
 
 @app.route('/api/config', methods=['GET', 'POST'])
+@login_required
 def handle_config():
     """Get or update configuration"""
     if request.method == 'POST':
