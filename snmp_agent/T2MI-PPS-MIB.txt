@@ -12,23 +12,23 @@ t2miPpsMIB MODULE-IDENTITY
     CONTACT-INFO
         "Email: admin@t2mi-pps.local"
     DESCRIPTION
-        "MIB module for T2MI PPS Generator monitoring"
+        "MIB модуль для мониторинга генератора T2MI PPS"
     REVISION "202401010000Z"
     DESCRIPTION
-        "Initial version"
+        "Начальная версия"
     ::= { enterprises 99999 }
 
--- Main branches
+-- Основные ветви
 t2miPpsObjects OBJECT IDENTIFIER ::= { t2miPpsMIB 1 }
 t2miPpsConformance OBJECT IDENTIFIER ::= { t2miPpsMIB 2 }
 
--- Status objects
+-- Объекты статуса
 systemStatus OBJECT-TYPE
     SYNTAX      Integer32 (0..2)
     MAX-ACCESS  read-only
     STATUS      current
     DESCRIPTION
-        "System status: 0=offline, 1=online, 2=error"
+        "Статус системы: 0=оффлайн, 1=онлайн, 2=ошибка"
     ::= { t2miPpsObjects 1 }
 
 ppsCount OBJECT-TYPE
@@ -36,7 +36,7 @@ ppsCount OBJECT-TYPE
     MAX-ACCESS  read-only
     STATUS      current
     DESCRIPTION
-        "Total number of PPS pulses generated"
+        "Общее количество сгенерированных импульсов PPS"
     ::= { t2miPpsObjects 2 }
 
 syncStatus OBJECT-TYPE
@@ -44,7 +44,7 @@ syncStatus OBJECT-TYPE
     MAX-ACCESS  read-only
     STATUS      current
     DESCRIPTION
-        "Synchronization status: 0=not synced, 1=synced"
+        "Статус синхронизации: 0=не синхронизирован, 1=синхронизирован"
     ::= { t2miPpsObjects 3 }
 
 frequencyError OBJECT-TYPE
@@ -52,7 +52,7 @@ frequencyError OBJECT-TYPE
     MAX-ACCESS  read-only
     STATUS      current
     DESCRIPTION
-        "Frequency error in parts per billion (ppb)"
+        "Частотная ошибка в частях на миллиард (ppb)"
     ::= { t2miPpsObjects 4 }
 
 phaseError OBJECT-TYPE
@@ -60,7 +60,7 @@ phaseError OBJECT-TYPE
     MAX-ACCESS  read-only
     STATUS      current
     DESCRIPTION
-        "Phase error in nanoseconds"
+        "Фазовая ошибка в наносекундах"
     ::= { t2miPpsObjects 5 }
 
 temperature OBJECT-TYPE
@@ -68,7 +68,7 @@ temperature OBJECT-TYPE
     MAX-ACCESS  read-only
     STATUS      current
     DESCRIPTION
-        "Temperature in celsius * 100"
+        "Температура в градусах Цельсия * 100"
     ::= { t2miPpsObjects 6 }
 
 uptime OBJECT-TYPE
@@ -76,7 +76,7 @@ uptime OBJECT-TYPE
     MAX-ACCESS  read-only
     STATUS      current
     DESCRIPTION
-        "System uptime in seconds"
+        "Время работы системы в секундах"
     ::= { t2miPpsObjects 7 }
 
 lastSyncTime OBJECT-TYPE
@@ -84,7 +84,7 @@ lastSyncTime OBJECT-TYPE
     MAX-ACCESS  read-only
     STATUS      current
     DESCRIPTION
-        "Timestamp of last successful synchronization"
+        "Временная метка последней успешной синхронизации"
     ::= { t2miPpsObjects 8 }
 
 t2miPackets OBJECT-TYPE
@@ -92,7 +92,7 @@ t2miPackets OBJECT-TYPE
     MAX-ACCESS  read-only
     STATUS      current
     DESCRIPTION
-        "Number of T2MI packets received"
+        "Количество полученных пакетов T2MI"
     ::= { t2miPpsObjects 9 }
 
 errorCount OBJECT-TYPE
@@ -100,7 +100,7 @@ errorCount OBJECT-TYPE
     MAX-ACCESS  read-only
     STATUS      current
     DESCRIPTION
-        "Total error count"
+        "Общее количество ошибок"
     ::= { t2miPpsObjects 10 }
 
 allanDeviation OBJECT-TYPE
@@ -108,7 +108,7 @@ allanDeviation OBJECT-TYPE
     MAX-ACCESS  read-only
     STATUS      current
     DESCRIPTION
-        "Allan deviation * 1e12"
+        "Девиация Аллана * 1e12"
     ::= { t2miPpsObjects 11 }
 
 mtie OBJECT-TYPE
@@ -116,7 +116,7 @@ mtie OBJECT-TYPE
     MAX-ACCESS  read-only
     STATUS      current
     DESCRIPTION
-        "Maximum Time Interval Error (MTIE) in nanoseconds"
+        "Максимальная ошибка временного интервала (MTIE) в наносекундах"
     ::= { t2miPpsObjects 12 }
 
 gnssStatus OBJECT-TYPE
@@ -124,7 +124,7 @@ gnssStatus OBJECT-TYPE
     MAX-ACCESS  read-only
     STATUS      current
     DESCRIPTION
-        "GNSS status: 0=no fix, 1=2D fix, 2=3D fix"
+        "Статус GNSS: 0=нет фиксации, 1=2D фиксация, 2=3D фиксация"
     ::= { t2miPpsObjects 13 }
 
 holdoverStatus OBJECT-TYPE
@@ -132,7 +132,7 @@ holdoverStatus OBJECT-TYPE
     MAX-ACCESS  read-only
     STATUS      current
     DESCRIPTION
-        "Holdover status: 0=normal operation, 1=in holdover"
+        "Статус удержания: 0=нормальная работа, 1=в режиме удержания"
     ::= { t2miPpsObjects 14 }
 
 dpllLock OBJECT-TYPE
@@ -140,23 +140,23 @@ dpllLock OBJECT-TYPE
     MAX-ACCESS  read-only
     STATUS      current
     DESCRIPTION
-        "DPLL lock status: 0=unlocked, 1=locked"
+        "Статус захвата DPLL: 0=не захвачен, 1=захвачен"
     ::= { t2miPpsObjects 15 }
 
--- Conformance information
+-- Информация о соответствии
 t2miPpsCompliances OBJECT IDENTIFIER ::= { t2miPpsConformance 1 }
 t2miPpsGroups OBJECT IDENTIFIER ::= { t2miPpsConformance 2 }
 
--- Compliance statement
+-- Заявление о соответствии
 t2miPpsCompliance MODULE-COMPLIANCE
     STATUS      current
     DESCRIPTION
-        "The compliance statement for T2MI PPS Generator"
+        "Заявление о соответствии для генератора T2MI PPS"
     MODULE      -- this module
         MANDATORY-GROUPS { t2miPpsStatusGroup }
     ::= { t2miPpsCompliances 1 }
 
--- Object groups
+-- Группы объектов
 t2miPpsStatusGroup OBJECT-GROUP
     OBJECTS {
         systemStatus,
@@ -177,7 +177,7 @@ t2miPpsStatusGroup OBJECT-GROUP
     }
     STATUS      current
     DESCRIPTION
-        "Status objects for T2MI PPS Generator"
+        "Объекты статуса для генератора T2MI PPS"
     ::= { t2miPpsGroups 1 }
 
 END

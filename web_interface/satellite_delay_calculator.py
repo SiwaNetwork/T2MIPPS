@@ -1,61 +1,58 @@
 #!/usr/bin/env python3
 """
-Satellite Delay Calculator
-Calculates propagation delay for geostationary satellite communication
-Including all corrections and constants
+Калькулятор задержки спутника для генератора T2MI PPS
+Рассчитывает задержку распространения сигнала через геостационарный спутник
+с учетом атмосферных эффектов
 """
 
 import math
+import numpy as np
 from typing import Tuple, Dict
 
 class SatelliteDelayCalculator:
     """
-    Calculate satellite propagation delay with all corrections
+    Рассчитывает задержку распространения сигнала через геостационарный спутник
     """
     
-    # Physical constants
-    SPEED_OF_LIGHT = 299792458.0  # m/s in vacuum
-    EARTH_RADIUS = 6371000.0  # meters (mean radius)
-    GEO_ALTITUDE = 35786000.0  # meters (geostationary orbit altitude)
-    GEO_RADIUS = EARTH_RADIUS + GEO_ALTITUDE  # meters
+    # Физические константы
+    SPEED_OF_LIGHT = 299792458.0  # м/с в вакууме
+    EARTH_RADIUS = 6371000.0  # метры (средний радиус)
+    GEO_ALTITUDE = 35786000.0  # метры (высота геостационарной орбиты)
+    GEO_RADIUS = EARTH_RADIUS + GEO_ALTITUDE  # метры
     
-    # Atmospheric corrections
-    TROPOSPHERE_HEIGHT = 11000.0  # meters
-    IONOSPHERE_HEIGHT = 350000.0  # meters (F2 layer peak)
+    # Атмосферные поправки
+    TROPOSPHERE_HEIGHT = 11000.0  # метры
+    IONOSPHERE_HEIGHT = 350000.0  # метры (пик слоя F2)
     
-    # Refractive indices
-    TROPOSPHERE_REFRACTIVE_INDEX = 1.000325  # at sea level
-    IONOSPHERE_DELAY_FACTOR = 0.002  # typical ionospheric delay factor
+    # Показатели преломления
+    TROPOSPHERE_REFRACTIVE_INDEX = 1.000325  # на уровне моря
+    IONOSPHERE_DELAY_FACTOR = 0.002  # типичный фактор ионосферной задержки
     
     def __init__(self):
-        """Initialize calculator"""
-        self.last_calculation = None
-    
-    def deg_to_rad(self, degrees: float) -> float:
-        """Convert degrees to radians"""
-        return math.radians(degrees)
+        """Инициализация калькулятора"""
+        pass
     
     def calculate_distance(self, lat1: float, lon1: float, alt1: float,
-                          lat2: float, lon2: float, alt2: float) -> float:
+                         lat2: float, lon2: float, alt2: float) -> float:
         """
-        Calculate 3D distance between two points
+        Рассчитывает расстояние между двумя точками в 3D пространстве
         
-        Args:
-            lat1, lon1: Latitude and longitude of point 1 (degrees)
-            alt1: Altitude of point 1 (meters)
-            lat2, lon2: Latitude and longitude of point 2 (degrees)
-            alt2: Altitude of point 2 (meters)
+        Аргументы:
+            lat1, lon1: Широта и долгота первой точки (градусы)
+            alt1: Высота первой точки (метры)
+            lat2, lon2: Широта и долгота второй точки (градусы)
+            alt2: Высота второй точки (метры)
             
-        Returns:
-            Distance in meters
+        Возвращает:
+            Расстояние в метрах
         """
-        # Convert to radians
-        lat1_rad = self.deg_to_rad(lat1)
-        lon1_rad = self.deg_to_rad(lon1)
-        lat2_rad = self.deg_to_rad(lat2)
-        lon2_rad = self.deg_to_rad(lon2)
+        # Преобразование в радианы
+        lat1_rad = math.radians(lat1)
+        lon1_rad = math.radians(lon1)
+        lat2_rad = math.radians(lat2)
+        lon2_rad = math.radians(lon2)
         
-        # Convert to Cartesian coordinates
+        # Преобразование в декартовы координаты
         r1 = self.EARTH_RADIUS + alt1
         x1 = r1 * math.cos(lat1_rad) * math.cos(lon1_rad)
         y1 = r1 * math.cos(lat1_rad) * math.sin(lon1_rad)
@@ -66,194 +63,193 @@ class SatelliteDelayCalculator:
         y2 = r2 * math.cos(lat2_rad) * math.sin(lon2_rad)
         z2 = r2 * math.sin(lat2_rad)
         
-        # Calculate distance
-        distance = math.sqrt((x2 - x1)**2 + (y2 - y1)**2 + (z2 - z1)**2)
+        # Расчет расстояния
+        distance = math.sqrt((x2-x1)**2 + (y2-y1)**2 + (z2-z1)**2)
+        
         return distance
     
-    def calculate_elevation_angle(self, ground_lat: float, ground_lon: float,
-                                 sat_lon: float) -> float:
+    def calculate_elevation_angle(self, ground_lat: float, ground_lon: float, 
+                                ground_alt: float, sat_lon: float) -> float:
         """
-        Calculate elevation angle from ground station to satellite
+        Рассчитывает угол места спутника относительно наземной станции
         
-        Args:
-            ground_lat: Ground station latitude (degrees)
-            ground_lon: Ground station longitude (degrees)
-            sat_lon: Satellite longitude (degrees)
+        Аргументы:
+            ground_lat, ground_lon: Широта и долгота наземной станции (градусы)
+            ground_alt: Высота наземной станции (метры)
+            sat_lon: Долгота спутника (градусы)
             
-        Returns:
-            Elevation angle in degrees
+        Возвращает:
+            Угол места в градусах
         """
-        # Convert to radians
-        lat_rad = self.deg_to_rad(ground_lat)
-        lon_diff_rad = self.deg_to_rad(sat_lon - ground_lon)
+        # Преобразование в радианы
+        lat_rad = math.radians(ground_lat)
+        lon_diff_rad = math.radians(sat_lon - ground_lon)
         
-        # Calculate angle between ground station and satellite
+        # Расчет угла между наземной станцией и спутником
         cos_angle = math.cos(lat_rad) * math.cos(lon_diff_rad)
         
-        # Calculate elevation angle
-        numerator = cos_angle - self.EARTH_RADIUS / self.GEO_RADIUS
-        denominator = math.sqrt(1 - cos_angle**2)
+        # Расчет угла места
+        r_ground = self.EARTH_RADIUS + ground_alt
+        numerator = self.GEO_RADIUS - r_ground * cos_angle
+        denominator = math.sqrt(self.GEO_RADIUS**2 + r_ground**2 - 
+                               2 * self.GEO_RADIUS * r_ground * cos_angle)
         
-        if denominator == 0:
-            elevation_rad = math.pi / 2
-        else:
-            elevation_rad = math.atan(numerator / denominator)
-        
+        elevation_rad = math.asin(numerator / denominator)
         elevation_deg = math.degrees(elevation_rad)
+        
         return elevation_deg
     
-    def calculate_tropospheric_delay(self, elevation_angle: float, altitude: float) -> float:
+    def calculate_tropospheric_delay(self, elevation_deg: float, altitude: float) -> float:
         """
-        Calculate tropospheric delay
+        Рассчитывает тропосферную задержку
         
-        Args:
-            elevation_angle: Elevation angle in degrees
-            altitude: Station altitude in meters
+        Аргументы:
+            elevation_deg: Угол места в градусах
+            altitude: Высота станции в метрах
             
-        Returns:
-            Tropospheric delay in meters
+        Возвращает:
+            Тропосферная задержка в метрах
         """
-        # Simplified tropospheric model
-        elevation_rad = self.deg_to_rad(elevation_angle)
+        # Упрощенная тропосферная модель
+        elevation_rad = math.radians(elevation_deg)
         
-        # Zenith delay (vertical path) - typical values
-        # Dry component: ~2.3m at sea level
-        # Wet component: ~0.1m (variable)
-        pressure_factor = math.exp(-altitude / 8000.0)  # Pressure decreases with altitude
-        dry_zenith_delay = 2.3 * pressure_factor  # meters
-        wet_zenith_delay = 0.1 * pressure_factor  # meters
-        total_zenith_delay = dry_zenith_delay + wet_zenith_delay
+        # Зенитная задержка (вертикальный путь) - типичные значения
+        # Сухая компонента: ~2.3м на уровне моря
+        # Влажная компонента: ~0.1м (переменная)
+        pressure_factor = math.exp(-altitude / 8000.0)  # Давление уменьшается с высотой
+        dry_zenith_delay = 2.3 * pressure_factor  # метры
+        wet_zenith_delay = 0.1 * pressure_factor  # метры
         
-        # Mapping function for elevation angle
-        if elevation_angle > 5:
-            mapping_function = 1.0 / math.sin(elevation_rad)
+        zenith_delay = dry_zenith_delay + wet_zenith_delay
+        
+        # Функция отображения для угла места
+        if elevation_deg > 5:
+            mapping_factor = 1.0 / math.sin(elevation_rad)
         else:
-            # For low elevation angles, use more sophisticated mapping
-            # Niell mapping function approximation
+            # Для малых углов места используем более сложное отображение
+            # Аппроксимация функции отображения Нилла
             a = 0.00143
             b = 0.0445
             c = 0.0
-            sin_el = math.sin(elevation_rad)
-            mapping_function = (1 + a / (1 + b / (1 + c))) / \
-                             (sin_el + a / (sin_el + b / (sin_el + c)))
+            mapping_factor = 1.0 / (math.sin(elevation_rad) + 
+                                   a / (math.tan(elevation_rad) + b))
         
-        tropospheric_delay = total_zenith_delay * mapping_function
+        tropospheric_delay = zenith_delay * mapping_factor
+        
         return tropospheric_delay
     
-    def calculate_ionospheric_delay(self, elevation_angle: float, frequency: float = 12e9) -> float:
+    def calculate_ionospheric_delay(self, elevation_deg: float, frequency_hz: float = 12e9) -> float:
         """
-        Calculate ionospheric delay
+        Рассчитывает ионосферную задержку
         
-        Args:
-            elevation_angle: Elevation angle in degrees
-            frequency: Signal frequency in Hz (default 12 GHz for Ku-band)
+        Аргументы:
+            elevation_deg: Угол места в градусах
+            frequency_hz: Частота сигнала в Гц (по умолчанию 12 ГГц для Ku-диапазона)
             
-        Returns:
-            Ionospheric delay in meters
+        Возвращает:
+            Ионосферная задержка в метрах
         """
-        # Simplified ionospheric model
-        elevation_rad = self.deg_to_rad(elevation_angle)
+        # Упрощенная ионосферная модель
+        elevation_rad = math.radians(elevation_deg)
         
-        # Vertical TEC (Total Electron Content) - typical value
-        vertical_tec = 50  # TECU (10^16 electrons/m^2)
+        # Вертикальное TEC (Полное электронное содержание) - типичное значение
+        vertical_tec = 50  # TECU (10^16 электронов/м^2)
         
-        # Frequency-dependent factor (40.3 / f^2) where f is in Hz
-        # Result is in meters per TECU
-        frequency_factor = 40.3 / (frequency**2) * 1e16
+        # Частотно-зависимый фактор (40.3 / f^2) где f в Гц
+        # Результат в метрах на TECU
+        frequency_factor = 40.3e16 / (frequency_hz ** 2)
         
-        # Obliquity factor
-        re_factor = self.EARTH_RADIUS / (self.EARTH_RADIUS + self.IONOSPHERE_HEIGHT)
-        if math.cos(elevation_rad) > re_factor:
-            obliquity_factor = 1.0 / math.sqrt(1 - (re_factor * math.sin(elevation_rad))**2)
-        else:
-            obliquity_factor = 3.0  # Maximum reasonable value
+        # Фактор наклонности
+        earth_radius_km = self.EARTH_RADIUS / 1000
+        ionosphere_height_km = self.IONOSPHERE_HEIGHT / 1000
+        
+        obliquity_factor = 1.0 / math.sqrt(1 - (earth_radius_km * math.cos(elevation_rad) / 
+                                               (earth_radius_km + ionosphere_height_km))**2)
+        
+        if obliquity_factor > 3.0:
+            obliquity_factor = 3.0  # Максимальное разумное значение
         
         ionospheric_delay = vertical_tec * frequency_factor * obliquity_factor
+        
         return ionospheric_delay
     
-    def calculate_satellite_delay(self, tx_lat: float, tx_lon: float, tx_alt: float,
-                                 rx_lat: float, rx_lon: float, rx_alt: float,
-                                 sat_lon: float, frequency: float = 12e9) -> Dict:
+    def calculate_delay(self, tx_lat: float, tx_lon: float, tx_alt: float,
+                       rx_lat: float, rx_lon: float, rx_alt: float,
+                       sat_lon: float, frequency_hz: float = 12e9) -> Dict[str, float]:
         """
-        Calculate total satellite propagation delay with all corrections
+        Рассчитывает полную задержку распространения сигнала через спутник
         
-        Args:
-            tx_lat, tx_lon: Transmitter latitude and longitude (degrees)
-            tx_alt: Transmitter altitude (meters)
-            rx_lat, rx_lon: Receiver latitude and longitude (degrees)
-            rx_alt: Receiver altitude (meters)
-            sat_lon: Satellite longitude (degrees)
-            frequency: Signal frequency in Hz
+        Аргументы:
+            tx_lat, tx_lon, tx_alt: Координаты передатчика
+            rx_lat, rx_lon, rx_alt: Координаты приемника
+            sat_lon: Долгота спутника
+            frequency_hz: Частота сигнала (по умолчанию 12 ГГц)
             
-        Returns:
-            Dictionary with delay components and total delay
+        Возвращает:
+            Словарь с компонентами задержки
         """
-        # Calculate distances
+        # Расчет расстояний
         uplink_distance = self.calculate_distance(
             tx_lat, tx_lon, tx_alt,
-            0.0, sat_lon, self.GEO_ALTITUDE  # Satellite at equator
+            0.0, sat_lon, self.GEO_ALTITUDE  # Спутник на экваторе
         )
         
         downlink_distance = self.calculate_distance(
-            0.0, sat_lon, self.GEO_ALTITUDE,  # Satellite at equator
+            0.0, sat_lon, self.GEO_ALTITUDE,  # Спутник на экваторе
             rx_lat, rx_lon, rx_alt
         )
         
-        # Calculate elevation angles
-        tx_elevation = self.calculate_elevation_angle(tx_lat, tx_lon, sat_lon)
-        rx_elevation = self.calculate_elevation_angle(rx_lat, rx_lon, sat_lon)
+        # Расчет углов места
+        tx_elevation = self.calculate_elevation_angle(tx_lat, tx_lon, tx_alt, sat_lon)
+        rx_elevation = self.calculate_elevation_angle(rx_lat, rx_lon, rx_alt, sat_lon)
         
-        # Calculate atmospheric delays
+        # Расчет атмосферных задержек
         tx_tropo_delay = self.calculate_tropospheric_delay(tx_elevation, tx_alt)
         rx_tropo_delay = self.calculate_tropospheric_delay(rx_elevation, rx_alt)
         
-        tx_iono_delay = self.calculate_ionospheric_delay(tx_elevation, frequency)
-        rx_iono_delay = self.calculate_ionospheric_delay(rx_elevation, frequency)
+        tx_iono_delay = self.calculate_ionospheric_delay(tx_elevation, frequency_hz)
+        rx_iono_delay = self.calculate_ionospheric_delay(rx_elevation, frequency_hz)
         
-        # Total path length with corrections
-        total_distance = uplink_distance + downlink_distance + \
-                        tx_tropo_delay + rx_tropo_delay + \
-                        tx_iono_delay + rx_iono_delay
+        # Полная длина пути с поправками
+        total_distance = uplink_distance + downlink_distance
+        tropospheric_delay = tx_tropo_delay + rx_tropo_delay
+        ionospheric_delay = tx_iono_delay + rx_iono_delay
         
-        # Calculate delays
-        free_space_delay = (uplink_distance + downlink_distance) / self.SPEED_OF_LIGHT
-        tropospheric_delay = (tx_tropo_delay + rx_tropo_delay) / self.SPEED_OF_LIGHT
-        ionospheric_delay = (tx_iono_delay + rx_iono_delay) / self.SPEED_OF_LIGHT
+        # Расчет задержек
+        free_space_delay = total_distance / self.SPEED_OF_LIGHT
+        atmospheric_delay = (tropospheric_delay + ionospheric_delay) / self.SPEED_OF_LIGHT
+        total_delay = free_space_delay + atmospheric_delay
         
-        total_delay = total_distance / self.SPEED_OF_LIGHT
-        
-        # Store results
-        # Note: total_delay is the sum of uplink + downlink delays (full path through satellite)
-        self.last_calculation = {
+        # Сохранение результатов
+        # Примечание: total_delay - это сумма задержек восходящей + нисходящей линий (полный путь через спутник)
+        return {
             'uplink_distance': uplink_distance,
             'downlink_distance': downlink_distance,
             'total_distance': total_distance,
             'tx_elevation': tx_elevation,
             'rx_elevation': rx_elevation,
-            'free_space_delay': free_space_delay * 1000,  # Convert to ms
-            'tropospheric_delay': tropospheric_delay * 1000,  # Convert to ms
-            'ionospheric_delay': ionospheric_delay * 1000,  # Convert to ms
-            'total_delay': total_delay * 1000,  # Total delay in ms (TX->SAT->RX)
-            'uplink_delay': (uplink_distance + tx_tropo_delay + tx_iono_delay) / self.SPEED_OF_LIGHT * 1000,  # ms
-            'downlink_delay': (downlink_distance + rx_tropo_delay + rx_iono_delay) / self.SPEED_OF_LIGHT * 1000,  # ms
-            'one_way_delay': total_delay * 1000,  # One-way delay in ms (same as total_delay)
-            'round_trip_delay': total_delay * 2000,  # Round-trip delay in ms
-            'compensation_value': int(total_delay * 1e6),  # Compensation value in microseconds
-            'uart_command': f"set_sat_delay {int(total_delay * 1e6)}"  # UART command
+            'free_space_delay': free_space_delay * 1000,  # Преобразование в мс
+            'tropospheric_delay': tropospheric_delay * 1000,  # Преобразование в мс
+            'ionospheric_delay': ionospheric_delay * 1000,  # Преобразование в мс
+            'total_delay': total_delay * 1000,  # Полная задержка в мс (TX->SAT->RX)
+            'uplink_delay': (uplink_distance + tx_tropo_delay + tx_iono_delay) / self.SPEED_OF_LIGHT * 1000,  # мс
+            'downlink_delay': (downlink_distance + rx_tropo_delay + rx_iono_delay) / self.SPEED_OF_LIGHT * 1000,  # мс
+            'one_way_delay': total_delay * 1000,  # Односторонняя задержка в мс (то же, что total_delay)
+            'round_trip_delay': total_delay * 2000,  # Задержка туда-обратно в мс
+            'compensation_value': int(total_delay * 1e6),  # Значение компенсации в микросекундах
+            'uart_command': f"set_sat_delay {int(total_delay * 1e6)}"  # Команда UART
         }
-        
-        return self.last_calculation
     
-    def get_typical_delays(self) -> Dict:
+    def get_typical_delays(self) -> Dict[str, float]:
         """
-        Get typical delay values for reference
+        Возвращает типичные значения задержек для различных сценариев
         
-        Returns:
-            Dictionary with typical delay values
+        Возвращает:
+            Словарь с типичными задержками в миллисекундах
         """
         return {
-            'geo_typical_one_way': 119.5,  # ms
-            'geo_typical_variation': 2.0,  # ms
-            'leo_typical_one_way': 5.0,  # ms
-            'meo_typical_one_way': 40.0,  # ms
+            'geo_typical_one_way': 119.5,  # мс
+            'geo_typical_variation': 2.0,  # мс
+            'leo_typical_one_way': 5.0,  # мс
+            'meo_typical_one_way': 40.0,  # мс
         }
