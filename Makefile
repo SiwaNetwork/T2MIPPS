@@ -28,12 +28,7 @@ VERILOG_SOURCES = $(SRC_DIR)/t2mi_pps_top_v2.v \
                   $(SRC_DIR)/sync_modules.v \
                   $(SRC_DIR)/i2c_master.v \
                   $(SRC_DIR)/sit5503_controller.v \
-                  $(SRC_DIR)/enhanced_pps_generator.v \
-                  $(SRC_DIR)/kalman_filter.v \
-                  $(SRC_DIR)/advanced_dpll_pid.v \
-                  $(SRC_DIR)/logging_system.v \
-                  $(SRC_DIR)/uart_monitor.v \
-                  $(SRC_DIR)/satellite_delay_compensation.v
+                  $(SRC_DIR)/enhanced_pps_generator.v
 
 # Constraint files / Файлы ограничений
 CONSTRAINT_FILES = $(CONSTRAINTS_DIR)/t2mi_pps.lpf
