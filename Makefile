@@ -7,7 +7,7 @@
 
 # Project settings / Настройки проекта
 PROJECT_NAME = T2MI_PPS_Generator
-TOP_MODULE = t2mi_pps_top_v2
+TOP_MODULE = t2mi_pps_top_v3
 DEVICE = LFE5U-25F-6BG256C
 PACKAGE = BG256C
 SPEED_GRADE = -6
@@ -21,8 +21,7 @@ IMPL_DIR = impl1
 
 # Source files / Исходные файлы
 # Обновленный список файлов - используются только актуальные модули
-VERILOG_SOURCES = $(SRC_DIR)/t2mi_pps_top_v2.v \
-                  $(SRC_DIR)/t2mi_pps_top_v3.v \
+VERILOG_SOURCES = $(SRC_DIR)/t2mi_pps_top_v3.v \
                   $(SRC_DIR)/t2mi_packet_parser.v \
                   $(SRC_DIR)/timestamp_extractor.v \
                   $(SRC_DIR)/pps_generator.v \

@@ -2,7 +2,7 @@
 <BaliProject version="3.2" title="T2MI_PPS_Generator" device="LFE5U-25F-6BG256C" default_implementation="impl1">
     <Options/>
     <Implementation title="impl1" dir="impl1" description="impl1" synthesis="synplify" default_strategy="Strategy1">
-        <Options def_top="t2mi_pps_top_v2" top="t2mi_pps_top_v2"/>
+        <Options def_top="t2mi_pps_top_v3" top="t2mi_pps_top_v3"/>
         <Source name="src/t2mi_packet_parser.v" type="Verilog" type_short="Verilog">
             <Options/>
         </Source>
@@ -24,9 +24,7 @@
         <Source name="src/enhanced_pps_generator.v" type="Verilog" type_short="Verilog">
             <Options/>
         </Source>
-        <Source name="src/t2mi_pps_top_v2.v" type="Verilog" type_short="Verilog">
-            <Options top_module="t2mi_pps_top_v2"/>
-        </Source>
+
         <Source name="src/kalman_filter.v" type="Verilog" type_short="Verilog">
             <Options/>
         </Source>
