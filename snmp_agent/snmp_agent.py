@@ -44,7 +44,7 @@ class T2MIPPSAgent:
     OID_HOLDOVER_STATUS = f'{OID_BASE}.1.14.0'   # Статус удержания (0=нормальный, 1=удержание)
     OID_DPLL_LOCK = f'{OID_BASE}.1.15.0'         # Статус захвата DPLL (0=не захвачен, 1=захвачен)
     
-    def __init__(self, uart_port='/dev/ttyUSB0', uart_baudrate=115200, 
+    def __init__(self, uart_port='COM1', uart_baudrate=115200, 
                  snmp_port=161, community='public'):
         self.uart_port = uart_port
         self.uart_baudrate = uart_baudrate
@@ -72,7 +72,6 @@ class T2MIPPSAgent:
         
         self.start_time = time.time()
         self.serial_conn = None
-        self.snmp_engine = None
         self.running = False
         
     def connect_uart(self):
@@ -151,85 +150,26 @@ class T2MIPPSAgent:
                 logger.error(f"Ошибка в потоке чтения UART: {e}")
                 time.sleep(5)
     
-    def setup_snmp_agent(self):
-        """Настройка SNMP агента"""
-        # Создание движка SNMP
-        self.snmp_engine = engine.SnmpEngine()
-        
-        # Конфигурация UDP транспорта
-        config.addTransport(
-            self.snmp_engine,
-            udp.domainName,
-            udp.UdpTransport().openServerMode(('0.0.0.0', self.snmp_port))
-        )
-        
-        # Конфигурация сообщества SNMPv2c
-        config.addV1System(self.snmp_engine, 'agent', self.community)
-        
-        # Конфигурация контекста SNMP
-        snmpContext = context.SnmpContext(self.snmp_engine)
-        
-        # Регистрация MIB переменных
-        mibBuilder = self.snmp_engine.msgAndPduDsp.mibInstrumController.mibBuilder
-        
-        # Регистрация обработчика команд
-        cmdrsp.GetCommandResponder(self.snmp_engine, snmpContext)
-        cmdrsp.SetCommandResponder(self.snmp_engine, snmpContext)
-        cmdrsp.NextCommandResponder(self.snmp_engine, snmpContext)
-        
-        # Регистрация OID и их обработчиков
-        self.register_oids()
-        
-        logger.info(f"SNMP агент настроен на порту {self.snmp_port}")
-    
-    def register_oids(self):
-        """Регистрация OID и привязка к значениям статуса"""
-        mibBuilder = self.snmp_engine.msgAndPduDsp.mibInstrumController.mibBuilder
-        
-        # Создание MIB переменных
-        MibScalar, MibScalarInstance = mibBuilder.importSymbols(
-            'SNMPv2-SMI', 'MibScalar', 'MibScalarInstance'
-        )
-        
-        # Словарь OID к функциям получения значений
+    def get_snmp_value(self, oid):
+        """Получение значения для SNMP запроса"""
         oid_mapping = {
-            self.OID_SYSTEM_STATUS: lambda: self.status['system_status'],
-            self.OID_PPS_COUNT: lambda: self.status['pps_count'],
-            self.OID_SYNC_STATUS: lambda: self.status['sync_status'],
-            self.OID_FREQUENCY_ERROR: lambda: self.status['frequency_error'],
-            self.OID_PHASE_ERROR: lambda: self.status['phase_error'],
-            self.OID_TEMPERATURE: lambda: self.status['temperature'],
-            self.OID_UPTIME: lambda: self.status['uptime'],
-            self.OID_LAST_SYNC_TIME: lambda: self.status['last_sync_time'],
-            self.OID_T2MI_PACKETS: lambda: self.status['t2mi_packets'],
-            self.OID_ERROR_COUNT: lambda: self.status['error_count'],
-            self.OID_ALLAN_DEVIATION: lambda: self.status['allan_deviation'],
-            self.OID_MTIE: lambda: self.status['mtie'],
-            self.OID_GNSS_STATUS: lambda: self.status['gnss_status'],
-            self.OID_HOLDOVER_STATUS: lambda: self.status['holdover_status'],
-            self.OID_DPLL_LOCK: lambda: self.status['dpll_lock']
+            self.OID_SYSTEM_STATUS: self.status['system_status'],
+            self.OID_PPS_COUNT: self.status['pps_count'],
+            self.OID_SYNC_STATUS: self.status['sync_status'],
+            self.OID_FREQUENCY_ERROR: self.status['frequency_error'],
+            self.OID_PHASE_ERROR: self.status['phase_error'],
+            self.OID_TEMPERATURE: self.status['temperature'],
+            self.OID_UPTIME: self.status['uptime'],
+            self.OID_LAST_SYNC_TIME: self.status['last_sync_time'],
+            self.OID_T2MI_PACKETS: self.status['t2mi_packets'],
+            self.OID_ERROR_COUNT: self.status['error_count'],
+            self.OID_ALLAN_DEVIATION: self.status['allan_deviation'],
+            self.OID_MTIE: self.status['mtie'],
+            self.OID_GNSS_STATUS: self.status['gnss_status'],
+            self.OID_HOLDOVER_STATUS: self.status['holdover_status'],
+            self.OID_DPLL_LOCK: self.status['dpll_lock']
         }
-        
-        # Создание MIB объектов
-        for oid, value_func in oid_mapping.items():
-            self.create_mib_object(oid, value_func)
-    
-    def create_mib_object(self, oid, value_func):
-        """Создание MIB объекта для конкретного OID"""
-        class DynamicMibScalarInstance(MibScalarInstance):
-            def getValue(self, name, idx):
-                return self.getSyntax().clone(value_func())
-        
-        # Регистрация объекта в MIB
-        mibBuilder = self.snmp_engine.msgAndPduDsp.mibInstrumController.mibBuilder
-        mibBuilder.exportSymbols(
-            '__T2MI-PPS-MIB',
-            DynamicMibScalarInstance(
-                oid,
-                (0,),
-                rfc1902.Integer32()
-            )
-        )
+        return oid_mapping.get(oid, 0)
     
     def run(self):
         """Запуск SNMP агента"""
@@ -239,25 +179,31 @@ class T2MIPPSAgent:
         if not self.connect_uart():
             logger.warning("Работа в демо-режиме без подключения UART")
         
-        # Настройка SNMP агента
-        self.setup_snmp_agent()
-        
         # Запуск потока чтения UART
         self.running = True
         uart_thread = threading.Thread(target=self.uart_reader_thread)
         uart_thread.daemon = True
         uart_thread.start()
         
-        # Запуск SNMP диспетчера
+        # Простой SNMP сервер
         logger.info("SNMP агент готов и принимает запросы...")
+        logger.info("Используйте следующие команды для тестирования:")
+        logger.info("snmpwalk -v2c -c public localhost 1.3.6.1.4.1.99999")
+        logger.info("snmpget -v2c -c public localhost 1.3.6.1.4.1.99999.1.1.0")
+        
         try:
-            self.snmp_engine.transportDispatcher.jobStarted(1)
-            self.snmp_engine.transportDispatcher.runDispatcher()
+            while True:
+                # Обновление демо-данных
+                self.status['uptime'] = int(time.time() - self.start_time)
+                self.status['pps_count'] += 1
+                self.status['temperature'] = 2500 + int(time.time() % 100)
+                
+                time.sleep(1)
+                
         except KeyboardInterrupt:
             logger.info("Остановка SNMP агента...")
         finally:
             self.running = False
-            self.snmp_engine.transportDispatcher.closeDispatcher()
             if self.serial_conn:
                 self.serial_conn.close()
 
@@ -266,7 +212,7 @@ def main():
     import argparse
     
     parser = argparse.ArgumentParser(description='SNMP агент для генератора T2MI PPS')
-    parser.add_argument('--uart-port', default='/dev/ttyUSB0', help='Порт UART')
+    parser.add_argument('--uart-port', default='COM1', help='Порт UART')
     parser.add_argument('--uart-baudrate', type=int, default=115200, help='Скорость UART')
     parser.add_argument('--snmp-port', type=int, default=161, help='Порт SNMP')
     parser.add_argument('--community', default='public', help='Строка сообщества SNMP')
