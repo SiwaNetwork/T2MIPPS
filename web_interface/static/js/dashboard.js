@@ -1,415 +1,537 @@
-// Dashboard JavaScript for T2MI PPS Generator
+// Dashboard JavaScript для T2MI PPS Generator
+let socket;
+let charts = {};
+let statusData = {};
 
-// Socket.IO connection
-const socket = io();
+// Инициализация при загрузке страницы
+document.addEventListener('DOMContentLoaded', function() {
+    initializeSocket();
+    initializeCharts();
+    initializeControls();
+    loadInitialData();
+});
 
-// Chart configurations
-let freqChart = null;
-let phaseChart = null;
-const maxDataPoints = 100;
-
-// Initialize charts
-function initCharts() {
-    // Frequency Error Chart
-    const freqCtx = document.getElementById('freq-chart').getContext('2d');
-    freqChart = new Chart(freqCtx, {
-        type: 'line',
-        data: {
-            labels: [],
-            datasets: [{
-                label: 'Frequency Error (ppb)',
-                data: [],
-                borderColor: '#3498db',
-                backgroundColor: 'rgba(52, 152, 219, 0.1)',
-                borderWidth: 2,
-                tension: 0.1
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                y: {
-                    beginAtZero: false,
-                    title: {
-                        display: true,
-                        text: 'Error (ppb)'
-                    }
-                },
-                x: {
-                    title: {
-                        display: true,
-                        text: 'Time'
-                    }
-                }
-            },
-            plugins: {
-                legend: {
-                    display: false
-                }
-            }
-        }
-    });
-
-    // Phase Error Chart
-    const phaseCtx = document.getElementById('phase-chart').getContext('2d');
-    phaseChart = new Chart(phaseCtx, {
-        type: 'line',
-        data: {
-            labels: [],
-            datasets: [{
-                label: 'Phase Error (ns)',
-                data: [],
-                borderColor: '#e74c3c',
-                backgroundColor: 'rgba(231, 76, 60, 0.1)',
-                borderWidth: 2,
-                tension: 0.1
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                y: {
-                    beginAtZero: false,
-                    title: {
-                        display: true,
-                        text: 'Error (ns)'
-                    }
-                },
-                x: {
-                    title: {
-                        display: true,
-                        text: 'Time'
-                    }
-                }
-            },
-            plugins: {
-                legend: {
-                    display: false
-                }
-            }
-        }
-    });
-}
-
-// Update status display
-function updateStatus(data) {
-    // System status
-    const statusIndicator = document.getElementById('system-status-indicator');
-    const statusText = document.getElementById('system-status-text');
-    statusIndicator.className = 'status-indicator status-' + data.system_status;
-    statusText.textContent = data.system_status.charAt(0).toUpperCase() + data.system_status.slice(1);
-
-    // Connection status
-    const connStatus = document.getElementById('connection-status');
-    connStatus.innerHTML = '<i class="fas fa-circle status-indicator status-online"></i> Connected';
-
-    // Metrics
-    document.getElementById('pps-count').textContent = data.pps_count.toLocaleString();
-    document.getElementById('freq-error').textContent = data.frequency_error.toFixed(1);
-    document.getElementById('temperature').textContent = data.temperature.toFixed(1);
-    document.getElementById('phase-error').textContent = data.phase_error.toFixed(1);
-    document.getElementById('allan-dev').textContent = (data.allan_deviation * 1e12).toFixed(1);
-    document.getElementById('mtie').textContent = data.mtie.toFixed(1);
-    document.getElementById('t2mi-packets').textContent = data.t2mi_packets.toLocaleString();
-    document.getElementById('error-count').textContent = data.error_count.toLocaleString();
-
-    // Sync status
-    const syncBadge = document.getElementById('sync-status');
-    if (data.sync_status) {
-        syncBadge.className = 'badge bg-success';
-        syncBadge.textContent = 'Synced';
-    } else {
-        syncBadge.className = 'badge bg-danger';
-        syncBadge.textContent = 'No Sync';
-    }
-
-    // DPLL Lock
-    const dpllBadge = document.getElementById('dpll-lock');
-    if (data.dpll_lock) {
-        dpllBadge.className = 'badge bg-success';
-        dpllBadge.textContent = 'Locked';
-    } else {
-        dpllBadge.className = 'badge bg-danger';
-        dpllBadge.textContent = 'Unlocked';
-    }
-
-    // GNSS Status
-    const gnssBadge = document.getElementById('gnss-status');
-    const gnssStatusMap = {
-        'no_fix': { class: 'bg-danger', text: 'No Fix' },
-        '2d_fix': { class: 'bg-warning', text: '2D Fix' },
-        '3d_fix': { class: 'bg-success', text: '3D Fix' }
-    };
-    const gnssInfo = gnssStatusMap[data.gnss_status] || gnssStatusMap['no_fix'];
-    gnssBadge.className = 'badge ' + gnssInfo.class;
-    gnssBadge.textContent = gnssInfo.text;
-
-    // Holdover status
-    const holdoverBadge = document.getElementById('holdover-status');
-    if (data.holdover_status) {
-        holdoverBadge.className = 'badge bg-warning';
-        holdoverBadge.textContent = 'Holdover';
-    } else {
-        holdoverBadge.className = 'badge bg-success';
-        holdoverBadge.textContent = 'Normal';
-    }
-
-    // Satellite delay compensation status
-    const satDelayBadge = document.getElementById('satellite-delay-status');
-    const satDelayValue = document.getElementById('satellite-delay-value');
-    if (data.satellite_delay_active) {
-        satDelayBadge.className = 'badge bg-info';
-        satDelayBadge.textContent = 'Active';
-        satDelayValue.textContent = `(${data.satellite_delay_value.toFixed(3)} ms)`;
-    } else {
-        satDelayBadge.className = 'badge bg-secondary';
-        satDelayBadge.textContent = 'Disabled';
-        satDelayValue.textContent = '';
-    }
-
-    // Uptime
-    const uptimeSeconds = data.uptime;
-    const hours = Math.floor(uptimeSeconds / 3600);
-    const minutes = Math.floor((uptimeSeconds % 3600) / 60);
-    const seconds = uptimeSeconds % 60;
-    document.getElementById('uptime').textContent = 
-        `${hours}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-
-    // Last update
-    const lastUpdate = new Date(data.timestamp);
-    document.getElementById('last-update').textContent = lastUpdate.toLocaleTimeString();
-
-    // Update charts
-    updateCharts(data);
-}
-
-// Update charts with new data
-function updateCharts(data) {
-    const timeLabel = new Date().toLocaleTimeString();
-
-    // Update frequency chart
-    if (freqChart.data.labels.length >= maxDataPoints) {
-        freqChart.data.labels.shift();
-        freqChart.data.datasets[0].data.shift();
-    }
-    freqChart.data.labels.push(timeLabel);
-    freqChart.data.datasets[0].data.push(data.frequency_error);
-    freqChart.update('none');
-
-    // Update phase chart
-    if (phaseChart.data.labels.length >= maxDataPoints) {
-        phaseChart.data.labels.shift();
-        phaseChart.data.datasets[0].data.shift();
-    }
-    phaseChart.data.labels.push(timeLabel);
-    phaseChart.data.datasets[0].data.push(data.phase_error);
-    phaseChart.update('none');
-}
-
-// Load configuration
-async function loadConfig() {
-    try {
-        const response = await fetch('/api/config');
-        const config = await response.json();
-        
-        document.getElementById('dpll-bandwidth').value = config.dpll_bandwidth;
-        document.getElementById('holdover-threshold').value = config.holdover_threshold;
-        document.getElementById('temp-compensation').checked = config.temperature_compensation;
-        document.getElementById('gnss-enabled').checked = config.gnss_enabled;
-        document.getElementById('satellite-delay').value = config.satellite_delay_compensation || 0;
-        document.getElementById('satellite-delay-enabled').checked = config.satellite_delay_enabled || false;
-    } catch (error) {
-        console.error('Failed to load configuration:', error);
-    }
-}
-
-// Save configuration
-async function saveConfig() {
-    const config = {
-        dpll_bandwidth: parseFloat(document.getElementById('dpll-bandwidth').value),
-        holdover_threshold: parseInt(document.getElementById('holdover-threshold').value),
-        temperature_compensation: document.getElementById('temp-compensation').checked,
-        gnss_enabled: document.getElementById('gnss-enabled').checked,
-        satellite_delay_compensation: parseFloat(document.getElementById('satellite-delay').value),
-        satellite_delay_enabled: document.getElementById('satellite-delay-enabled').checked
-    };
-
-    try {
-        const response = await fetch('/api/config', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(config)
-        });
-        
-        if (response.ok) {
-            showAlert('Configuration saved successfully', 'success');
-        } else {
-            showAlert('Failed to save configuration', 'danger');
-        }
-    } catch (error) {
-        console.error('Failed to save configuration:', error);
-        showAlert('Error saving configuration', 'danger');
-    }
-}
-
-// Calibrate system
-async function calibrate() {
-    if (!confirm('Are you sure you want to start calibration? This may take several minutes.')) {
-        return;
-    }
-
-    try {
-        const response = await fetch('/api/calibrate', { method: 'POST' });
-        if (response.ok) {
-            showAlert('Calibration started', 'info');
-        } else {
-            showAlert('Failed to start calibration', 'danger');
-        }
-    } catch (error) {
-        console.error('Calibration error:', error);
-        showAlert('Error starting calibration', 'danger');
-    }
-}
-
-// Reset system
-async function resetSystem() {
-    if (!confirm('Are you sure you want to reset the system? This will restart the PPS generator.')) {
-        return;
-    }
-
-    try {
-        const response = await fetch('/api/reset', { method: 'POST' });
-        if (response.ok) {
-            showAlert('System reset initiated', 'warning');
-        } else {
-            showAlert('Failed to reset system', 'danger');
-        }
-    } catch (error) {
-        console.error('Reset error:', error);
-        showAlert('Error resetting system', 'danger');
-    }
-}
-
-// Send custom command
-async function sendCommand() {
-    const commandInput = document.getElementById('command-input');
-    const command = commandInput.value.trim();
+// Инициализация WebSocket подключения
+function initializeSocket() {
+    socket = io();
     
-    if (!command) {
-        return;
-    }
+    socket.on('connect', function() {
+        console.log('WebSocket подключен');
+        updateSystemStatus('online', 'Подключено');
+        socket.emit('request_status');
+    });
+    
+    socket.on('disconnect', function() {
+        console.log('WebSocket отключен');
+        updateSystemStatus('offline', 'Отключено');
+    });
+    
+    socket.on('status_update', function(data) {
+        statusData = data;
+        console.log('Получено обновление статуса:', data);
+        updateDashboard(data);
+    });
+    
+    socket.on('config_updated', function(config) {
+        console.log('Конфигурация обновлена:', config);
+    });
+    
+    socket.on('command_sent', function(data) {
+        console.log('Команда отправлена:', data.command);
+    });
+}
 
-    try {
-        const response = await fetch('/api/command', {
+// Инициализация графиков
+function initializeCharts() {
+    const chartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: {
+            duration: 750,
+            easing: 'easeInOutQuart'
+        },
+        scales: {
+            x: {
+                type: 'time',
+                time: {
+                    displayFormats: {
+                        second: 'HH:mm:ss'
+                    }
+                },
+                title: {
+                    display: true,
+                    text: 'Время'
+                }
+            },
+            y: {
+                title: {
+                    display: true,
+                    text: 'Значение'
+                }
+            }
+        },
+        plugins: {
+            legend: {
+                display: true
+            }
+        }
+    };
+    
+    // График частотной ошибки
+    const freqCtx = document.getElementById('frequencyChart').getContext('2d');
+    charts.frequency = new Chart(freqCtx, {
+        type: 'line',
+        data: {
+            datasets: [{
+                label: 'Частотная ошибка (ppb)',
+                data: [],
+                borderColor: 'rgb(75, 192, 192)',
+                backgroundColor: 'rgba(75, 192, 192, 0.1)',
+                tension: 0.4
+            }]
+        },
+        options: {
+            ...chartOptions,
+            scales: {
+                ...chartOptions.scales,
+                y: {
+                    ...chartOptions.scales.y,
+                    title: {
+                        display: true,
+                        text: 'Частотная ошибка (ppb)'
+                    }
+                }
+            }
+        }
+    });
+    
+    // График фазовой ошибки
+    const phaseCtx = document.getElementById('phaseChart').getContext('2d');
+    charts.phase = new Chart(phaseCtx, {
+        type: 'line',
+        data: {
+            datasets: [{
+                label: 'Фазовая ошибка (нс)',
+                data: [],
+                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: 'rgba(255, 99, 132, 0.1)',
+                tension: 0.4
+            }]
+        },
+        options: {
+            ...chartOptions,
+            scales: {
+                ...chartOptions.scales,
+                y: {
+                    ...chartOptions.scales.y,
+                    title: {
+                        display: true,
+                        text: 'Фазовая ошибка (нс)'
+                    }
+                }
+            }
+        }
+    });
+    
+    // График Allan Deviation
+    const allanCtx = document.getElementById('allanChart').getContext('2d');
+    charts.allan = new Chart(allanCtx, {
+        type: 'line',
+        data: {
+            datasets: [{
+                label: 'Allan Deviation',
+                data: [],
+                borderColor: 'rgb(54, 162, 235)',
+                backgroundColor: 'rgba(54, 162, 235, 0.1)',
+                tension: 0.4
+            }]
+        },
+        options: {
+            ...chartOptions,
+            scales: {
+                ...chartOptions.scales,
+                y: {
+                    ...chartOptions.scales.y,
+                    title: {
+                        display: true,
+                        text: 'Allan Deviation'
+                    }
+                }
+            }
+        }
+    });
+    
+    // График MTIE
+    const mtieCtx = document.getElementById('mtieChart').getContext('2d');
+    charts.mtie = new Chart(mtieCtx, {
+        type: 'line',
+        data: {
+            datasets: [{
+                label: 'MTIE (нс)',
+                data: [],
+                borderColor: 'rgb(255, 159, 64)',
+                backgroundColor: 'rgba(255, 159, 64, 0.1)',
+                tension: 0.4
+            }]
+        },
+        options: {
+            ...chartOptions,
+            scales: {
+                ...chartOptions.scales,
+                y: {
+                    ...chartOptions.scales.y,
+                    title: {
+                        display: true,
+                        text: 'MTIE (нс)'
+                    }
+                }
+            }
+        }
+    });
+}
+
+// Инициализация элементов управления
+function initializeControls() {
+    // Кнопки подключения
+    document.getElementById('connectBtn').addEventListener('click', function() {
+        fetch('/api/connect', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                showNotification('Подключение установлено', 'success');
+            } else {
+                showNotification('Ошибка подключения', 'error');
+            }
+        });
+    });
+    
+    document.getElementById('disconnectBtn').addEventListener('click', function() {
+        fetch('/api/disconnect', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                showNotification('Отключено', 'info');
+            }
+        });
+    });
+    
+    // Слайдер полосы пропускания
+    const bandwidthSlider = document.getElementById('bandwidthSlider');
+    const bandwidthValue = document.getElementById('bandwidthValue');
+    
+    bandwidthSlider.addEventListener('input', function() {
+        bandwidthValue.textContent = this.value;
+    });
+    
+    bandwidthSlider.addEventListener('change', function() {
+        updateConfig({ dpll_bandwidth: parseFloat(this.value) });
+    });
+    
+    // Компенсация задержки спутника
+    const satDelayEnabled = document.getElementById('satDelayEnabled');
+    const satDelayValue = document.getElementById('satDelayValue');
+    
+    satDelayEnabled.addEventListener('change', function() {
+        updateSatelliteDelay();
+    });
+    
+    satDelayValue.addEventListener('change', function() {
+        updateSatelliteDelay();
+    });
+    
+    // Кнопка применения задержки спутника
+    document.getElementById('applySatDelayBtn').addEventListener('click', function() {
+        const enabled = document.getElementById('satDelayEnabled').checked;
+        const delay = parseFloat(document.getElementById('satDelayValue').value) || 0;
+        
+        if (delay <= 0) {
+            showNotification('Введите значение задержки больше 0', 'error');
+            return;
+        }
+        
+        // Показ загрузки
+        document.getElementById('applyResult').innerHTML = `
+            <div class="text-center">
+                <div class="spinner-border spinner-border-sm text-success" role="status">
+                    <span class="visually-hidden">Применение...</span>
+                </div>
+                <p class="mt-2">Применение задержки спутника...</p>
+            </div>
+        `;
+        
+        fetch('/api/satellite_delay/apply', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ command: command })
+            body: JSON.stringify({
+                delay: delay,
+                enable: enabled
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                document.getElementById('applyResult').innerHTML = `
+                    <div class="alert alert-success">
+                        <i class="fas fa-check-circle"></i> 
+                        Задержка спутника применена успешно!
+                        <br><small>Задержка: ${data.delay} мс</small>
+                        <br><small>Статус: ${data.enabled ? 'Включена' : 'Отключена'}</small>
+                    </div>
+                `;
+                showNotification('Задержка спутника применена', 'success');
+            } else {
+                document.getElementById('applyResult').innerHTML = `
+                    <div class="alert alert-danger">
+                        <i class="fas fa-times-circle"></i> 
+                        Ошибка применения задержки: ${data.error}
+                    </div>
+                `;
+                showNotification('Ошибка применения задержки', 'error');
+            }
+        })
+        .catch(error => {
+            document.getElementById('applyResult').innerHTML = `
+                <div class="alert alert-danger">
+                    <i class="fas fa-times-circle"></i> 
+                    Ошибка применения задержки: ${error}
+                </div>
+            `;
+            showNotification('Ошибка применения задержки', 'error');
         });
-        
-        const result = await response.json();
-        const responseDiv = document.getElementById('command-response');
-        
-        if (result.status === 'success') {
-            responseDiv.innerHTML = `<div class="alert alert-success">Command sent: ${command}</div>`;
-        } else {
-            responseDiv.innerHTML = `<div class="alert alert-danger">Error: ${result.message || 'Command failed'}</div>`;
-        }
-        
-        commandInput.value = '';
-    } catch (error) {
-        console.error('Command error:', error);
-        document.getElementById('command-response').innerHTML = 
-            '<div class="alert alert-danger">Error sending command</div>';
+    });
+}
+
+// Загрузка начальных данных
+function loadInitialData() {
+    // Загрузка истории
+    fetch('/api/history')
+        .then(response => response.json())
+        .then(data => {
+            updateCharts(data);
+        })
+        .catch(error => {
+            console.error('Ошибка загрузки истории:', error);
+        });
+    
+    // Загрузка конфигурации
+    fetch('/api/config')
+        .then(response => response.json())
+        .then(config => {
+            updateConfigDisplay(config);
+        })
+        .catch(error => {
+            console.error('Ошибка загрузки конфигурации:', error);
+        });
+}
+
+// Обновление панели управления
+function updateDashboard(data) {
+    console.log('Обновление dashboard, PPS count:', data.pps_count);
+    // Обновление метрик
+    document.getElementById('ppsCount').textContent = data.pps_count || 0;
+    document.getElementById('freqError').textContent = (data.frequency_error || 0).toFixed(2);
+    document.getElementById('temperature').textContent = (data.temperature || 25).toFixed(1);
+    document.getElementById('t2miPackets').textContent = data.t2mi_packets || 0;
+    document.getElementById('errorCount').textContent = data.error_count || 0;
+    document.getElementById('uptime').textContent = data.uptime || 0;
+    
+    // Обновление статуса системы
+    document.getElementById('syncStatus').textContent = data.sync_status ? 'Да' : 'Нет';
+    document.getElementById('dpllLock').textContent = data.dpll_lock ? 'Да' : 'Нет';
+    document.getElementById('gnssStatus').textContent = data.gnss_status || 'Нет фикса';
+    document.getElementById('holdoverStatus').textContent = data.holdover_status ? 'Да' : 'Нет';
+    document.getElementById('satDelayStatus').textContent = data.satellite_delay_active ? 
+        `Активна (${data.satellite_delay_value} мс)` : 'Отключена';
+    
+    // Обновление статуса подключения
+    updateSystemStatus(data.system_status, getStatusText(data.system_status));
+}
+
+// Обновление графиков
+function updateCharts(historyData) {
+    const now = new Date();
+    
+    // Обновление графика частотной ошибки
+    if (charts.frequency && historyData.frequency_error) {
+        const freqData = historyData.frequency_error.map((value, index) => ({
+            x: new Date(now.getTime() - (historyData.frequency_error.length - index) * 1000),
+            y: value
+        }));
+        charts.frequency.data.datasets[0].data = freqData;
+        charts.frequency.update('none');
+    }
+    
+    // Обновление графика фазовой ошибки
+    if (charts.phase && historyData.phase_error) {
+        const phaseData = historyData.phase_error.map((value, index) => ({
+            x: new Date(now.getTime() - (historyData.phase_error.length - index) * 1000),
+            y: value
+        }));
+        charts.phase.data.datasets[0].data = phaseData;
+        charts.phase.update('none');
+    }
+    
+    // Обновление графика Allan Deviation
+    if (charts.allan && historyData.allan_deviation) {
+        const allanData = historyData.allan_deviation.map((value, index) => ({
+            x: new Date(now.getTime() - (historyData.allan_deviation.length - index) * 1000),
+            y: value
+        }));
+        charts.allan.data.datasets[0].data = allanData;
+        charts.allan.update('none');
+    }
+    
+    // Обновление графика MTIE
+    if (charts.mtie && historyData.mtie) {
+        const mtieData = historyData.mtie.map((value, index) => ({
+            x: new Date(now.getTime() - (historyData.mtie.length - index) * 1000),
+            y: value
+        }));
+        charts.mtie.data.datasets[0].data = mtieData;
+        charts.mtie.update('none');
     }
 }
 
-// Show alert message
-function showAlert(message, type) {
-    const alertHtml = `
-        <div class="alert alert-${type} alert-dismissible fade show position-fixed top-0 start-50 translate-middle-x mt-3" 
-             style="z-index: 1050;">
-            ${message}
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
+// Обновление статуса системы
+function updateSystemStatus(status, text) {
+    const statusIndicator = document.getElementById('systemStatus');
+    const statusText = document.getElementById('statusText');
+    
+    statusIndicator.className = 'status-indicator';
+    
+    switch(status) {
+        case 'online':
+            statusIndicator.classList.add('status-online');
+            break;
+        case 'offline':
+            statusIndicator.classList.add('status-offline');
+            break;
+        case 'error':
+            statusIndicator.classList.add('status-error');
+            break;
+        default:
+            statusIndicator.classList.add('status-offline');
+    }
+    
+    statusText.textContent = text;
+}
+
+// Получение текста статуса
+function getStatusText(status) {
+    switch(status) {
+        case 'online': return 'Онлайн';
+        case 'offline': return 'Офлайн';
+        case 'error': return 'Ошибка';
+        default: return 'Неизвестно';
+    }
+}
+
+// Обновление конфигурации
+function updateConfig(config) {
+    fetch('/api/config', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(config)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            console.log('Конфигурация обновлена');
+        }
+    })
+    .catch(error => {
+        console.error('Ошибка обновления конфигурации:', error);
+    });
+}
+
+// Обновление отображения конфигурации
+function updateConfigDisplay(config) {
+    if (config.dpll_bandwidth) {
+        document.getElementById('bandwidthSlider').value = config.dpll_bandwidth;
+        document.getElementById('bandwidthValue').textContent = config.dpll_bandwidth;
+    }
+    
+    if (config.satellite_delay_enabled !== undefined) {
+        document.getElementById('satDelayEnabled').checked = config.satellite_delay_enabled;
+    }
+    
+    if (config.satellite_delay_compensation) {
+        document.getElementById('satDelayValue').value = config.satellite_delay_compensation;
+    }
+}
+
+// Обновление компенсации задержки спутника
+function updateSatelliteDelay() {
+    const enabled = document.getElementById('satDelayEnabled').checked;
+    const delay = parseFloat(document.getElementById('satDelayValue').value) || 0;
+    
+    fetch('/api/satellite_delay/apply', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            delay: delay,
+            enable: enabled
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            showNotification('Компенсация задержки обновлена', 'success');
+        } else {
+            showNotification('Ошибка обновления компенсации', 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Ошибка обновления компенсации:', error);
+        showNotification('Ошибка обновления компенсации', 'error');
+    });
+}
+
+// Показ уведомлений
+function showNotification(message, type = 'info') {
+    // Создание элемента уведомления
+    const notification = document.createElement('div');
+    notification.className = `alert alert-${type === 'error' ? 'danger' : type} alert-dismissible fade show position-fixed`;
+    notification.style.cssText = 'top: 20px; right: 20px; z-index: 9999; min-width: 300px;';
+    notification.innerHTML = `
+        ${message}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
     `;
     
-    document.body.insertAdjacentHTML('beforeend', alertHtml);
+    document.body.appendChild(notification);
     
-    // Auto-dismiss after 5 seconds
+    // Автоматическое удаление через 5 секунд
     setTimeout(() => {
-        const alert = document.querySelector('.alert');
-        if (alert) {
-            alert.remove();
+        if (notification.parentNode) {
+            notification.remove();
         }
     }, 5000);
 }
 
-// Load historical data
-async function loadHistory() {
-    try {
-        const response = await fetch('/api/history');
-        const history = await response.json();
-        
-        // Update charts with historical data
-        if (history.timestamps.length > 0) {
-            const labels = history.timestamps.map(ts => 
-                new Date(ts * 1000).toLocaleTimeString()
-            );
-            
-            // Take last maxDataPoints entries
-            const startIdx = Math.max(0, labels.length - maxDataPoints);
-            
-            freqChart.data.labels = labels.slice(startIdx);
-            freqChart.data.datasets[0].data = history.frequency_error.slice(startIdx);
-            freqChart.update('none');
-            
-            phaseChart.data.labels = labels.slice(startIdx);
-            phaseChart.data.datasets[0].data = history.phase_error.slice(startIdx);
-            phaseChart.update('none');
-        }
-    } catch (error) {
-        console.error('Failed to load history:', error);
-    }
-}
-
-// Socket.IO event handlers
-socket.on('connect', () => {
-    console.log('Connected to server');
-    socket.emit('request_update');
-});
-
-socket.on('disconnect', () => {
-    console.log('Disconnected from server');
-    const connStatus = document.getElementById('connection-status');
-    connStatus.innerHTML = '<i class="fas fa-circle status-indicator status-error"></i> Disconnected';
-});
-
-socket.on('status_update', (data) => {
-    updateStatus(data);
-});
-
-// Keyboard shortcuts
-document.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter' && event.target.id === 'command-input') {
-        sendCommand();
-    }
-});
-
-// Initialize on page load
-document.addEventListener('DOMContentLoaded', () => {
-    initCharts();
-    loadConfig();
-    loadHistory();
-    
-    // Request initial status
-    fetch('/api/status')
+// Периодическое обновление истории
+setInterval(() => {
+    fetch('/api/history')
         .then(response => response.json())
-        .then(data => updateStatus(data))
-        .catch(error => console.error('Failed to load initial status:', error));
-});
+        .then(data => {
+            updateCharts(data);
+        })
+        .catch(error => {
+            console.error('Ошибка обновления истории:', error);
+        });
+}, 5000); // Обновление каждые 5 секунд

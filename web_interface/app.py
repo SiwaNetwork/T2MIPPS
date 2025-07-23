@@ -5,7 +5,7 @@
 """
 
 from flask import Flask, render_template, jsonify, request, send_from_directory, session, redirect, url_for
-from flask_socketio import SocketIO, emit
+from flask_socketio import SocketIO
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 import serial
@@ -24,14 +24,21 @@ from satellite_delay_calculator import SatelliteDelayCalculator
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates', static_folder='static')
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', secrets.token_hex(32))
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=24)
+app.config['SESSION_COOKIE_SECURE'] = False  # Для HTTP в разработке
+app.config['SESSION_COOKIE_HTTPONLY'] = True
+app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
 
 # Инициализация Flask-Login
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
+
+@login_manager.unauthorized_handler
+def unauthorized():
+    return redirect(url_for('login'))
 
 socketio = SocketIO(app, cors_allowed_origins="*")
 
@@ -217,6 +224,7 @@ def status_updater():
                 elapsed = current_time - start_time
                 
                 status_data['uptime'] = int(elapsed)
+                # Более реалистичный счетчик импульсов - увеличивается на 1 каждую секунду
                 status_data['pps_count'] = int(elapsed)
                 status_data['frequency_error'] = np.sin(elapsed * 0.1) * 10
                 status_data['phase_error'] = np.cos(elapsed * 0.05) * 100
@@ -227,6 +235,10 @@ def status_updater():
                 status_data['sync_status'] = True
                 status_data['dpll_lock'] = True
                 status_data['timestamp'] = datetime.now().isoformat()
+                
+                # Обновление статуса задержки спутника из конфигурации
+                status_data['satellite_delay_active'] = config.get('satellite_delay_enabled', False)
+                status_data['satellite_delay_value'] = config.get('satellite_delay_compensation', 0.0)
                 
                 # Обновление истории
                 now = datetime.now()
@@ -240,6 +252,7 @@ def status_updater():
                 
                 # Отправка обновления подключенным клиентам
                 socketio.emit('status_update', status_data)
+                logger.info(f"Обновление статуса: PPS={status_data['pps_count']}, Uptime={status_data['uptime']}")
             
             time.sleep(1)  # Обновление каждую секунду
         except Exception as e:
@@ -249,13 +262,13 @@ def status_updater():
 # Запрос обновления статуса
 @socketio.on('request_status')
 def handle_status_request():
-    emit('status_update', status_data)
+    socketio.emit('status_update', status_data)
 
 # Обновление времени работы
 @socketio.on('connect')
 def handle_connect():
     logger.info(f"Клиент подключен: {request.sid}")
-    emit('status_update', status_data)
+    socketio.emit('status_update', status_data)
 
 @socketio.on('disconnect')
 def handle_disconnect():
@@ -273,7 +286,8 @@ def login():
         
         user = users.get(username)
         if user and check_password_hash(user.password_hash, password):
-            login_user(user)
+            login_user(user, remember=True)
+            session.permanent = True
             return redirect(url_for('dashboard'))
         else:
             return render_template('login.html', error='Неверное имя пользователя или пароль')
@@ -355,7 +369,7 @@ def disconnect():
 def handle_config_update(data):
     config.update(data)
     send_config_to_fpga()
-    emit('config_updated', config, broadcast=True)
+    socketio.emit('config_updated', config, broadcast=True)
 
 @socketio.on('send_command')
 @login_required
@@ -363,7 +377,7 @@ def handle_command(data):
     command = data.get('command')
     if command:
         uart_writer(command)
-        emit('command_sent', {'command': command}, broadcast=True)
+        socketio.emit('command_sent', {'command': command}, broadcast=True)
 
 # Статические файлы
 @app.route('/static/<path:path>')
@@ -426,6 +440,10 @@ def apply_satellite_delay():
         config['satellite_delay_compensation'] = delay_ms
         config['satellite_delay_enabled'] = enable
         
+        # Обновление статуса данных для отображения на главной странице
+        status_data['satellite_delay_active'] = enable
+        status_data['satellite_delay_value'] = delay_ms
+        
         # Отправка команд в FPGA
         if enable:
             delay_us = int(delay_ms * 1000)
@@ -436,6 +454,9 @@ def apply_satellite_delay():
         
         # Ожидание ответа
         time.sleep(0.5)
+        
+        # Отправка обновления всем подключенным клиентам
+        socketio.emit('status_update', status_data, broadcast=True)
         
         return jsonify({
             'status': 'success',
@@ -460,14 +481,24 @@ def get_satellite_delay_status():
         'current_value': status_data.get('satellite_delay_value', 0.0)
     })
 
+@app.route('/satellite_delay')
+@login_required
+def satellite_delay_page():
+    """
+    Страница калькулятора задержки спутника
+    """
+    return render_template('satellite_delay.html', username=current_user.username)
+
 if __name__ == '__main__':
     # Запуск потока чтения UART
     uart_thread = threading.Thread(target=uart_reader, daemon=True)
     uart_thread.start()
+    logger.info("Поток чтения UART запущен")
     
     # Запуск потока обновления статуса
     status_thread = threading.Thread(target=status_updater, daemon=True)
     status_thread.start()
+    logger.info("Поток обновления статуса запущен")
     
     # Попытка подключения к UART при запуске
     connect_uart()

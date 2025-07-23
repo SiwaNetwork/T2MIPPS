@@ -82,15 +82,21 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Dashboard</a>
+                        <a class="nav-link" href="/dashboard">Dashboard</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="/satellite_delay">Satellite Delay</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <span class="navbar-text me-3">
+                            <i class="fas fa-user me-1"></i>
+                            {{ username }}
+                        </span>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/logout">
                             <i class="fas fa-sign-out-alt"></i> Logout
@@ -201,13 +207,21 @@
                     </div>
                     <div class="card-body">
                         <div class="typical-value">
-                            <strong>GEO Satellite:</strong> 119.5 ms ± 2 ms
+                            <strong>GEO Satellite (Geostationary):</strong> 119.5 ms ± 2 ms
+                            <br><small>Altitude: 35,786 km, Typical variation: ±2 ms</small>
                         </div>
                         <div class="typical-value">
-                            <strong>MEO Satellite:</strong> 40 ms
+                            <strong>MEO Satellite (Medium Earth Orbit):</strong> 40 ms
+                            <br><small>Altitude: ~20,200 km, GPS/GLONASS satellites</small>
                         </div>
                         <div class="typical-value">
-                            <strong>LEO Satellite:</strong> 5 ms
+                            <strong>LEO Satellite (Low Earth Orbit):</strong> 5 ms
+                            <br><small>Altitude: 160-2,000 km, Starlink/OneWeb</small>
+                        </div>
+                        <div class="typical-value mt-2">
+                            <strong>Atmospheric Effects:</strong>
+                            <br><small>• Tropospheric delay: 2-10 m (dry + wet)</small>
+                            <br><small>• Ionospheric delay: 1-50 m (frequency dependent)</small>
                         </div>
                     </div>
                 </div>
@@ -336,15 +350,15 @@
 
             // Make API call
             $.ajax({
-                url: '/api/calculate_satellite_delay',
+                url: '/api/satellite_delay',
                 method: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify(formData),
                 success: function(response) {
-                    if (response.success) {
-                        displayResults(response.data);
-                    } else {
+                    if (response.error) {
                         showError(response.error);
+                    } else {
+                        displayResults(response);
                     }
                 },
                 error: function(xhr) {
@@ -376,30 +390,37 @@
                 <div class="result-item">
                     <strong>Uplink Distance:</strong> 
                     <span class="result-value">${(data.uplink_distance / 1000).toFixed(1)} km</span>
+                    <div class="typical-value">TX Station → Satellite</div>
                 </div>
                 <div class="result-item">
                     <strong>Downlink Distance:</strong> 
                     <span class="result-value">${(data.downlink_distance / 1000).toFixed(1)} km</span>
+                    <div class="typical-value">Satellite → RX Station</div>
                 </div>
                 <div class="result-item">
                     <strong>TX Elevation Angle:</strong> 
                     <span class="result-value">${data.tx_elevation.toFixed(1)}°</span>
+                    <div class="typical-value">Transmitter to satellite angle</div>
                 </div>
                 <div class="result-item">
                     <strong>RX Elevation Angle:</strong> 
                     <span class="result-value">${data.rx_elevation.toFixed(1)}°</span>
+                    <div class="typical-value">Receiver to satellite angle</div>
                 </div>
                 <div class="result-item">
                     <strong>One-way Delay:</strong> 
                     <span class="result-value">${data.one_way_delay.toFixed(3)} ms</span>
+                    <div class="typical-value">Single path delay</div>
                 </div>
                 <div class="result-item">
                     <strong>Round-trip Delay:</strong> 
                     <span class="result-value">${data.round_trip_delay.toFixed(3)} ms</span>
+                    <div class="typical-value">Complete round-trip delay</div>
                 </div>
                 <div class="result-item">
                     <strong>Compensation Value:</strong> 
                     <span class="result-value">${data.compensation_value} μs</span>
+                    <div class="typical-value">For FPGA compensation</div>
                 </div>
             `;
 
@@ -432,18 +453,18 @@
             `);
 
             $.ajax({
-                url: '/api/set_satellite_delay',
+                url: '/api/satellite_delay/apply',
                 method: 'POST',
                 contentType: 'application/json',
-                data: JSON.stringify({delay_us: delay}),
+                data: JSON.stringify({delay: delay/1000, enable: true}),
                 success: function(response) {
-                    if (response.success) {
+                    if (response.status === 'success') {
                         $('#applyResult').html(`
                             <div class="alert alert-success">
                                 <i class="fas fa-check-circle"></i> 
                                 Delay compensation applied successfully!
-                                <br><small>Command: ${response.command}</small>
-                                <br><small>Response: ${response.response || 'OK'}</small>
+                                <br><small>Delay: ${response.delay} ms</small>
+                                <br><small>Enabled: ${response.enabled}</small>
                             </div>
                         `);
                     } else {
