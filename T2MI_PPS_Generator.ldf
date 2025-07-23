@@ -27,6 +27,24 @@
         <Source name="src/t2mi_pps_top_v2.v" type="Verilog" type_short="Verilog">
             <Options top_module="t2mi_pps_top_v2"/>
         </Source>
+        <Source name="src/kalman_filter.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="src/advanced_dpll_pid.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="src/logging_system.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="src/uart_monitor.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="src/satellite_delay_compensation.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="src/t2mi_pps_top_v3.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
         <Source name="constraints/t2mi_pps.lpf" type="Logic Preference" type_short="LPF">
             <Options/>
         </Source>
