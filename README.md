@@ -14,16 +14,9 @@
 - **Выходной сигнал**: PPS (1 Гц), TTL 3.3В
 - **Интерфейсы**: UART, I2C, SPI, SNMP, Web
 
-### Версии проекта
+### Версия проекта
 
-**Version 2 (t2mi_pps_top_v2)** - Базовая версия:
-- Парсинг T2MI и генерация PPS
-- Поддержка SiT5503
-- Автономный режим
-- LED индикация
-
-**Version 3 (t2mi_pps_top_v3)** - Полная версия:
-- Все функции v2 плюс:
+**Version 3 (t2mi_pps_top_v3)** - Полнофункциональная версия:
 - Фильтр Калмана для оценки фазы/частоты
 - Продвинутый DPLL с PID контроллером
 - Allan deviation и MTIE мониторинг
@@ -96,7 +89,7 @@ pgrcmd -infile impl1/T2MI_PPS_Generator_impl1.xcf
 ### Структура модулей
 
 ```
-t2mi_pps_top_v2 (верхний уровень)
+t2mi_pps_top_v3 (верхний уровень)
 ├── t2mi_packet_parser      # Парсер T2MI пакетов
 ├── timestamp_extractor     # Извлечение временных меток
 ├── advanced_dpll_pid       # DPLL с PID контроллером
