@@ -22,13 +22,19 @@ IMPL_DIR = impl1
 # Source files / Исходные файлы
 # Обновленный список файлов - используются только актуальные модули
 VERILOG_SOURCES = $(SRC_DIR)/t2mi_pps_top_v2.v \
+                  $(SRC_DIR)/t2mi_pps_top_v3.v \
                   $(SRC_DIR)/t2mi_packet_parser.v \
                   $(SRC_DIR)/timestamp_extractor.v \
                   $(SRC_DIR)/pps_generator.v \
                   $(SRC_DIR)/sync_modules.v \
                   $(SRC_DIR)/i2c_master.v \
                   $(SRC_DIR)/sit5503_controller.v \
-                  $(SRC_DIR)/enhanced_pps_generator.v
+                  $(SRC_DIR)/enhanced_pps_generator.v \
+                  $(SRC_DIR)/kalman_filter.v \
+                  $(SRC_DIR)/advanced_dpll_pid.v \
+                  $(SRC_DIR)/logging_system.v \
+                  $(SRC_DIR)/uart_monitor.v \
+                  $(SRC_DIR)/satellite_delay_compensation.v
 
 # Constraint files / Файлы ограничений
 CONSTRAINT_FILES = $(CONSTRAINTS_DIR)/t2mi_pps.lpf
@@ -36,7 +42,8 @@ CONSTRAINT_FILES = $(CONSTRAINTS_DIR)/t2mi_pps.lpf
 # Simulation files / Файлы симуляции
 TB_FILES = $(SIM_DIR)/t2mi_pps_tb.v \
            $(SIM_DIR)/pps_generator_tb.v \
-           $(SIM_DIR)/t2mi_packet_parser_tb.v
+           $(SIM_DIR)/t2mi_packet_parser_tb.v \
+           $(SIM_DIR)/advanced_features_tb.v
 
 # Tools (adjust paths as needed) / Инструменты (настройте пути при необходимости)
 DIAMOND_DIR = /usr/local/diamond
@@ -105,6 +112,18 @@ sim_parser:
 	iverilog -I../$(SRC_DIR) -o t2mi_packet_parser_sim ../$(SRC_DIR)/t2mi_packet_parser.v t2mi_packet_parser_tb.v && \
 	vvp t2mi_packet_parser_sim
 
+# Run advanced features testbench / Запуск тестбенча расширенных функций
+sim_advanced:
+	@echo "Running advanced features simulation... / Запуск симуляции расширенных функций..."
+	cd $(SIM_DIR) && \
+	iverilog -I../$(SRC_DIR) -o advanced_features_sim \
+		../$(SRC_DIR)/kalman_filter.v \
+		../$(SRC_DIR)/advanced_dpll_pid.v \
+		../$(SRC_DIR)/logging_system.v \
+		../$(SRC_DIR)/uart_monitor.v \
+		advanced_features_tb.v && \
+	vvp advanced_features_sim
+
 # Clean build files / Очистка файлов сборки
 clean:
 	rm -rf $(BUILD_DIR)
@@ -148,11 +167,12 @@ help:
 	@echo "  sim_icarus - Run simulation with Icarus Verilog / Симуляция с Icarus Verilog"
 	@echo "  sim_pps    - Run PPS generator testbench / Тестбенч генератора PPS"
 	@echo "  sim_parser - Run packet parser testbench / Тестбенч парсера пакетов"
+	@echo "  sim_advanced - Run advanced features testbench / Тестбенч расширенных функций"
 	@echo "  lint       - Run lint check with Verilator / Проверка линтером Verilator"
 	@echo "  clean      - Clean build files / Очистка файлов сборки"
 	@echo "  docs       - Generate documentation / Генерация документации"
 	@echo "  info       - Show project information / Информация о проекте"
 	@echo "  help       - Show this help / Показать эту справку"
 
-.PHONY: all synthesis place_route bitstream simulate sim_icarus sim_pps sim_parser clean lint docs info help
+.PHONY: all synthesis place_route bitstream simulate sim_icarus sim_pps sim_parser sim_advanced clean lint docs info help
 
